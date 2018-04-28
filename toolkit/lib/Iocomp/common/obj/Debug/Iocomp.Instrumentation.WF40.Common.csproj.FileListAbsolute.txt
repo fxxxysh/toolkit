@@ -1,0 +1,9 @@
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\bin\Debug\Iocomp.Instrumentation.WF40.Common.dll
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\bin\Debug\Iocomp.Instrumentation.WF40.Common.pdb
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\bin\Debug\System.Design.dll
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\bin\Debug\System.dll
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\bin\Debug\System.Drawing.dll
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\bin\Debug\System.Windows.Forms.dll
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\obj\Debug\Iocomp.Instrumentation.WF40.Common.csproj.CoreCompileInputs.cache
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\obj\Debug\Iocomp.Instrumentation.WF40.Common.dll
+C:\Users\fx\Desktop\IOcomp .Net WinForms Ultra Pack SP1 5.0\license\Common\obj\Debug\Iocomp.Instrumentation.WF40.Common.pdb

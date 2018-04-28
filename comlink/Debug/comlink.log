@@ -1,0 +1,4 @@
+﻿  comlink.cpp
+  LINK : 没有找到 F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink.dll 或上一个增量链接没有生成它；正在执行完全链接
+    正在创建库 F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink.lib 和对象 F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink.exp
+  comlink.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink.dll
