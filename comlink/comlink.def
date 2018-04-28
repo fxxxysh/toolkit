@@ -1,0 +1,4 @@
+LIBRARY
+EXPORTS
+	comlink_parse
+	comlink_get_msg

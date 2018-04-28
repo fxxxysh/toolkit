@@ -49,6 +49,8 @@ Temporary Items
 #过滤
 .vs/
 bin/
+Debug/
+Release/
 skin_source/
 *.crf
 *.d

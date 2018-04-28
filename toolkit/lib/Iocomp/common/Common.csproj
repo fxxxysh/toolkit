@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{28FC2D39-8D09-4EB7-B5A6-F2BBFE3D38C6}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>common</AssemblyName>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Drawing">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Design\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Design.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Iocomp.Classes\AlignmentText.cs" />
+    <Compile Include="Iocomp.Classes\Animation.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationArc.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationBase.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationEllipse.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationImage.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationLine.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationOutline.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationPie.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationPolygon.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationRectangle.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationShape.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationText.cs" />
+    <Compile Include="Iocomp.Classes\AnnotationTextBox.cs" />
+    <Compile Include="Iocomp.Classes\Bevel.cs" />
+    <Compile Include="Iocomp.Classes\BevelMargin.cs" />
+    <Compile Include="Iocomp.Classes\BevelThick.cs" />
+    <Compile Include="Iocomp.Classes\BorderControl.cs" />
+    <Compile Include="Iocomp.Classes\BorderSimple.cs" />
+    <Compile Include="Iocomp.Classes\BorderSpecial.cs" />
+    <Compile Include="Iocomp.Classes\BoundsEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\CollectionBase.cs" />
+    <Compile Include="Iocomp.Classes\ColorSection.cs" />
+    <Compile Include="Iocomp.Classes\ColorSectionCollection.cs" />
+    <Compile Include="Iocomp.Classes\ComponentBase.cs" />
+    <Compile Include="Iocomp.Classes\Const.cs" />
+    <Compile Include="Iocomp.Classes\ControlBase.cs" />
+    <Compile Include="Iocomp.Classes\ControlCollection.cs" />
+    <Compile Include="Iocomp.Classes\Convert2.cs" />
+    <Compile Include="Iocomp.Classes\DesignControlBase.cs" />
+    <Compile Include="Iocomp.Classes\DrawExtent.cs" />
+    <Compile Include="Iocomp.Classes\DrawFunctions.cs" />
+    <Compile Include="Iocomp.Classes\DrawStringFormat.cs" />
+    <Compile Include="Iocomp.Classes\EditBase.cs" />
+    <Compile Include="Iocomp.Classes\EvaluationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Classes\EvaluationFormSWTB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Classes\GetMouseCursorEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\GPFunctions.cs" />
+    <Compile Include="Iocomp.Classes\GrabHandle.cs" />
+    <Compile Include="Iocomp.Classes\GradientColor.cs" />
+    <Compile Include="Iocomp.Classes\GradientColorCollection.cs" />
+    <Compile Include="Iocomp.Classes\GraphicsAPI.cs" />
+    <Compile Include="Iocomp.Classes\HitTest.cs" />
+    <Compile Include="Iocomp.Classes\Hub.cs" />
+    <Compile Include="Iocomp.Classes\iColors.cs" />
+    <Compile Include="Iocomp.Classes\iDraw.cs" />
+    <Compile Include="Iocomp.Classes\Indicator.cs" />
+    <Compile Include="Iocomp.Classes\IndicatorLed.cs" />
+    <Compile Include="Iocomp.Classes\IndicatorText.cs" />
+    <Compile Include="Iocomp.Classes\InstanceIO.cs" />
+    <Compile Include="Iocomp.Classes\iRectangle.cs" />
+    <Compile Include="Iocomp.Classes\LostFocusEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\Math2.cs" />
+    <Compile Include="Iocomp.Classes\ObjectEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ObjectMoveIndexEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\Outline.cs" />
+    <Compile Include="Iocomp.Classes\PaintArgs.cs" />
+    <Compile Include="Iocomp.Classes\PercentItem.cs" />
+    <Compile Include="Iocomp.Classes\PercentItemCollection.cs" />
+    <Compile Include="Iocomp.Classes\PercentLegend.cs" />
+    <Compile Include="Iocomp.Classes\PercentLegendColumn.cs" />
+    <Compile Include="Iocomp.Classes\PlugIn.cs" />
+    <Compile Include="Iocomp.Classes\PlugInStandardCollection.cs" />
+    <Compile Include="Iocomp.Classes\PointDouble.cs" />
+    <Compile Include="Iocomp.Classes\PointDoubleCollection.cs" />
+    <Compile Include="Iocomp.Classes\PointerSlidingScale.cs" />
+    <Compile Include="Iocomp.Classes\PointerSlidingScaleCollection.cs" />
+    <Compile Include="Iocomp.Classes\PrintEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PrintPageEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PropertyChangedEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PropertyData.cs" />
+    <Compile Include="Iocomp.Classes\SaveDialogEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ScaleAnnotation.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDiscreetItem.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDiscreetItemCollection.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDiscreetMarker.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDisplay.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDisplayAngular.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDisplayDiscreet.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDisplayDiscreetAngular.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDisplayDiscreetLinear.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDisplayLinear.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDrawFill.cs" />
+    <Compile Include="Iocomp.Classes\ScaleDrawSegments.cs" />
+    <Compile Include="Iocomp.Classes\ScaleGeneratorAuto.cs" />
+    <Compile Include="Iocomp.Classes\ScaleGeneratorBase.cs" />
+    <Compile Include="Iocomp.Classes\ScaleGeneratorFixed.cs" />
+    <Compile Include="Iocomp.Classes\ScaleRange.cs" />
+    <Compile Include="Iocomp.Classes\ScaleRangeAngular.cs" />
+    <Compile Include="Iocomp.Classes\ScaleRangeDiscreetAngular.cs" />
+    <Compile Include="Iocomp.Classes\ScaleRangeLinear.cs" />
+    <Compile Include="Iocomp.Classes\ScaleTickBase.cs" />
+    <Compile Include="Iocomp.Classes\ScaleTickInfo.cs" />
+    <Compile Include="Iocomp.Classes\ScaleTickLabel.cs" />
+    <Compile Include="Iocomp.Classes\ScaleTickMajor.cs" />
+    <Compile Include="Iocomp.Classes\ScaleTickMid.cs" />
+    <Compile Include="Iocomp.Classes\ScaleTickMinor.cs" />
+    <Compile Include="Iocomp.Classes\Segment7.cs" />
+    <Compile Include="Iocomp.Classes\SevenSegmentBase.cs" />
+    <Compile Include="Iocomp.Classes\Shadow.cs" />
+    <Compile Include="Iocomp.Classes\Shapes.cs" />
+    <Compile Include="Iocomp.Classes\SlidingScaleBackground.cs" />
+    <Compile Include="Iocomp.Classes\Stepper.cs" />
+    <Compile Include="Iocomp.Classes\SubClassBase.cs" />
+    <Compile Include="Iocomp.Classes\SubClassBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\SubControlBase.cs" />
+    <Compile Include="Iocomp.Classes\TextFormatDouble.cs" />
+    <Compile Include="Iocomp.Classes\TextFormatDoubleAll.cs" />
+    <Compile Include="Iocomp.Classes\TextFormatInteger.cs" />
+    <Compile Include="Iocomp.Classes\TextLayoutBase.cs" />
+    <Compile Include="Iocomp.Classes\TextLayoutFull.cs" />
+    <Compile Include="Iocomp.Classes\TextLayoutHorizontal.cs" />
+    <Compile Include="Iocomp.Classes\TypeEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\UIControl.cs" />
+    <Compile Include="Iocomp.Classes\UIInputCollection.cs" />
+    <Compile Include="Iocomp.Classes\UpdateRateTimer.cs" />
+    <Compile Include="Iocomp.Classes\Value.cs" />
+    <Compile Include="Iocomp.Classes\ValueBoolean.cs" />
+    <Compile Include="Iocomp.Classes\ValueBooleanEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ValueDateTime.cs" />
+    <Compile Include="Iocomp.Classes\ValueDateTimeEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ValueDouble.cs" />
+    <Compile Include="Iocomp.Classes\ValueDoubleEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ValueInteger.cs" />
+    <Compile Include="Iocomp.Classes\ValueIntegerEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ValueLong.cs" />
+    <Compile Include="Iocomp.Classes\ValueLongEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\ValueString.cs" />
+    <Compile Include="Iocomp.Classes\ValueStringEventArgs.cs" />
+    <Compile Include="Iocomp.Delegates\AddRemoveObjectEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\AnnotationEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\BoundsChangeEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\GetMouseCursorEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\InvalidateDelegate.cs" />
+    <Compile Include="Iocomp.Delegates\ObjectMoveIndexEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PrintEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PrintPageEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PropertyChangeEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\SaveDialogEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\TypeEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\ValueBooleanEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\ValueDateTimeEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\ValueDoubleEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\ValueIntegerEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\ValueLongEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\ValueStringEventHandler.cs" />
+    <Compile Include="Iocomp.Design.Components\CollectionNavigatorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design.Components\ColorDialog.cs" />
+    <Compile Include="Iocomp.Design.Components\ColorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design.Components\ColorSelectorGrid.cs" />
+    <Compile Include="Iocomp.Design.Components\ColorSelectorGridDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\CheckBox.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\CheckBoxDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\ColorPicker.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\ColorPickerDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\ColorPickerStyle.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\ComboBox.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\ComboBoxDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\DateTimePicker.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\DateTimePickerDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\DoubleEditButton.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\DoubleEditButtonDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\DoubleEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\EditBox.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\EditBoxDataStyle.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\EditBoxDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\EditBoxLongFormat.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\EditMultiLine.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\EditMultiLineDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\FocusControlConverter.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\FocusLabel.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\FocusLabelDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\FontButton.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\FontButtonDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\NumericUpDown.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\NumericUpDownDesigner.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\PlugInEditorControlPropertyAdapter.cs" />
+    <Compile Include="Iocomp.Design.Plugin.EditorControls\PropertyInfoCacheObject.cs" />
+    <Compile Include="Iocomp.Design\AboutPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AboutPlugInSWTB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AlignmentTextEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnimationEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationArcEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\AnnotationBaseConverter.cs" />
+    <Compile Include="Iocomp.Design\AnnotationEllipseEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationImageEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationLineEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationPieEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationPolygonEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationRectangleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationTextBoxEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\AnnotationTextEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\BevelEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\BevelMarginEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\BevelThickEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\BorderControlEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\CollectionItemConverter.cs" />
+    <Compile Include="Iocomp.Design\ColorSectionCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\ColorSectionEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ComponentBaseDesigner.cs" />
+    <Compile Include="Iocomp.Design\ControlDesigner.cs" />
+    <Compile Include="Iocomp.Design\GradientColorCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\GradientColorEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\HubEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\IndicatorEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\IndicatorLedEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\LoadBeginEndSerializerComponentBase.cs" />
+    <Compile Include="Iocomp.Design\LoadBeginEndSerializerControlBase.cs" />
+    <Compile Include="Iocomp.Design\LoadBeginEndSerializerEditBase.cs" />
+    <Compile Include="Iocomp.Design\OutlineEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PercentItemCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PercentItemEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PercentLegendColumnEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PercentLegendEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlugInCollection.cs" />
+    <Compile Include="Iocomp.Design\PlugInControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlugInStandard.cs" />
+    <Compile Include="Iocomp.Design\PointDoubleCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PointDoubleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PointerSlidingScaleCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PointerSlidingScaleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleAnnotationEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDiscreetItemCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\ScaleDiscreetItemEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDiscreetMarkerEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDisplayAngularEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDisplayDiscreetAngularEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDisplayDiscreetLinearEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDisplayGeneratorEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleDisplayLinearEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleGeneratorAutoEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleGeneratorFixedEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleRangeAngularEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleRangeDiscreetAngularEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleRangeLinearEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleTickMajorEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleTickMidEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ScaleTickMinorEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\Segment7EditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ShadowEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\SlidingScaleBackgroundEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\StepperEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\SubClassTypeConverter.cs" />
+    <Compile Include="Iocomp.Design\TextFormatDoubleAllEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\TextFormatDoubleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\TextFormatIntegerEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\TextLayoutBaseEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\TextLayoutFullEditorPlugin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\TextLayoutHorizontalEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\UIControlEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\UITypeEditorEventArgs.cs" />
+    <Compile Include="Iocomp.Design\UITypeEditorEventHandler.cs" />
+    <Compile Include="Iocomp.Design\UITypeEditorGeneric.cs" />
+    <Compile Include="Iocomp.Design\ValueBaseConverter.cs" />
+    <Compile Include="Iocomp.Design\ValueBooleanEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ValueBooleanTypeConverter.cs" />
+    <Compile Include="Iocomp.Design\ValueDateTimeEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ValueDateTimeTypeConverter.cs" />
+    <Compile Include="Iocomp.Design\ValueDoubleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ValueDoubleTypeConverter.cs" />
+    <Compile Include="Iocomp.Design\ValueIntegerEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ValueIntegerTypeConverter.cs" />
+    <Compile Include="Iocomp.Design\ValueLongEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ValueLongTypeConverter.cs" />
+    <Compile Include="Iocomp.Design\ValueStringEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\ValueStringTypeConverter.cs" />
+    <Compile Include="Iocomp.Interfaces\IAmbientOwner.cs" />
+    <Compile Include="Iocomp.Interfaces\IAnimation.cs" />
+    <Compile Include="Iocomp.Interfaces\IAnnotationBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IAnnotationImage.cs" />
+    <Compile Include="Iocomp.Interfaces\IBevel.cs" />
+    <Compile Include="Iocomp.Interfaces\IBevelThick.cs" />
+    <Compile Include="Iocomp.Interfaces\IBorderControl.cs" />
+    <Compile Include="Iocomp.Interfaces\ICollectionBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IComponentBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IControlBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IForceDesignerChange.cs" />
+    <Compile Include="Iocomp.Interfaces\IIndicatorLed.cs" />
+    <Compile Include="Iocomp.Interfaces\IMatrixCollection.cs" />
+    <Compile Include="Iocomp.Interfaces\IMatrixControl.cs" />
+    <Compile Include="Iocomp.Interfaces\IMatrixRowCol.cs" />
+    <Compile Include="Iocomp.Interfaces\IOPCDataDoubleReceiver.cs" />
+    <Compile Include="Iocomp.Interfaces\IOutline.cs" />
+    <Compile Include="Iocomp.Interfaces\IPercentLegend.cs" />
+    <Compile Include="Iocomp.Interfaces\IPercentLegendColumn.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlugInEditorControl.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlugInMaster.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlugInStandard.cs" />
+    <Compile Include="Iocomp.Interfaces\IPointerSlidingScale.cs" />
+    <Compile Include="Iocomp.Interfaces\IPropertyDefaults.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleAnnotation.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleDiscreetMarker.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleDisplay.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleDisplayAngular.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleDisplayDiscreet.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleDisplayDiscreetAngular.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleDisplayLinear.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleGeneratorBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleRangeAngular.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleRangeLinear.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleTickBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleTickLabel.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleTickMajor.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleTickMid.cs" />
+    <Compile Include="Iocomp.Interfaces\IScaleTickMinor.cs" />
+    <Compile Include="Iocomp.Interfaces\ISegment7.cs" />
+    <Compile Include="Iocomp.Interfaces\ISetDesignerDefaults.cs" />
+    <Compile Include="Iocomp.Interfaces\ISevenSegmentBase.cs" />
+    <Compile Include="Iocomp.Interfaces\ISlidingScaleBackground.cs" />
+    <Compile Include="Iocomp.Interfaces\IStepper.cs" />
+    <Compile Include="Iocomp.Interfaces\ISubClassBase.cs" />
+    <Compile Include="Iocomp.Interfaces\ISubControlBase.cs" />
+    <Compile Include="Iocomp.Interfaces\ISupportUITypeEditor.cs" />
+    <Compile Include="Iocomp.Interfaces\ITextLayoutBase.cs" />
+    <Compile Include="Iocomp.Interfaces\ITextLayoutFull.cs" />
+    <Compile Include="Iocomp.Interfaces\ITextLayoutHorizontal.cs" />
+    <Compile Include="Iocomp.Interfaces\IUIInput.cs" />
+    <Compile Include="Iocomp.Interfaces\IUITypeEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Interfaces\IUpdateRate.cs" />
+    <Compile Include="Iocomp.Licensing\CustomLicenseContext.cs" />
+    <Compile Include="Iocomp.Licensing\DynamicLicenseKey.cs" />
+    <Compile Include="Iocomp.Licensing\IocompLicenseProvider.cs" />
+    <Compile Include="Iocomp.Special\ColorSelectorDropDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Types\AlignmentQuadSide.cs" />
+    <Compile Include="Iocomp.Types\AlignmentSide.cs" />
+    <Compile Include="Iocomp.Types\AlignmentStyle.cs" />
+    <Compile Include="Iocomp.Types\AmbientColorSouce.cs" />
+    <Compile Include="Iocomp.Types\AngularColorSectionDrawStyle.cs" />
+    <Compile Include="Iocomp.Types\AnnotationFillStyle.cs" />
+    <Compile Include="Iocomp.Types\AnnotationOutlineStyle.cs" />
+    <Compile Include="Iocomp.Types\BevelStyle.cs" />
+    <Compile Include="Iocomp.Types\BevelThickness.cs" />
+    <Compile Include="Iocomp.Types\BorderStyleControl.cs" />
+    <Compile Include="Iocomp.Types\BorderStyleSimple.cs" />
+    <Compile Include="Iocomp.Types\CacheBrushStyle.cs" />
+    <Compile Include="Iocomp.Types\CachePenStyle.cs" />
+    <Compile Include="Iocomp.Types\ClockHourStyle.cs" />
+    <Compile Include="Iocomp.Types\CountDirection.cs" />
+    <Compile Include="Iocomp.Types\Direction.cs" />
+    <Compile Include="Iocomp.Types\DirectionState.cs" />
+    <Compile Include="Iocomp.Types\EditMode.cs" />
+    <Compile Include="Iocomp.Types\EventSource.cs" />
+    <Compile Include="Iocomp.Types\FaceReference.cs" />
+    <Compile Include="Iocomp.Types\FrameDirection.cs" />
+    <Compile Include="Iocomp.Types\ImageListStyle.cs" />
+    <Compile Include="Iocomp.Types\IndicatorStyleLED3D.cs" />
+    <Compile Include="Iocomp.Types\IntegerFormatStyle.cs" />
+    <Compile Include="Iocomp.Types\LeadingStyle.cs" />
+    <Compile Include="Iocomp.Types\MagnitudeStyle.cs" />
+    <Compile Include="Iocomp.Types\MarkerStyleLabel.cs" />
+    <Compile Include="Iocomp.Types\OPCXValueType.cs" />
+    <Compile Include="Iocomp.Types\PercentDisplayDrawStyle.cs" />
+    <Compile Include="Iocomp.Types\PointerStyleSlidingScale.cs" />
+    <Compile Include="Iocomp.Types\PointerTrackStyle.cs" />
+    <Compile Include="Iocomp.Types\PrecisionStyle.cs" />
+    <Compile Include="Iocomp.Types\PrintOrientation.cs" />
+    <Compile Include="Iocomp.Types\QuadSide.cs" />
+    <Compile Include="Iocomp.Types\RotationQuad.cs" />
+    <Compile Include="Iocomp.Types\ScaleGeneratorStyle.cs" />
+    <Compile Include="Iocomp.Types\ScaleType.cs" />
+    <Compile Include="Iocomp.Types\Segment7Character.cs" />
+    <Compile Include="Iocomp.Types\SegmentsLedStyle.cs" />
+    <Compile Include="Iocomp.Types\ShadowStyle.cs" />
+    <Compile Include="Iocomp.Types\ShapeBasic.cs" />
+    <Compile Include="Iocomp.Types\SideDirection.cs" />
+    <Compile Include="Iocomp.Types\SizeStyle.cs" />
+    <Compile Include="Iocomp.Types\SlidingScaleBackgroundStyle.cs" />
+    <Compile Include="Iocomp.Types\StackingDimension.cs" />
+    <Compile Include="Iocomp.Types\StringAlignmentAngular.cs" />
+    <Compile Include="Iocomp.Types\StringAlignmentDiscreetAngular.cs" />
+    <Compile Include="Iocomp.Types\SwitchMomentaryStyle.cs" />
+    <Compile Include="Iocomp.Types\TextFormatDoubleStyle.cs" />
+    <Compile Include="Iocomp.Types\TextFormatIntegerStyle.cs" />
+    <Compile Include="Iocomp.Types\TextRotation.cs" />
+    <Compile Include="Iocomp.Types\UIStepSizeStyle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolboxBitmaps\Access.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ToolboxBitmaps\ARW08DN.ICO" />
+    <EmbeddedResource Include="ToolboxBitmaps\ARW08UP.ICO" />
+    <EmbeddedResource Include="ToolboxBitmaps\ARWHEAD.ICO" />
+    <EmbeddedResource Include="ToolboxBitmaps\ClockAnalog.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Compass.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\DisplayDouble.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\DisplayInteger.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\DisplayString.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\EditDouble.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\EditInteger.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\EditString.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\GaugeAngular.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\GaugeLinear.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\GaugeTube.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\ImageDisplay.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\ioc-large.png" />
+    <EmbeddedResource Include="ToolboxBitmaps\Keyboard.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Knob.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Label.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\LcdMatrix.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Led.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\LedArrow.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\LedBar.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\LedSpiral.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\MatrixButtons.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\MatrixLeds.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\ModeComboBox.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Motor.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\ObjectCanvas.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Odometer.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\OPCData.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Panel.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\PercentBar.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\PercentPie.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\PhonePad.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Pipe.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\PipeJoint.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Plot.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\PlotToolBar.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\RotationDisplay.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentAnalog.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentBinary.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentCharacter.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentClock.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentClockSmpte.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentHexadecimal.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SevenSegmentInteger.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Slider.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SlidingCompass.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SlidingScale.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SpectrumDisplay.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchLed.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchLever.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchPanel.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchQuad.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchRocker.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchRocker3Way.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchRotary.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchSlider.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\SwitchToggle.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Tank.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Thermometer.bmp" />
+    <EmbeddedResource Include="ToolboxBitmaps\Valve.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

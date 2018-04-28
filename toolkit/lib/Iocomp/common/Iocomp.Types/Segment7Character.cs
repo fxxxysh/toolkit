@@ -1,0 +1,31 @@
+namespace Iocomp.Types
+{
+	public enum Segment7Character
+	{
+		X0,
+		X1,
+		X2,
+		X3,
+		X4,
+		X5,
+		X6,
+		X7,
+		X8,
+		X9,
+		XA,
+		XB,
+		XC,
+		XD,
+		XE,
+		XF,
+		Space,
+		Period,
+		Colon,
+		SemiColon,
+		Comma,
+		Plus,
+		Minus,
+		ArrowUp,
+		ArrowDown
+	}
+}

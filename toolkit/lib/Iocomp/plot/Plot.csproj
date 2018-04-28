@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{24D09236-9CCB-4B96-862E-9EAC0C4C7246}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>plot</AssemblyName>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="common">
+      <HintPath>..\common\bin\Release\common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Design\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\WINDOWS\Microsoft.NET\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Iocomp.Classes\PlotAnnotationArc.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationArcAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationEllipse.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationEllipseAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationFillBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationImage.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationImageAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationLine.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationLineAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationOutlineBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationPie.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationPieAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationPolygon.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationPolygonAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationRectangle.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationRectangleAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationText.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationTextAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationTextBox.cs" />
+    <Compile Include="Iocomp.Classes\PlotAnnotationTextBoxAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotAxis.cs" />
+    <Compile Include="Iocomp.Classes\PlotAxisGridLines.cs" />
+    <Compile Include="Iocomp.Classes\PlotAxisTracking.cs" />
+    <Compile Include="Iocomp.Classes\PlotBrush.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBar.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBarAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBiFill.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBiFillAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBubble.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelBubbleAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCandlestick1.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCandlestick1Accessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCandlestick2.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCandlestick2Accessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCandlestick3.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCandlestick3Accessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelConsecutive.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCubicSpline.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelCubicSplineAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDataCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDataPointClickEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDataPointMovedEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDifferential.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDifferentialAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDigital.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelDigitalAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelFill.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelFillAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelImage.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelImageAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelPolynomial.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelPolynomialAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelRational.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelRationalAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelSweepInterval.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelSweepIntervalAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelTrace.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelTraceAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelTraceXY.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelTraceXYAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotChannelXYBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotColorLookupGradient.cs" />
+    <Compile Include="Iocomp.Classes\PlotColorTable.cs" />
+    <Compile Include="Iocomp.Classes\PlotColorTableEntry.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorChannel.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorChannelAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorChannelBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorChannels.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorChannelsAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorCustomizeHintTextEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorDisplay.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorDisplayCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorHint.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorMultipleBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorMultipleStyleMenuItems.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorPointer.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorWindow.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorXY.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataCursorXYAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointBar.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointBiFill.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointBubble.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointCandlestick1.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointCandlestick2.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointCandlestick3.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointCubicSpline.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointDifferential.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointDigital.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointFill.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointPolynomial.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointRational.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointSweepInterval.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointTrace.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointTraceXY.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataPointYDouble.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataView.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataViewCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotDataViewZoomBoxEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PlotFill.cs" />
+    <Compile Include="Iocomp.Classes\PlotFillGrid.cs" />
+    <Compile Include="Iocomp.Classes\PlotLabelBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLabelBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLabelBasic.cs" />
+    <Compile Include="Iocomp.Classes\PlotLabelBasicAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutAxis.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockGroup.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockGroupCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockItem.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockItemCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockItemDockOrderSorter.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutBlockItemDockPercentStartSorter.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutDataView.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutDockableAll.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutDockableDataView.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutFill.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutManager.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutSorterDockOrder.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutSorterOrientation.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutStackingGroup.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutStackingGroupCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutStackingGroupSorter.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutUniqueDockOrder.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutUniqueDockOrderCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLayoutViewerDragControl.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendBasic.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendBasicAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendChannelImage.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendChannelImageAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendMultiColumn.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendMultiColumnAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendMultiColumnCellFormatting.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendMultiColumnItem.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendMultiColumnItemCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLegendWrapping.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBandBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBandX.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBandXAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBandY.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBandYAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitLineBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitLineX.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitLineXAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitLineY.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitLineYAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitPolyBand.cs" />
+    <Compile Include="Iocomp.Classes\PlotLimitPolyBandAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotLogFileAdapter.cs" />
+    <Compile Include="Iocomp.Classes\PlotMarker.cs" />
+    <Compile Include="Iocomp.Classes\PlotObject.cs" />
+    <Compile Include="Iocomp.Classes\PlotObjectCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotObjectCollectionBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotObjectRenamedEventArgs.cs" />
+    <Compile Include="Iocomp.Classes\PlotPen.cs" />
+    <Compile Include="Iocomp.Classes\PlotPrintAdapter.cs" />
+    <Compile Include="Iocomp.Classes\PlotSorterLayer.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableBaseCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableCell.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableCellFormat.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableCellsFormatting.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableChannel.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableChannelAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableGrid.cs" />
+    <Compile Include="Iocomp.Classes\PlotTableGridAccessor.cs" />
+    <Compile Include="Iocomp.Classes\PlotTitle.cs" />
+    <Compile Include="Iocomp.Classes\PlotToolBarAdapter.cs" />
+    <Compile Include="Iocomp.Classes\PlotToolBarButton.cs" />
+    <Compile Include="Iocomp.Classes\PlotTraceFastDraw.cs" />
+    <Compile Include="Iocomp.Classes\PlotXAxis.cs" />
+    <Compile Include="Iocomp.Classes\PlotXAxisCollection.cs" />
+    <Compile Include="Iocomp.Classes\PlotXYAxisReferenceBase.cs" />
+    <Compile Include="Iocomp.Classes\PlotYAxis.cs" />
+    <Compile Include="Iocomp.Classes\PlotYAxisCollection.cs" />
+    <Compile Include="Iocomp.Delegates\PlotChannelDataPointClickEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PlotChannelDataPointMovedEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PlotDataCursorCustomizeHintTextEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PlotDataViewZoomBoxEventHandler.cs" />
+    <Compile Include="Iocomp.Delegates\PlotObjectRenamedEventHandler.cs" />
+    <Compile Include="Iocomp.Design\LoadBeginEndSerializerPlotToolBarButton.cs" />
+    <Compile Include="Iocomp.Design\LoadBeginEndSerializerPlotToolBarStandard.cs" />
+    <Compile Include="Iocomp.Design\PlotAnnotationArcEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotAnnotationEllipseEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationImageEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationLineEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationPieEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationPolygonEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationRectangleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationTextBoxEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationTextEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAnnotationUnitTypesEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAxisEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAxisGridLinesEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotAxisTrackingEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotBrushEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBarDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBarEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBarSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotChannelBiFillDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBiFillEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBiFillSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBubbleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelBubbleSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick1EditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick1SpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick2EditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick2SpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick3DataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick3EditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCandlestick3SpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCubicSplineDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelCubicSplineEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelDifferentialDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelDifferentialEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelDifferentialSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelDigitalDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelDigitalEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelDigitalSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelFillDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelFillEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelImageEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelImageSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelPolynomialDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelPolynomialEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelRationalDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelRationalEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelSweepIntervalDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelSweepIntervalEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelSweepIntervalSpecificEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelTraceDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelTraceEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelTraceXYDataPointsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotChannelTraceXYEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotColorLookupGradientEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataCursorBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotDataCursorChannelEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataCursorChannelsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataCursorHintEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataCursorMultipleStyleMenuItemsEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataCursorWindowEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataCursorXYEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDataViewCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotDataViewEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotDesigner.cs" />
+    <Compile Include="Iocomp.Design\PlotEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotFileIOEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotFillEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotFillGridEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLabelBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotLabelBasicEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLayoutAxisEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLayoutDataViewEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLayoutDockableAllEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLayoutViewer.cs" />
+    <Compile Include="Iocomp.Design\PlotLayoutViewerEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotLegendBasicEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendChannelImageEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendChannelImageTicksEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendMultiColumnCellFormattingPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendMultiColumnEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendMultiColumnItemCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotLegendMultiColumnItemPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLegendWrappingEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLimitBandXEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLimitBandYEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLimitBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotLimitLineXEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLimitLineYEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLimitPolyBandEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotLogFileAdapterEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotMarkerEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotPenEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotPrintAdapterEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotTableBaseCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotTableCellFormatEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotTableCellsFormattingEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotTableChannelEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotTableEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotTableGridEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotTitleEditorPlugIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iocomp.Design\PlotToolBarStandardDesigner.cs" />
+    <Compile Include="Iocomp.Design\PlotXAxisCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Design\PlotYAxisCollectionEditorPlugIn.cs" />
+    <Compile Include="Iocomp.Instrumentation.Plotting\IocompLicenseProviderPlot.cs" />
+    <Compile Include="Iocomp.Instrumentation.Plotting\Plot.cs" />
+    <Compile Include="Iocomp.Instrumentation.Plotting\PlotBase.cs" />
+    <Compile Include="Iocomp.Instrumentation.Plotting\PlotToolBarStandard.cs" />
+    <Compile Include="Iocomp.Interfaces\IDrawLayoutControl.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotAxisGridLines.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotBrush.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotChannelBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotDataCursorBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotDataCursorHint.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotDataCursorPointer.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotDataCursorWindow.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotDraw.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotFill.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotLayer.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotLayout.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotLegendMultiColumnItem.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotLogFileAdapter.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotMarker.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotObject.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotObjectCollectionBase.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotObjectSubClass.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotPen.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotTableCell.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotTableCellFormat.cs" />
+    <Compile Include="Iocomp.Interfaces\IPlotTitle.cs" />
+    <Compile Include="Iocomp.Types\DataDirection.cs" />
+    <Compile Include="Iocomp.Types\LegendTitleColorStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotAutoRotation.cs" />
+    <Compile Include="Iocomp.Types\PlotAxisMouseMode.cs" />
+    <Compile Include="Iocomp.Types\PlotAxisReference.cs" />
+    <Compile Include="Iocomp.Types\PlotBrushStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotChannelBubbleRadiusStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotChannelInterpolationResult.cs" />
+    <Compile Include="Iocomp.Types\PlotClippingStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotCopyToClipboardFormat.cs" />
+    <Compile Include="Iocomp.Types\PlotDataCursorHintLocationStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotDataCursorMultipleStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotDataMoveStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotDataViewAxesControlStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotDataViewMouseMode.cs" />
+    <Compile Include="Iocomp.Types\PlotDigitalReferenceStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotDockAutoSizeAlignment.cs" />
+    <Compile Include="Iocomp.Types\PlotDockStartStopStyleDockableAll.cs" />
+    <Compile Include="Iocomp.Types\PlotDockStartStopStyleDockableAxis.cs" />
+    <Compile Include="Iocomp.Types\PlotDockStyleAll.cs" />
+    <Compile Include="Iocomp.Types\PlotDockStyleAxis.cs" />
+    <Compile Include="Iocomp.Types\PlotDragDockOrderOffset.cs" />
+    <Compile Include="Iocomp.Types\PlotDragSide.cs" />
+    <Compile Include="Iocomp.Types\PlotDragType.cs" />
+    <Compile Include="Iocomp.Types\PlotFileDeliminator.cs" />
+    <Compile Include="Iocomp.Types\PlotFloatingReferenceStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotLegendMultiColumnItemType.cs" />
+    <Compile Include="Iocomp.Types\PlotLimitBandHitArea.cs" />
+    <Compile Include="Iocomp.Types\PlotMarkerStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotPenStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotPrintSizingStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotTableDataPointRangeStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotToolBarCommandStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotTrackingAlignFirstStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotTrackingExpandStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotTrackingStyle.cs" />
+    <Compile Include="Iocomp.Types\PlotUnitType.cs" />
+    <Compile Include="Iocomp.Types\PlotXValueTextDateTimeFormat.cs" />
+    <Compile Include="PlotToolBarIcons\Access.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarAxesScroll.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarAxesZoom.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarCopy.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarDataCursor.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarEdit.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarPreview.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarPrint.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarSave.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarSelect.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarTrackingPause.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarTrackingResume.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarZoomBox.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarZoomIn.ico" />
+    <EmbeddedResource Include="PlotToolBarIcons\PlotToolBarZoomOut.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
