@@ -16,7 +16,7 @@ namespace toolkit
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new wave_form());
+            Application.Run(new tool_form());
         }
     }
 }

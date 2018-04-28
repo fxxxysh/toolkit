@@ -12,7 +12,7 @@ namespace toolkit.frame
 {
     public class wave_form
     {
-        public wave_form _hander;
+        public tool_form _hander;
         private Plot _plot;
         private int channel_max;
 
@@ -36,7 +36,7 @@ namespace toolkit.frame
 
         bool[] legend_sign = new bool[] { true, true, true, true, true, true, true, true, true, true };
 
-        public wave_form(wave_form hander)
+        public wave_form(tool_form hander)
         {
             _hander = hander;
             channel_max = _hander.wave_channel_max;

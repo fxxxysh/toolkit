@@ -12,16 +12,16 @@ using System.IO.Ports;
 using System.Text.RegularExpressions;
 using Iocomp.Instrumentation.Plotting;
 using Iocomp.Classes;
-//using toolkit.frame;
+using toolkit.frame;
 
 namespace toolkit
 {
-    public partial class wave_form : Form
+    public partial class tool_form : Form
     {
         public int wave_channel_max = 10;
 
-        //public serial_port _serial; //串口
-        public wave_form _wave; //波形窗口
+        public serial_port _serial; //串口
+        public tool_form _wave; //波形窗口
         public List<Label> _list;
         //public bool system_free = false;
 
@@ -30,53 +30,53 @@ namespace toolkit
             get { return _list; }
         }
 
-        //public Plot _plot
-        //{
-        //    get { return wave_plot; }
-        //    set { wave_plot = value; }
-        //}
+        public Plot _plot
+        {
+            get { return wave_plot; }
+            set { wave_plot = value; }
+        }
 
-        //public PlotToolBarStandard _plotTool
-        //{
-        //    get { return plotToolBar; }
-        //    set { plotToolBar = value; }
-        //}
+        public PlotToolBarStandard _plotTool
+        {
+            get { return plotToolBar; }
+            set { plotToolBar = value; }
+        }
 
-        //public PlotToolBarButton _click_start_track
-        //{
-        //    get { return plotToolBarButton1; }
-        //    set { plotToolBarButton1 = value; }
-        //}
+        public PlotToolBarButton _click_start_track
+        {
+            get { return plotToolBarButton1; }
+            set { plotToolBarButton1 = value; }
+        }
 
-        //public PlotToolBarButton _click_stop_track
-        //{
-        //    get { return plotToolBarButton2; }
-        //    set { plotToolBarButton2 = value; }
-        //}
+        public PlotToolBarButton _click_stop_track
+        {
+            get { return plotToolBarButton2; }
+            set { plotToolBarButton2 = value; }
+        }
 
-        //public PlotToolBarButton _click_cursor
-        //{
-        //    get { return plotToolBarButton12; }
-        //    set { plotToolBarButton12 = value; }
-        //}
+        public PlotToolBarButton _click_cursor
+        {
+            get { return plotToolBarButton12; }
+            set { plotToolBarButton12 = value; }
+        }
 
-        //public ToolStripComboBox _com_port
-        //{
-        //    get { return com_port; }
-        //    set { com_port = value; }
-        //}
+        public ToolStripComboBox _com_port
+        {
+            get { return com_port; }
+            set { com_port = value; }
+        }
 
-        //public ToolStripComboBox _com_baudrate
-        //{
-        //    get { return com_baudrate; }
-        //    set { com_baudrate = value; }
-        //}
+        public ToolStripComboBox _com_baudrate
+        {
+            get { return com_baudrate; }
+            set { com_baudrate = value; }
+        }
 
-        //public ToolStripButton _com_switch
-        //{
-        //    get { return com_switch; }
-        //    set { com_switch = value; }
-        //}
+        public ToolStripButton _com_switch
+        {
+            get { return com_switch; }
+            set { com_switch = value; }
+        }
 
         public static void set_double_cache(Control control)
         {
@@ -102,7 +102,7 @@ namespace toolkit
             base.WndProc(ref m);
         }
 
-        public wave_form()
+        public tool_form()
         {
             InitializeComponent();
 
@@ -114,15 +114,15 @@ namespace toolkit
         // 挂载
         private void mount()
         {
-            //_serial = new serial_port(this);
-            //_wave = new wave_form(this);
+            _serial = new serial_port(this);
+            _wave = new wave_form(this);
 
             // test
             //_list = new List<Label>();
             //_list.Add(label1);
 
-            //set_double_cache(wave_plot);
-            //set_double_cache(plotToolBar);
+            set_double_cache(wave_plot);
+            set_double_cache(plotToolBar);
         }
 
         // 主函数

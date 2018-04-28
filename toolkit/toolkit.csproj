@@ -60,21 +60,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frame\serial_port\serial_port.cs" />
+    <Compile Include="frame\serial_port\serial_port_task.cs" />
+    <Compile Include="frame\wave_form\wave_form..cs" />
+    <Compile Include="frame\WMI\wmi.cs" />
+    <Compile Include="modules\comlink\comlink.cs" />
+    <Compile Include="modules\comlink\comlink_msg.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="wave_form.cs">
+    <Compile Include="tool_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="wave_form.Designer.cs">
-      <DependentUpon>wave_form.cs</DependentUpon>
+    <Compile Include="tool_form.Designer.cs">
+      <DependentUpon>tool_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="wave_form.resx">
-      <DependentUpon>wave_form.cs</DependentUpon>
+    <EmbeddedResource Include="tool_form.resx">
+      <DependentUpon>tool_form.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,6 +104,8 @@
   <ItemGroup>
     <Folder Include="device\gnss\" />
     <Folder Include="lib\" />
+    <Folder Include="modules\logger\" />
+    <Folder Include="modules\wave\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tool.ico" />

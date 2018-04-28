@@ -19,7 +19,7 @@ namespace toolkit.frame
         private Plot _plot; //示波器控件
 
         private Panel _lost_focus;
-        public wave_form _hander;
+        public tool_form _hander;
 
         public ToolStripComboBox _com_port;
         public ToolStripComboBox _com_baudrate;
@@ -49,7 +49,7 @@ namespace toolkit.frame
         };
         serial_var_s serial_var = new serial_var_s(false);
 
-        public serial_port(wave_form hander) : base()
+        public serial_port(tool_form hander) : base()
         {
             _hander = hander;
             _plot = _hander._plot;
