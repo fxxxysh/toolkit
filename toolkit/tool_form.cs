@@ -21,7 +21,7 @@ namespace toolkit
         public int wave_channel_max = 10;
 
         public serial_port _serial; //串口
-        public tool_form _wave; //波形窗口
+        public wave_form _wave; //波形窗口
         public List<Label> _list;
         //public bool system_free = false;
 

@@ -10,6 +10,8 @@
 
 #include "stdint.h"
 
+DLL_API void comlink_test(void);
+
 DLL_API bool comlink_parse(uint8_t *buffer, int buffer_size);
 
 DLL_API bool comlink_get_msg(uint8_t* msg_number, uint8_t* now_msg,

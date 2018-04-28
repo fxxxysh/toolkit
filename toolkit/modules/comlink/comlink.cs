@@ -12,6 +12,9 @@ namespace toolkit.modules
 {
     public partial class s_comlink
     {
+        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_test", CallingConvention = CallingConvention.Cdecl)]
+        extern static void comlink_test();
+
         [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_parse", CallingConvention = CallingConvention.Cdecl)]
         extern static bool comlink_parse(byte[] buffer, int buffer_size);
 
@@ -29,6 +32,8 @@ namespace toolkit.modules
             //byte[] buff123 = new byte[10];
 
             bool m = comlink_parse(buffer, size);
+
+            comlink_test();
 
             return true;
         }

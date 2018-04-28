@@ -1,9 +1,1 @@
-﻿  stdafx.cpp
-  comlink_sim.cpp
-f:\项目管理\2016-08-30\group\github\fx_tools\comlink_sim\comlink_sim.cpp(4): warning C4603: “COMLINKL_DEBUG”: 未定义宏或在预编译头使用后定义发生改变
-  f:\项目管理\2016-08-30\group\github\fx_tools\comlink_sim\comlink_sim.cpp(4): note: 将宏添加到预编译头中，而不是在此处定义
-  f:\项目管理\2016-08-30\group\github\fx_tools\comlink_sim\comlink_sim.cpp(6): note: 使用预编译头
-  comlink.cpp
-  正在生成代码...
-    正在创建库 F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink_sim.lib 和对象 F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink_sim.exp
-  comlink_sim.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\fx_tools\Debug\comlink_sim.exe
+﻿  comlink_sim.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink_sim.exe
