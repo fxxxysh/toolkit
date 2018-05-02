@@ -1,1 +1,6 @@
-﻿  comlink_sim.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink_sim.exe
+﻿  stdafx.cpp
+  comlink_sim.cpp
+  comlink.cpp
+  正在生成代码...
+    正在创建库 F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink_sim.lib 和对象 F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink_sim.exp
+  comlink_sim.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink_sim.exe

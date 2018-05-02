@@ -18,3 +18,13 @@ F:\项目管理\2016-08-30\GROUP\github\fx_tools\wave_common\obj\Debug\Common.cs
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\wave_common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\wave_common\obj\Debug\Iocomp.Instrumentation.WF40.Common.dll
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\wave_common\obj\Debug\Iocomp.Instrumentation.WF40.Common.pdb
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\bin\Debug\common.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\bin\Debug\common.pdb
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.Design.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.Drawing.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.Windows.Forms.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\common.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\common.pdb

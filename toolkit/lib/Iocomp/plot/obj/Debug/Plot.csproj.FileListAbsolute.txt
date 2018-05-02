@@ -32,3 +32,15 @@ F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\obj\Deb
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\obj\Debug\Iocomp.Instrumentation.WF40.Plot.dll
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\obj\Debug\Iocomp.Instrumentation.WF40.Plot.pdb
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\obj\Debug\Plot.csprojResolveAssemblyReference.cache
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\plot.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\plot.pdb
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\common.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\System.Design.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\System.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\System.Drawing.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\System.Windows.Forms.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\bin\Debug\common.pdb
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\obj\Debug\Plot.csprojResolveAssemblyReference.cache
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\obj\Debug\Plot.csproj.CoreCompileInputs.cache
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\obj\Debug\plot.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\plot\obj\Debug\plot.pdb
