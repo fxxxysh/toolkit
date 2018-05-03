@@ -2,3 +2,5 @@ LIBRARY
 EXPORTS
 	comlink_parse
 	comlink_encode
+	comlink_get_msg
+	comlink_get_status

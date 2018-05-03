@@ -24,6 +24,9 @@
     <ClInclude Include="comlink.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="comlink_ex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
