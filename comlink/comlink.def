@@ -4,3 +4,5 @@ EXPORTS
 	comlink_encode
 	comlink_get_msg
 	comlink_get_status
+	comlink_test
+	comlink_trans

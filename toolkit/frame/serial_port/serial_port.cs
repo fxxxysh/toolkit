@@ -95,6 +95,12 @@ namespace toolkit.frame
             _serialPort.StopBits = StopBits.One; //停止位
         }
 
+        // 串口发送
+        public void serial_trans(byte[] buffer, int size)
+        {
+            _serialPort.Write(buffer, 0, size);
+        }
+
         // 设置串口端口列表
         public void set_serial_port(string[] device_ports)
         {
