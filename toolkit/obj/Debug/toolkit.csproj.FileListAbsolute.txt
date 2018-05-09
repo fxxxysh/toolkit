@@ -28,3 +28,10 @@ F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.csproj
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.exe
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.pdb
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.csprojResolveAssemblyReference.cache
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.csprojResolveAssemblyReference.cache
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.tool_form.resources
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.Properties.Resources.resources
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.csproj.GenerateResource.cache
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.csproj.CoreCompileInputs.cache
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.exe
+C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.pdb
