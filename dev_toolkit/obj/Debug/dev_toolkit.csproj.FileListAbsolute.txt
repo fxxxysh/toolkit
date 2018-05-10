@@ -58,3 +58,7 @@ F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\obj\Debug\dev_toolki
 F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\obj\Debug\dev_toolkit.dev_toolkit.resources
 F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\obj\Debug\dev_toolkit.tool_form_test.resources
 F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\obj\Debug\dev_toolkit.dev_toolkit_t1.resources
+F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\bin\Debug\common.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\bin\Debug\plot.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\bin\Debug\common.pdb
+F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\bin\Debug\plot.pdb

@@ -27,10 +27,12 @@ namespace dev_toolkit.dev
             if (_hander.ribbon.ShowPageHeadersMode != ShowPageHeadersMode.Hide)
             {
                 _hander.ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Hide;
+                _hander.ribbon_hide.Caption = "显示菜单";
             }
             else
             {
                 _hander.ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Show;
+                _hander.ribbon_hide.Caption = "隐藏菜单";
             }
         }
     }
