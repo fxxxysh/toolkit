@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraBars;
+using dev_toolkit.dev;
 
 namespace dev_toolkit
 {
@@ -30,9 +34,39 @@ namespace dev_toolkit
             base.WndProc(ref m);
         }
 
+        // 属性导出
+        public RibbonControl ribbon
+        {
+            get { return kit_ribbon; }
+            set { kit_ribbon = value; }
+        }
+
+        public BarButtonItem ribbon_hide
+        {
+            get { return kit_hide; }
+            set { kit_hide = value; }
+        }
+
         public dev_toolkit()
         {
             InitializeComponent();
+
+            Thread th_start = new Thread(start)
+            { Priority = ThreadPriority.BelowNormal, IsBackground = true };
+            th_start.Start();
+        }
+
+        // 主函数
+        public void start()
+        {
+            while (this.IsHandleCreated != true)
+            {
+                Thread.Sleep(10);
+            }
+
+            DevRibbon _dev_ribbon = new DevRibbon(this);
+
+            Thread.CurrentThread.Abort();
         }
     }
 }
