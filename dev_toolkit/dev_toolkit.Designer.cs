@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.kit_ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.kit_com_port = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -203,14 +207,20 @@
             this.kit_hide.ImageOptions.Image = global::dev_toolkit.Properties.Resources.group2_32x32;
             this.kit_hide.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.group2_32x32;
             this.kit_hide.Name = "kit_hide";
+            toolTipItem1.Text = "隐藏菜单";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.kit_hide.SuperTip = superToolTip1;
             // 
             // kit_com_connect_dis
             // 
-            this.kit_com_connect_dis.Caption = "barButtonItem1";
+            this.kit_com_connect_dis.Caption = "连接";
             this.kit_com_connect_dis.Id = 5;
             this.kit_com_connect_dis.ImageOptions.Image = global::dev_toolkit.Properties.Resources.play_16x16;
             this.kit_com_connect_dis.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.stop_32x32;
             this.kit_com_connect_dis.Name = "kit_com_connect_dis";
+            toolTipItem2.Text = "连接";
+            superToolTip2.Items.Add(toolTipItem2);
+            this.kit_com_connect_dis.SuperTip = superToolTip2;
             // 
             // ribbonPageGroup3
             // 
