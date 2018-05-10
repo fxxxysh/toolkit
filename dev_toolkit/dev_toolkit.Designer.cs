@@ -30,26 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             this.kit_ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.kit_com_port = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.kit_com_baudrate = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.kit_com_connect = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.kit_theme = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.kit_com_port = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.kit_com_baudrate = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.kit_com_connect = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame1)).BeginInit();
             this.navigationFrame1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // kit_ribbon
@@ -59,12 +60,14 @@
             this.kit_ribbon.ExpandCollapseItem,
             this.kit_com_port,
             this.kit_com_baudrate,
-            this.kit_com_connect});
+            this.kit_com_connect,
+            this.barButtonItem1});
             this.kit_ribbon.Location = new System.Drawing.Point(0, 0);
-            this.kit_ribbon.MaxItemId = 4;
+            this.kit_ribbon.MaxItemId = 5;
             this.kit_ribbon.Name = "kit_ribbon";
             this.kit_ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
+            this.kit_ribbon.QuickToolbarItemLinks.Add(this.barButtonItem1);
             this.kit_ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemComboBox2});
@@ -72,6 +75,43 @@
             this.kit_ribbon.ShowToolbarCustomizeItem = false;
             this.kit_ribbon.Size = new System.Drawing.Size(1022, 150);
             this.kit_ribbon.Toolbar.ShowCustomizeItem = false;
+            // 
+            // kit_com_port
+            // 
+            this.kit_com_port.Caption = "串口   ";
+            this.kit_com_port.Edit = this.repositoryItemComboBox1;
+            this.kit_com_port.EditWidth = 100;
+            this.kit_com_port.Id = 1;
+            this.kit_com_port.Name = "kit_com_port";
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // kit_com_baudrate
+            // 
+            this.kit_com_baudrate.Caption = "波特率";
+            this.kit_com_baudrate.Edit = this.repositoryItemComboBox2;
+            this.kit_com_baudrate.EditWidth = 100;
+            this.kit_com_baudrate.Id = 2;
+            this.kit_com_baudrate.Name = "kit_com_baudrate";
+            // 
+            // repositoryItemComboBox2
+            // 
+            this.repositoryItemComboBox2.AutoHeight = false;
+            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            // 
+            // kit_com_connect
+            // 
+            this.kit_com_connect.Caption = "连接";
+            this.kit_com_connect.Id = 3;
+            this.kit_com_connect.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.play_32x32;
+            this.kit_com_connect.Name = "kit_com_connect";
             // 
             // ribbonPage1
             // 
@@ -87,6 +127,11 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.kit_com_baudrate);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "连接";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.kit_com_connect);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // kit_theme
             // 
@@ -136,47 +181,13 @@
             this.navigationPage2.Name = "navigationPage2";
             this.navigationPage2.Size = new System.Drawing.Size(853, 449);
             // 
-            // kit_com_port
+            // barButtonItem1
             // 
-            this.kit_com_port.Caption = "串口   ";
-            this.kit_com_port.Edit = this.repositoryItemComboBox1;
-            this.kit_com_port.EditWidth = 100;
-            this.kit_com_port.Id = 1;
-            this.kit_com_port.Name = "kit_com_port";
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            // 
-            // kit_com_baudrate
-            // 
-            this.kit_com_baudrate.Caption = "波特率";
-            this.kit_com_baudrate.Edit = this.repositoryItemComboBox2;
-            this.kit_com_baudrate.EditWidth = 100;
-            this.kit_com_baudrate.Id = 2;
-            this.kit_com_baudrate.Name = "kit_com_baudrate";
-            // 
-            // repositoryItemComboBox2
-            // 
-            this.repositoryItemComboBox2.AutoHeight = false;
-            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.kit_com_connect);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            // 
-            // kit_com_connect
-            // 
-            this.kit_com_connect.Caption = "连接";
-            this.kit_com_connect.Id = 3;
-            this.kit_com_connect.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.play_32x32;
-            this.kit_com_connect.Name = "kit_com_connect";
+            this.barButtonItem1.Caption = "kit_hide";
+            this.barButtonItem1.Id = 4;
+            this.barButtonItem1.ImageOptions.Image = global::dev_toolkit.Properties.Resources.group2_32x32;
+            this.barButtonItem1.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.group2_32x32;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // dev_toolkit
             // 
@@ -190,11 +201,11 @@
             this.Ribbon = this.kit_ribbon;
             this.Text = "dev_toolkit";
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame1)).EndInit();
             this.navigationFrame1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,5 +228,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
         private DevExpress.XtraBars.BarButtonItem kit_com_connect;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }
