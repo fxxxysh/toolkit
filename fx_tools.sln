@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "comlink", "comlink\comlink.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "comlink_sim", "comlink_sim\comlink_sim.vcxproj", "{28E89BE0-0D03-4D8A-A9DE-183FB0733048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dev_toolkit", "dev_toolkit\dev_toolkit.csproj", "{C02C85F5-1F4F-4CBF-8A33-05E861706510}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,18 @@ Global
 		{28E89BE0-0D03-4D8A-A9DE-183FB0733048}.Release|x64.Build.0 = Release|x64
 		{28E89BE0-0D03-4D8A-A9DE-183FB0733048}.Release|x86.ActiveCfg = Release|Win32
 		{28E89BE0-0D03-4D8A-A9DE-183FB0733048}.Release|x86.Build.0 = Release|Win32
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Debug|x64.Build.0 = Debug|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Debug|x86.Build.0 = Debug|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Release|x64.ActiveCfg = Release|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Release|x64.Build.0 = Release|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Release|x86.ActiveCfg = Release|Any CPU
+		{C02C85F5-1F4F-4CBF-8A33-05E861706510}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
