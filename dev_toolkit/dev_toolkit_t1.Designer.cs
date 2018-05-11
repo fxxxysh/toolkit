@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dev_toolkit_t1));
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -138,9 +138,9 @@
             this.kit_ribbon_hide.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("kit_ribbon_hide.ImageOptions.Image")));
             this.kit_ribbon_hide.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.group_32x32;
             this.kit_ribbon_hide.Name = "kit_ribbon_hide";
-            toolTipItem5.Text = "隐藏菜单栏";
-            superToolTip5.Items.Add(toolTipItem5);
-            this.kit_ribbon_hide.SuperTip = superToolTip5;
+            toolTipItem1.Text = "隐藏菜单栏";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.kit_ribbon_hide.SuperTip = superToolTip1;
             // 
             // barButtonItem1
             // 
@@ -162,9 +162,9 @@
             this.kit_menu_hide.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("kit_menu_hide.ImageOptions.Image")));
             this.kit_menu_hide.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("kit_menu_hide.ImageOptions.LargeImage")));
             this.kit_menu_hide.Name = "kit_menu_hide";
-            toolTipItem6.Text = "隐藏菜单";
-            superToolTip6.Items.Add(toolTipItem6);
-            this.kit_menu_hide.SuperTip = superToolTip6;
+            toolTipItem2.Text = "隐藏菜单";
+            superToolTip2.Items.Add(toolTipItem2);
+            this.kit_menu_hide.SuperTip = superToolTip2;
             // 
             // sdfsf
             // 

@@ -58,12 +58,17 @@
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.kit_dev_id = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.software_version = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.hardware_version = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.kit_theme = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.kit_nav_bar = new DevExpress.XtraNavBar.NavBarControl();
             this.nav_wave = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -72,22 +77,16 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.dropDownButton1 = new DevExpress.XtraEditors.DropDownButton();
-            this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.navBarGroupControlContainer3 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.checkedListBoxControl2 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.navBarGroupControlContainer4 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.checkedListBoxControl3 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.in_nav_msg = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.navBarGroupControlContainer7 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.nav_data = new DevExpress.XtraNavBar.NavBarGroup();
             this.nav_params = new DevExpress.XtraNavBar.NavBarGroup();
             this.nav_control = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            this.kit_nav_frame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.nav_wave_page = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.wave_plot = new Iocomp.Instrumentation.Plotting.Plot();
             this.panel1 = new System.Windows.Forms.Panel();
             this.plotToolBarStandard1 = new Iocomp.Instrumentation.Plotting.PlotToolBarStandard();
@@ -114,33 +113,38 @@
             this.plotToolBarButton21 = new Iocomp.Classes.PlotToolBarButton();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.navBarGroupControlContainer7 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.nav_data_page = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.nav_params_page = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.nav_control_page = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.navigationPage6 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.navigationPage7 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.navigationPage8 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.navigationPage9 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            this.navBarControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_nav_bar)).BeginInit();
+            this.kit_nav_bar.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).BeginInit();
-            this.navBarControl2.SuspendLayout();
-            this.navBarGroupControlContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
-            this.navBarGroupControlContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl2)).BeginInit();
-            this.navBarGroupControlContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navigationFrame1)).BeginInit();
-            this.navigationFrame1.SuspendLayout();
-            this.navigationPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.in_nav_msg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_nav_frame)).BeginInit();
+            this.kit_nav_frame.SuspendLayout();
+            this.nav_wave_page.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.nav_data_page.SuspendLayout();
+            this.nav_params_page.SuspendLayout();
+            this.nav_control_page.SuspendLayout();
             this.SuspendLayout();
             // 
             // kit_ribbon
@@ -154,9 +158,11 @@
             this.kit_hide,
             this.kit_com_connect_dis,
             this.kit_sys_id,
-            this.kit_dev_id});
+            this.kit_dev_id,
+            this.software_version,
+            this.hardware_version});
             this.kit_ribbon.Location = new System.Drawing.Point(0, 0);
-            this.kit_ribbon.MaxItemId = 8;
+            this.kit_ribbon.MaxItemId = 10;
             this.kit_ribbon.Name = "kit_ribbon";
             this.kit_ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -166,7 +172,9 @@
             this.repositoryItemComboBox1,
             this.repositoryItemComboBox2,
             this.repositoryItemSpinEdit1,
-            this.repositoryItemSpinEdit2});
+            this.repositoryItemSpinEdit2,
+            this.repositoryItemTextEdit1,
+            this.repositoryItemTextEdit2});
             this.kit_ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.kit_ribbon.ShowToolbarCustomizeItem = false;
             this.kit_ribbon.Size = new System.Drawing.Size(1022, 150);
@@ -255,12 +263,39 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemSpinEdit2.Name = "repositoryItemSpinEdit2";
             // 
+            // software_version
+            // 
+            this.software_version.Caption = "软件版本";
+            this.software_version.Edit = this.repositoryItemTextEdit1;
+            this.software_version.EditWidth = 100;
+            this.software_version.Id = 8;
+            this.software_version.Name = "software_version";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // hardware_version
+            // 
+            this.hardware_version.Caption = "硬件版本";
+            this.hardware_version.Edit = this.repositoryItemTextEdit2;
+            this.hardware_version.EditWidth = 100;
+            this.hardware_version.Id = 9;
+            this.hardware_version.Name = "hardware_version";
+            // 
+            // repositoryItemTextEdit2
+            // 
+            this.repositoryItemTextEdit2.AutoHeight = false;
+            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "连接";
             // 
@@ -283,30 +318,37 @@
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "ID配置";
             // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.software_version);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "信息";
+            // 
             // kit_theme
             // 
             this.kit_theme.LookAndFeel.SkinName = "Office 2016 Dark";
             // 
-            // navBarControl1
+            // kit_nav_bar
             // 
-            this.navBarControl1.ActiveGroup = this.nav_wave;
-            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
-            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer5);
-            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer6);
-            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer7);
-            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.kit_nav_bar.ActiveGroup = this.nav_wave;
+            this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer1);
+            this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer5);
+            this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer6);
+            this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer7);
+            this.kit_nav_bar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.kit_nav_bar.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.nav_wave,
             this.nav_data,
             this.nav_params,
             this.nav_control});
-            this.navBarControl1.Location = new System.Drawing.Point(0, 150);
-            this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 220;
-            this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(220, 449);
-            this.navBarControl1.TabIndex = 1;
-            this.navBarControl1.Text = "navBarControl1";
+            this.kit_nav_bar.Location = new System.Drawing.Point(0, 150);
+            this.kit_nav_bar.Name = "kit_nav_bar";
+            this.kit_nav_bar.NavigationPaneMaxVisibleGroups = 0;
+            this.kit_nav_bar.OptionsNavPane.ExpandedWidth = 220;
+            this.kit_nav_bar.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
+            this.kit_nav_bar.Size = new System.Drawing.Size(220, 449);
+            this.kit_nav_bar.TabIndex = 1;
+            this.kit_nav_bar.Text = "navBarControl1";
             // 
             // nav_wave
             // 
@@ -322,10 +364,11 @@
             // navBarGroupControlContainer1
             // 
             this.navBarGroupControlContainer1.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer1.Controls.Add(this.panelControl1);
-            this.navBarGroupControlContainer1.Controls.Add(this.navBarControl2);
+            this.navBarGroupControlContainer1.Controls.Add(this.in_nav_msg);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(220, 220);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(220, 368);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // panelControl1
@@ -338,12 +381,12 @@
             this.panelControl1.Controls.Add(this.simpleButton2);
             this.panelControl1.Controls.Add(this.dropDownButton1);
             this.panelControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelControl1.Location = new System.Drawing.Point(-1, 108);
+            this.panelControl1.Location = new System.Drawing.Point(-1, 256);
             this.panelControl1.LookAndFeel.SkinName = "Office 2016 Black";
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Margin = new System.Windows.Forms.Padding(0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(220, 112);
+            this.panelControl1.Size = new System.Drawing.Size(222, 112);
             this.panelControl1.TabIndex = 4;
             // 
             // checkEdit2
@@ -391,122 +434,45 @@
             this.dropDownButton1.Size = new System.Drawing.Size(206, 23);
             this.dropDownButton1.TabIndex = 7;
             // 
-            // navBarControl2
+            // in_nav_msg
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup1;
-            this.navBarControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.in_nav_msg.ActiveGroup = null;
+            this.in_nav_msg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.navBarControl2.Controls.Add(this.navBarGroupControlContainer2);
-            this.navBarControl2.Controls.Add(this.navBarGroupControlContainer3);
-            this.navBarControl2.Controls.Add(this.navBarGroupControlContainer4);
-            this.navBarControl2.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup1,
-            this.navBarGroup2,
-            this.navBarGroup3});
-            this.navBarControl2.Location = new System.Drawing.Point(0, 0);
-            this.navBarControl2.LookAndFeel.SkinName = "Office 2016 Black";
-            this.navBarControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarControl2.Margin = new System.Windows.Forms.Padding(0);
-            this.navBarControl2.Name = "navBarControl2";
-            this.navBarControl2.OptionsNavPane.ExpandedWidth = 220;
-            this.navBarControl2.Size = new System.Drawing.Size(220, 108);
-            this.navBarControl2.TabIndex = 0;
-            this.navBarControl2.Text = "navBarControl2";
+            this.in_nav_msg.Location = new System.Drawing.Point(0, 0);
+            this.in_nav_msg.LookAndFeel.SkinName = "Office 2016 Black";
+            this.in_nav_msg.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.in_nav_msg.Margin = new System.Windows.Forms.Padding(0);
+            this.in_nav_msg.Name = "in_nav_msg";
+            this.in_nav_msg.OptionsNavPane.ExpandedWidth = 220;
+            this.in_nav_msg.Size = new System.Drawing.Size(220, 256);
+            this.in_nav_msg.TabIndex = 0;
+            this.in_nav_msg.Text = "navBarControl2";
             // 
-            // navBarGroup1
+            // navBarGroupControlContainer5
             // 
-            this.navBarGroup1.Caption = "MSG1";
-            this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer2;
-            this.navBarGroup1.GroupClientHeight = 150;
-            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarGroupControlContainer5.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer5.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer5.Name = "navBarGroupControlContainer5";
+            this.navBarGroupControlContainer5.Size = new System.Drawing.Size(220, 368);
+            this.navBarGroupControlContainer5.TabIndex = 1;
             // 
-            // navBarGroupControlContainer2
+            // navBarGroupControlContainer6
             // 
-            this.navBarGroupControlContainer2.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer2.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer2.Controls.Add(this.checkedListBoxControl1);
-            this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
-            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(208, 144);
-            this.navBarGroupControlContainer2.TabIndex = 0;
+            this.navBarGroupControlContainer6.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer6.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer6.Name = "navBarGroupControlContainer6";
+            this.navBarGroupControlContainer6.Size = new System.Drawing.Size(220, 368);
+            this.navBarGroupControlContainer6.TabIndex = 2;
             // 
-            // checkedListBoxControl1
+            // navBarGroupControlContainer7
             // 
-            this.checkedListBoxControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.checkedListBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBoxControl1.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null)});
-            this.checkedListBoxControl1.Location = new System.Drawing.Point(0, 0);
-            this.checkedListBoxControl1.LookAndFeel.SkinName = "Office 2016 Black";
-            this.checkedListBoxControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.checkedListBoxControl1.Name = "checkedListBoxControl1";
-            this.checkedListBoxControl1.Size = new System.Drawing.Size(208, 144);
-            this.checkedListBoxControl1.TabIndex = 0;
-            // 
-            // navBarGroupControlContainer3
-            // 
-            this.navBarGroupControlContainer3.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer3.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer3.Controls.Add(this.checkedListBoxControl2);
-            this.navBarGroupControlContainer3.Name = "navBarGroupControlContainer3";
-            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(208, 144);
-            this.navBarGroupControlContainer3.TabIndex = 1;
-            // 
-            // checkedListBoxControl2
-            // 
-            this.checkedListBoxControl2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBoxControl2.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null)});
-            this.checkedListBoxControl2.Location = new System.Drawing.Point(0, 0);
-            this.checkedListBoxControl2.Name = "checkedListBoxControl2";
-            this.checkedListBoxControl2.Size = new System.Drawing.Size(208, 144);
-            this.checkedListBoxControl2.TabIndex = 0;
-            // 
-            // navBarGroupControlContainer4
-            // 
-            this.navBarGroupControlContainer4.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer4.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer4.Controls.Add(this.checkedListBoxControl3);
-            this.navBarGroupControlContainer4.Name = "navBarGroupControlContainer4";
-            this.navBarGroupControlContainer4.Size = new System.Drawing.Size(212, 143);
-            this.navBarGroupControlContainer4.TabIndex = 2;
-            // 
-            // checkedListBoxControl3
-            // 
-            this.checkedListBoxControl3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBoxControl3.Location = new System.Drawing.Point(0, 0);
-            this.checkedListBoxControl3.Name = "checkedListBoxControl3";
-            this.checkedListBoxControl3.Size = new System.Drawing.Size(212, 143);
-            this.checkedListBoxControl3.TabIndex = 0;
-            // 
-            // navBarGroup2
-            // 
-            this.navBarGroup2.Caption = "MSG2";
-            this.navBarGroup2.ControlContainer = this.navBarGroupControlContainer3;
-            this.navBarGroup2.GroupClientHeight = 150;
-            this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup2.Name = "navBarGroup2";
-            // 
-            // navBarGroup3
-            // 
-            this.navBarGroup3.Caption = "MSG3";
-            this.navBarGroup3.ControlContainer = this.navBarGroupControlContainer4;
-            this.navBarGroup3.GroupClientHeight = 150;
-            this.navBarGroup3.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup3.Name = "navBarGroup3";
+            this.navBarGroupControlContainer7.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer7.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer7.Name = "navBarGroupControlContainer7";
+            this.navBarGroupControlContainer7.Size = new System.Drawing.Size(220, 368);
+            this.navBarGroupControlContainer7.TabIndex = 3;
             // 
             // nav_data
             // 
@@ -537,32 +503,46 @@
             this.nav_control.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("nav_control.ImageOptions.SmallImage")));
             this.nav_control.Name = "nav_control";
             // 
-            // navigationFrame1
+            // kit_nav_frame
             // 
-            this.navigationFrame1.Controls.Add(this.navigationPage1);
-            this.navigationFrame1.Controls.Add(this.navigationPage2);
-            this.navigationFrame1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame1.Location = new System.Drawing.Point(220, 150);
-            this.navigationFrame1.Name = "navigationFrame1";
-            this.navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
+            this.kit_nav_frame.Controls.Add(this.navigationPage1);
+            this.kit_nav_frame.Controls.Add(this.nav_wave_page);
+            this.kit_nav_frame.Controls.Add(this.nav_data_page);
+            this.kit_nav_frame.Controls.Add(this.nav_params_page);
+            this.kit_nav_frame.Controls.Add(this.nav_control_page);
+            this.kit_nav_frame.Controls.Add(this.navigationPage6);
+            this.kit_nav_frame.Controls.Add(this.navigationPage7);
+            this.kit_nav_frame.Controls.Add(this.navigationPage8);
+            this.kit_nav_frame.Controls.Add(this.navigationPage9);
+            this.kit_nav_frame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kit_nav_frame.Location = new System.Drawing.Point(220, 150);
+            this.kit_nav_frame.Name = "kit_nav_frame";
+            this.kit_nav_frame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.navigationPage1,
-            this.navigationPage2});
-            this.navigationFrame1.SelectedPage = this.navigationPage2;
-            this.navigationFrame1.Size = new System.Drawing.Size(802, 449);
-            this.navigationFrame1.TabIndex = 2;
-            this.navigationFrame1.Text = "navigationFrame1";
+            this.nav_wave_page,
+            this.nav_data_page,
+            this.nav_params_page,
+            this.nav_control_page,
+            this.navigationPage6,
+            this.navigationPage7,
+            this.navigationPage8,
+            this.navigationPage9});
+            this.kit_nav_frame.SelectedPage = this.nav_wave_page;
+            this.kit_nav_frame.Size = new System.Drawing.Size(802, 449);
+            this.kit_nav_frame.TabIndex = 2;
+            this.kit_nav_frame.Text = "navigationFrame1";
             // 
             // navigationPage1
             // 
             this.navigationPage1.Name = "navigationPage1";
             this.navigationPage1.Size = new System.Drawing.Size(802, 449);
             // 
-            // navigationPage2
+            // nav_wave_page
             // 
-            this.navigationPage2.Controls.Add(this.wave_plot);
-            this.navigationPage2.Controls.Add(this.panel1);
-            this.navigationPage2.Name = "navigationPage2";
-            this.navigationPage2.Size = new System.Drawing.Size(802, 449);
+            this.nav_wave_page.Controls.Add(this.wave_plot);
+            this.nav_wave_page.Controls.Add(this.panel1);
+            this.nav_wave_page.Name = "nav_wave_page";
+            this.nav_wave_page.Size = new System.Drawing.Size(802, 449);
             // 
             // wave_plot
             // 
@@ -1002,37 +982,75 @@
             this.imageList1.Images.SetKeyName(12, "");
             this.imageList1.Images.SetKeyName(13, "");
             // 
-            // navBarGroupControlContainer5
+            // nav_data_page
             // 
-            this.navBarGroupControlContainer5.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer5.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer5.Name = "navBarGroupControlContainer5";
-            this.navBarGroupControlContainer5.Size = new System.Drawing.Size(220, 220);
-            this.navBarGroupControlContainer5.TabIndex = 1;
+            this.nav_data_page.Controls.Add(this.labelControl1);
+            this.nav_data_page.Name = "nav_data_page";
+            this.nav_data_page.Size = new System.Drawing.Size(802, 449);
             // 
-            // navBarGroupControlContainer6
+            // nav_params_page
             // 
-            this.navBarGroupControlContainer6.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer6.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer6.Name = "navBarGroupControlContainer6";
-            this.navBarGroupControlContainer6.Size = new System.Drawing.Size(220, 220);
-            this.navBarGroupControlContainer6.TabIndex = 2;
+            this.nav_params_page.Controls.Add(this.labelControl2);
+            this.nav_params_page.Name = "nav_params_page";
+            this.nav_params_page.Size = new System.Drawing.Size(802, 449);
             // 
-            // navBarGroupControlContainer7
+            // nav_control_page
             // 
-            this.navBarGroupControlContainer7.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer7.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer7.Name = "navBarGroupControlContainer7";
-            this.navBarGroupControlContainer7.Size = new System.Drawing.Size(220, 220);
-            this.navBarGroupControlContainer7.TabIndex = 3;
+            this.nav_control_page.Controls.Add(this.labelControl3);
+            this.nav_control_page.Name = "nav_control_page";
+            this.nav_control_page.Size = new System.Drawing.Size(802, 449);
+            // 
+            // navigationPage6
+            // 
+            this.navigationPage6.Name = "navigationPage6";
+            this.navigationPage6.Size = new System.Drawing.Size(802, 449);
+            // 
+            // navigationPage7
+            // 
+            this.navigationPage7.Name = "navigationPage7";
+            this.navigationPage7.Size = new System.Drawing.Size(802, 449);
+            // 
+            // navigationPage8
+            // 
+            this.navigationPage8.Name = "navigationPage8";
+            this.navigationPage8.Size = new System.Drawing.Size(802, 449);
+            // 
+            // navigationPage9
+            // 
+            this.navigationPage9.Name = "navigationPage9";
+            this.navigationPage9.Size = new System.Drawing.Size(802, 449);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(285, 189);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(84, 14);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "nav_data_page";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(359, 217);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(98, 14);
+            this.labelControl2.TabIndex = 1;
+            this.labelControl2.Text = "nav_params_page";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(352, 217);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(98, 14);
+            this.labelControl3.TabIndex = 2;
+            this.labelControl3.Text = "nav_control_page";
             // 
             // dev_toolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 599);
-            this.Controls.Add(this.navigationFrame1);
-            this.Controls.Add(this.navBarControl1);
+            this.Controls.Add(this.kit_nav_frame);
+            this.Controls.Add(this.kit_nav_bar);
             this.Controls.Add(this.kit_ribbon);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "dev_toolkit";
@@ -1043,26 +1061,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            this.navBarControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_nav_bar)).EndInit();
+            this.kit_nav_bar.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).EndInit();
-            this.navBarControl2.ResumeLayout(false);
-            this.navBarGroupControlContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
-            this.navBarGroupControlContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl2)).EndInit();
-            this.navBarGroupControlContainer4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navigationFrame1)).EndInit();
-            this.navigationFrame1.ResumeLayout(false);
-            this.navigationPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.in_nav_msg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_nav_frame)).EndInit();
+            this.kit_nav_frame.ResumeLayout(false);
+            this.nav_wave_page.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.nav_data_page.ResumeLayout(false);
+            this.nav_data_page.PerformLayout();
+            this.nav_params_page.ResumeLayout(false);
+            this.nav_params_page.PerformLayout();
+            this.nav_control_page.ResumeLayout(false);
+            this.nav_control_page.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1074,11 +1093,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.LookAndFeel.DefaultLookAndFeel kit_theme;
-        private DevExpress.XtraNavBar.NavBarControl navBarControl1;
+        private DevExpress.XtraNavBar.NavBarControl kit_nav_bar;
         private DevExpress.XtraNavBar.NavBarGroup nav_wave;
-        private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame1;
+        private DevExpress.XtraBars.Navigation.NavigationFrame kit_nav_frame;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage1;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage2;
+        private DevExpress.XtraBars.Navigation.NavigationPage nav_wave_page;
         private DevExpress.XtraBars.BarEditItem kit_com_port;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraBars.BarEditItem kit_com_baudrate;
@@ -1096,16 +1115,7 @@
         private DevExpress.XtraNavBar.NavBarGroup nav_params;
         private DevExpress.XtraNavBar.NavBarGroup nav_control;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
-        private DevExpress.XtraNavBar.NavBarControl navBarControl2;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer2;
-        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;
-        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl2;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer4;
-        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl3;
+        private DevExpress.XtraNavBar.NavBarControl in_nav_msg;
         private Iocomp.Instrumentation.Plotting.Plot wave_plot;
         private System.Windows.Forms.Panel panel1;
         private Iocomp.Instrumentation.Plotting.PlotToolBarStandard plotToolBarStandard1;
@@ -1141,5 +1151,20 @@
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer7;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer5;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer6;
+        private DevExpress.XtraBars.BarEditItem software_version;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraBars.BarEditItem hardware_version;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.Navigation.NavigationPage nav_data_page;
+        private DevExpress.XtraBars.Navigation.NavigationPage nav_params_page;
+        private DevExpress.XtraBars.Navigation.NavigationPage nav_control_page;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage6;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage7;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage8;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage9;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

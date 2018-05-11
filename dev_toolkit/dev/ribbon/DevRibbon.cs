@@ -1,38 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraBars;
 
 namespace dev_toolkit.dev
 {
     public class DevRibbon
     {
-        dev_toolkit _hander;
+        private dev_toolkit _hander;
+        private RibbonControl _ribbon;
+        private BarButtonItem _ribbon_hide;
 
         public DevRibbon(object sender)
         {
             _hander = (dev_toolkit)sender;
+            _ribbon = _hander._ribbon;
+            _ribbon_hide = _hander._ribbon_hide;
 
-            _hander.ribbon.Minimized = true;
-            _hander.ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Hide;
-            _hander.ribbon_hide.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.Hide_ItemClick);
+           _ribbon.Minimized = true;
+           _ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Hide;
+           _ribbon_hide.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.Hide_ItemClick);
         }
 
         // 菜单隐藏事件
         private void Hide_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (_hander.ribbon.ShowPageHeadersMode != ShowPageHeadersMode.Hide)
+            if (_ribbon.ShowPageHeadersMode != ShowPageHeadersMode.Hide)
             {
-                _hander.ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Hide;
-                _hander.ribbon_hide.Caption = "显示菜单";
+               _ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Hide;
+               _ribbon_hide.Caption = "显示菜单";
             }
             else
             {
-                _hander.ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Show;
-                _hander.ribbon_hide.Caption = "隐藏菜单";
+               _ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Show;
+               _ribbon_hide.Caption = "隐藏菜单";
             }
         }
     }
