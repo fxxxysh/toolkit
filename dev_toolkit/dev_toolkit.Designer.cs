@@ -66,6 +66,12 @@
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.nav_wave = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.dropDownButton1 = new DevExpress.XtraEditors.DropDownButton();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -84,9 +90,7 @@
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.wave_plot = new Iocomp.Instrumentation.Plotting.Plot();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.plotToolBarStandard1 = new Iocomp.Instrumentation.Plotting.PlotToolBarStandard();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.plotToolBarButton1 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton2 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton3 = new Iocomp.Classes.PlotToolBarButton();
@@ -108,7 +112,11 @@
             this.plotToolBarButton19 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton20 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton21 = new Iocomp.Classes.PlotToolBarButton();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.navBarGroupControlContainer7 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
@@ -117,6 +125,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).BeginInit();
             this.navBarControl2.SuspendLayout();
             this.navBarGroupControlContainer2.SuspendLayout();
@@ -279,6 +291,9 @@
             // 
             this.navBarControl1.ActiveGroup = this.nav_wave;
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
+            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer5);
+            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer6);
+            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer7);
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.nav_wave,
@@ -298,7 +313,7 @@
             this.nav_wave.Caption = "波形";
             this.nav_wave.ControlContainer = this.navBarGroupControlContainer1;
             this.nav_wave.Expanded = true;
-            this.nav_wave.GroupClientHeight = 370;
+            this.nav_wave.GroupClientHeight = 80;
             this.nav_wave.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.nav_wave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("nav_wave.ImageOptions.LargeImage")));
             this.nav_wave.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("nav_wave.ImageOptions.SmallImage")));
@@ -307,12 +322,74 @@
             // navBarGroupControlContainer1
             // 
             this.navBarGroupControlContainer1.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer1.Controls.Add(this.panel2);
+            this.navBarGroupControlContainer1.Controls.Add(this.panelControl1);
             this.navBarGroupControlContainer1.Controls.Add(this.navBarControl2);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(220, 368);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(220, 220);
             this.navBarGroupControlContainer1.TabIndex = 0;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl1.Controls.Add(this.checkEdit2);
+            this.panelControl1.Controls.Add(this.checkEdit1);
+            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Controls.Add(this.simpleButton2);
+            this.panelControl1.Controls.Add(this.dropDownButton1);
+            this.panelControl1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.panelControl1.Location = new System.Drawing.Point(-1, 108);
+            this.panelControl1.LookAndFeel.SkinName = "Office 2016 Black";
+            this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(220, 112);
+            this.panelControl1.TabIndex = 4;
+            // 
+            // checkEdit2
+            // 
+            this.checkEdit2.Location = new System.Drawing.Point(88, 12);
+            this.checkEdit2.MenuManager = this.kit_ribbon;
+            this.checkEdit2.Name = "checkEdit2";
+            this.checkEdit2.Properties.Caption = "数据保存";
+            this.checkEdit2.Size = new System.Drawing.Size(75, 19);
+            this.checkEdit2.TabIndex = 11;
+            // 
+            // checkEdit1
+            // 
+            this.checkEdit1.Location = new System.Drawing.Point(7, 12);
+            this.checkEdit1.MenuManager = this.kit_ribbon;
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "波形输出";
+            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
+            this.checkEdit1.TabIndex = 10;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.simpleButton1.Location = new System.Drawing.Point(153, 78);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(60, 23);
+            this.simpleButton1.TabIndex = 9;
+            this.simpleButton1.Text = "清除";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.simpleButton2.Location = new System.Drawing.Point(88, 78);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(60, 23);
+            this.simpleButton2.TabIndex = 8;
+            this.simpleButton2.Text = "导入";
+            // 
+            // dropDownButton1
+            // 
+            this.dropDownButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dropDownButton1.Location = new System.Drawing.Point(7, 49);
+            this.dropDownButton1.MenuManager = this.kit_ribbon;
+            this.dropDownButton1.Name = "dropDownButton1";
+            this.dropDownButton1.Size = new System.Drawing.Size(206, 23);
+            this.dropDownButton1.TabIndex = 7;
             // 
             // navBarControl2
             // 
@@ -329,10 +406,11 @@
             this.navBarGroup3});
             this.navBarControl2.Location = new System.Drawing.Point(0, 0);
             this.navBarControl2.LookAndFeel.SkinName = "Office 2016 Black";
+            this.navBarControl2.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarControl2.Margin = new System.Windows.Forms.Padding(0);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 220;
-            this.navBarControl2.Size = new System.Drawing.Size(220, 256);
+            this.navBarControl2.Size = new System.Drawing.Size(220, 108);
             this.navBarControl2.TabIndex = 0;
             this.navBarControl2.Text = "navBarControl2";
             // 
@@ -350,18 +428,25 @@
             this.navBarGroupControlContainer2.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer2.Controls.Add(this.checkedListBoxControl1);
             this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
-            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(212, 143);
+            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(208, 144);
             this.navBarGroupControlContainer2.TabIndex = 0;
             // 
             // checkedListBoxControl1
             // 
+            this.checkedListBoxControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.checkedListBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.checkedListBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkedListBoxControl1.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null)});
             this.checkedListBoxControl1.Location = new System.Drawing.Point(0, 0);
             this.checkedListBoxControl1.LookAndFeel.SkinName = "Office 2016 Black";
             this.checkedListBoxControl1.Margin = new System.Windows.Forms.Padding(0);
             this.checkedListBoxControl1.Name = "checkedListBoxControl1";
-            this.checkedListBoxControl1.Size = new System.Drawing.Size(212, 143);
+            this.checkedListBoxControl1.Size = new System.Drawing.Size(208, 144);
             this.checkedListBoxControl1.TabIndex = 0;
             // 
             // navBarGroupControlContainer3
@@ -370,16 +455,23 @@
             this.navBarGroupControlContainer3.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer3.Controls.Add(this.checkedListBoxControl2);
             this.navBarGroupControlContainer3.Name = "navBarGroupControlContainer3";
-            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(212, 143);
+            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(208, 144);
             this.navBarGroupControlContainer3.TabIndex = 1;
             // 
             // checkedListBoxControl2
             // 
             this.checkedListBoxControl2.Cursor = System.Windows.Forms.Cursors.Default;
             this.checkedListBoxControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkedListBoxControl2.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null)});
             this.checkedListBoxControl2.Location = new System.Drawing.Point(0, 0);
             this.checkedListBoxControl2.Name = "checkedListBoxControl2";
-            this.checkedListBoxControl2.Size = new System.Drawing.Size(212, 143);
+            this.checkedListBoxControl2.Size = new System.Drawing.Size(208, 144);
             this.checkedListBoxControl2.TabIndex = 0;
             // 
             // navBarGroupControlContainer4
@@ -419,6 +511,9 @@
             // nav_data
             // 
             this.nav_data.Caption = "数据";
+            this.nav_data.ControlContainer = this.navBarGroupControlContainer5;
+            this.nav_data.GroupClientHeight = 80;
+            this.nav_data.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.nav_data.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("nav_data.ImageOptions.LargeImage")));
             this.nav_data.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("nav_data.ImageOptions.SmallImage")));
             this.nav_data.Name = "nav_data";
@@ -426,6 +521,9 @@
             // nav_params
             // 
             this.nav_params.Caption = "参数";
+            this.nav_params.ControlContainer = this.navBarGroupControlContainer6;
+            this.nav_params.GroupClientHeight = 80;
+            this.nav_params.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.nav_params.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("nav_params.ImageOptions.LargeImage")));
             this.nav_params.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("nav_params.ImageOptions.SmallImage")));
             this.nav_params.Name = "nav_params";
@@ -433,6 +531,9 @@
             // nav_control
             // 
             this.nav_control.Caption = "控制";
+            this.nav_control.ControlContainer = this.navBarGroupControlContainer7;
+            this.nav_control.GroupClientHeight = 80;
+            this.nav_control.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.nav_control.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("nav_control.ImageOptions.SmallImage")));
             this.nav_control.Name = "nav_control";
             // 
@@ -635,25 +736,6 @@
             this.panel1.Size = new System.Drawing.Size(801, 26);
             this.panel1.TabIndex = 3;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "");
-            this.imageList1.Images.SetKeyName(1, "");
-            this.imageList1.Images.SetKeyName(2, "");
-            this.imageList1.Images.SetKeyName(3, "");
-            this.imageList1.Images.SetKeyName(4, "");
-            this.imageList1.Images.SetKeyName(5, "");
-            this.imageList1.Images.SetKeyName(6, "");
-            this.imageList1.Images.SetKeyName(7, "");
-            this.imageList1.Images.SetKeyName(8, "");
-            this.imageList1.Images.SetKeyName(9, "");
-            this.imageList1.Images.SetKeyName(10, "");
-            this.imageList1.Images.SetKeyName(11, "");
-            this.imageList1.Images.SetKeyName(12, "");
-            this.imageList1.Images.SetKeyName(13, "");
-            // 
             // plotToolBarStandard1
             // 
             this.plotToolBarStandard1.LoadingBegin();
@@ -691,28 +773,10 @@
             this.plotToolBarStandard1.TabIndex = 3;
             this.plotToolBarStandard1.LoadingEnd();
             // 
-            // imageList2
-            // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "");
-            this.imageList2.Images.SetKeyName(1, "");
-            this.imageList2.Images.SetKeyName(2, "");
-            this.imageList2.Images.SetKeyName(3, "");
-            this.imageList2.Images.SetKeyName(4, "");
-            this.imageList2.Images.SetKeyName(5, "");
-            this.imageList2.Images.SetKeyName(6, "");
-            this.imageList2.Images.SetKeyName(7, "");
-            this.imageList2.Images.SetKeyName(8, "");
-            this.imageList2.Images.SetKeyName(9, "");
-            this.imageList2.Images.SetKeyName(10, "");
-            this.imageList2.Images.SetKeyName(11, "");
-            this.imageList2.Images.SetKeyName(12, "");
-            this.imageList2.Images.SetKeyName(13, "");
-            // 
             // plotToolBarButton1
             // 
             this.plotToolBarButton1.LoadingBegin();
+            this.plotToolBarButton1.Enabled = false;
             this.plotToolBarButton1.ImageIndex = 0;
             this.plotToolBarButton1.Name = "plotToolBarButton1";
             this.plotToolBarButton1.ToolTipText = "Tracking Resume";
@@ -742,6 +806,7 @@
             this.plotToolBarButton4.Command = Iocomp.Types.PlotToolBarCommandStyle.AxesScroll;
             this.plotToolBarButton4.ImageIndex = 2;
             this.plotToolBarButton4.Name = "plotToolBarButton4";
+            this.plotToolBarButton4.Pushed = true;
             this.plotToolBarButton4.ToolTipText = "Axes Scroll";
             this.plotToolBarButton4.LoadingEnd();
             // 
@@ -796,6 +861,7 @@
             this.plotToolBarButton10.Command = Iocomp.Types.PlotToolBarCommandStyle.Select;
             this.plotToolBarButton10.ImageIndex = 6;
             this.plotToolBarButton10.Name = "plotToolBarButton10";
+            this.plotToolBarButton10.Pushed = true;
             this.plotToolBarButton10.ToolTipText = "Select";
             this.plotToolBarButton10.LoadingEnd();
             // 
@@ -898,15 +964,67 @@
             this.plotToolBarButton21.ToolTipText = "Page Setup";
             this.plotToolBarButton21.LoadingEnd();
             // 
-            // panel2
+            // imageList2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Location = new System.Drawing.Point(0, 256);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(220, 112);
-            this.panel2.TabIndex = 1;
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "");
+            this.imageList2.Images.SetKeyName(1, "");
+            this.imageList2.Images.SetKeyName(2, "");
+            this.imageList2.Images.SetKeyName(3, "");
+            this.imageList2.Images.SetKeyName(4, "");
+            this.imageList2.Images.SetKeyName(5, "");
+            this.imageList2.Images.SetKeyName(6, "");
+            this.imageList2.Images.SetKeyName(7, "");
+            this.imageList2.Images.SetKeyName(8, "");
+            this.imageList2.Images.SetKeyName(9, "");
+            this.imageList2.Images.SetKeyName(10, "");
+            this.imageList2.Images.SetKeyName(11, "");
+            this.imageList2.Images.SetKeyName(12, "");
+            this.imageList2.Images.SetKeyName(13, "");
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
+            this.imageList1.Images.SetKeyName(2, "");
+            this.imageList1.Images.SetKeyName(3, "");
+            this.imageList1.Images.SetKeyName(4, "");
+            this.imageList1.Images.SetKeyName(5, "");
+            this.imageList1.Images.SetKeyName(6, "");
+            this.imageList1.Images.SetKeyName(7, "");
+            this.imageList1.Images.SetKeyName(8, "");
+            this.imageList1.Images.SetKeyName(9, "");
+            this.imageList1.Images.SetKeyName(10, "");
+            this.imageList1.Images.SetKeyName(11, "");
+            this.imageList1.Images.SetKeyName(12, "");
+            this.imageList1.Images.SetKeyName(13, "");
+            // 
+            // navBarGroupControlContainer5
+            // 
+            this.navBarGroupControlContainer5.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer5.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer5.Name = "navBarGroupControlContainer5";
+            this.navBarGroupControlContainer5.Size = new System.Drawing.Size(220, 220);
+            this.navBarGroupControlContainer5.TabIndex = 1;
+            // 
+            // navBarGroupControlContainer6
+            // 
+            this.navBarGroupControlContainer6.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer6.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer6.Name = "navBarGroupControlContainer6";
+            this.navBarGroupControlContainer6.Size = new System.Drawing.Size(220, 220);
+            this.navBarGroupControlContainer6.TabIndex = 2;
+            // 
+            // navBarGroupControlContainer7
+            // 
+            this.navBarGroupControlContainer7.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer7.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer7.Name = "navBarGroupControlContainer7";
+            this.navBarGroupControlContainer7.Size = new System.Drawing.Size(220, 220);
+            this.navBarGroupControlContainer7.TabIndex = 3;
             // 
             // dev_toolkit
             // 
@@ -928,6 +1046,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).EndInit();
             this.navBarControl2.ResumeLayout(false);
             this.navBarGroupControlContainer2.ResumeLayout(false);
@@ -1010,6 +1132,14 @@
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton21;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.CheckEdit checkEdit2;
+        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.DropDownButton dropDownButton1;
+        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer7;
+        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer5;
+        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer6;
     }
 }

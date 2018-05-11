@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tool_form_test));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
             this.kit_ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.kit_ribbon_hide = new DevExpress.XtraBars.BarButtonItem();
             this.kit_com_port = new DevExpress.XtraBars.BarEditItem();
@@ -94,9 +94,9 @@
             this.kit_ribbon_hide.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("kit_ribbon_hide.ImageOptions.Image")));
             this.kit_ribbon_hide.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.group_32x32;
             this.kit_ribbon_hide.Name = "kit_ribbon_hide";
-            toolTipItem1.Text = "隐藏菜单栏";
-            superToolTip1.Items.Add(toolTipItem1);
-            this.kit_ribbon_hide.SuperTip = superToolTip1;
+            toolTipItem3.Text = "隐藏菜单栏";
+            superToolTip3.Items.Add(toolTipItem3);
+            this.kit_ribbon_hide.SuperTip = superToolTip3;
             // 
             // kit_com_port
             // 
@@ -140,9 +140,9 @@
             this.kit_menu_hide.ImageOptions.Image = global::dev_toolkit.Properties.Resources.group2_32x32;
             this.kit_menu_hide.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.group2_32x32;
             this.kit_menu_hide.Name = "kit_menu_hide";
-            toolTipItem2.Text = "隐藏菜单";
-            superToolTip2.Items.Add(toolTipItem2);
-            this.kit_menu_hide.SuperTip = superToolTip2;
+            toolTipItem4.Text = "隐藏菜单";
+            superToolTip4.Items.Add(toolTipItem4);
+            this.kit_menu_hide.SuperTip = superToolTip4;
             // 
             // ribbonPage1
             // 
