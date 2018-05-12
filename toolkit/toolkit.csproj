@@ -36,13 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="common">
-      <HintPath>lib\Iocomp\plot\bin\Release\common.dll</HintPath>
+      <HintPath>lib\Iocomp\plot\bin\Debug\common.dll</HintPath>
     </Reference>
     <Reference Include="CSkin">
       <HintPath>lib\SkinUI\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="plot">
-      <HintPath>lib\Iocomp\plot\bin\Release\plot.dll</HintPath>
+      <HintPath>lib\Iocomp\plot\bin\Debug\plot.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

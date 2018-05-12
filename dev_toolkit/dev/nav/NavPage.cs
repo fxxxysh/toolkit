@@ -18,7 +18,15 @@ namespace dev_toolkit.dev
             _nav_page = (NavigationFrame)sender;
             _page_list = (NavigationPage[])page;
 
-            _nav_page.Invoke(new Action(() => { _nav_page.SelectedPage = _page_list[3]; }));
+            _nav_page.Invoke(new Action(() => 
+            {
+                _page_list[0].Tag = "0";
+                _page_list[1].Tag = "1";
+                _page_list[2].Tag = "2";
+                _page_list[3].Tag = "3";
+
+                _nav_page.SelectedPage = _page_list[3];
+            }));
         }
     }
 }

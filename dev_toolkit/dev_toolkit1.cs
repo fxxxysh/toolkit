@@ -17,7 +17,7 @@ using dev_toolkit.dev;
 
 namespace dev_toolkit
 {
-    public partial class dev_toolkit : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class dev_toolkit1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         // 防止界面切换闪烁
         protected override CreateParams CreateParams
@@ -55,7 +55,7 @@ namespace dev_toolkit
             get { return kit_nav_frame; }
             set { kit_nav_frame = value; }
         }
-
+     
         public NavBarControl _nav
         {
             get { return kit_nav_bar; }
@@ -84,7 +84,7 @@ namespace dev_toolkit
         public nav_page_s[] _page_list;
         public ribbom_connect_s ribbom_connect;
 
-        public dev_toolkit()
+        public dev_toolkit1()
         {
             InitializeComponent();
 
@@ -95,7 +95,7 @@ namespace dev_toolkit
             Thread th_test = new Thread(idle_task)
             { Priority = ThreadPriority.Lowest, IsBackground = true };
             th_test.Start();
-        }
+        }     
 
         // 主函数
         public void start()
@@ -106,7 +106,7 @@ namespace dev_toolkit
             }
 
             // 添加页面
-            _page_list = new nav_page_s[]
+            _page_list = new nav_page_s[] 
             {
                 new nav_page_s(nav_wave_page, nav_wave),
                 new nav_page_s(nav_data_page, nav_data),
@@ -115,24 +115,24 @@ namespace dev_toolkit
             };
 
             //初始化ribbon connect
-            //ribbom_connect = new ribbom_connect_s(kit_com_port,
-            //                     kit_com_baudrate,
-            //                     com_connect,
-            //                     sys_id,
-            //                     dev_id,
-            //                     software_version,
-            //                     hardware_version);
+            ribbom_connect = new ribbom_connect_s(kit_com_port,
+                                 kit_com_baudrate,
+                                 com_connect,
+                                 sys_id,
+                                 dev_id,
+                                 software_version,
+                                 hardware_version);
 
             DevRibbon dev_ribbon = new DevRibbon(this);
             NavBar nav_bar = new NavBar(this);
 
-            Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();             
         }
 
         // 空闲任务
         public void idle_task()
         {
-            while (true)
+            while(true)
             {
                 Thread.Sleep(4000);
             }
