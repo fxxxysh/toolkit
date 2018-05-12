@@ -139,13 +139,14 @@ namespace dev_toolkit
                 new nav_page_s(nav_control_page, nav_control)
             };
 
-            // 串口控件相关
+            // 串口操作相关控件
             _serial_connect = new serial_connect_s(
                 kit_com_port_edit,
                 kit_com_baudrate_edit,
                 kit_com_port,
                 kit_com_baudrate,
-                kit_com_connect);
+                kit_com_connect,
+                kit_com_connect_dis);
 
             // 初始化ribbon connect
             _ribbom_connect = new ribbom_connect_s(
@@ -170,9 +171,18 @@ namespace dev_toolkit
             Thread.CurrentThread.Abort();
         }
 
+        public string connect_binding
+        {
+            get { return this.kit_com_connect_dis.Caption; }
+            set { this.kit_com_connect_dis.Caption = value; }
+        }
+
         // 空闲任务
         public void idle_task()
         {
+            //Binding binding = new Binding("Caption", this, "connect_binding");
+            //this.kit_com_connect.DataBindings.Add(binding);
+
             while (true)
             {
                 Thread.Sleep(4000);
@@ -200,16 +210,21 @@ namespace dev_toolkit
         public BarEditItem com_port;
         public BarEditItem com_baudrate;
         public BarButtonItem com_connect;
+        public BarButtonItem com_connect_dis;
 
         public Image image_start = global::dev_toolkit.Properties.Resources.play_32x32;
         public Image image_stop = global::dev_toolkit.Properties.Resources.stop_32x32;
+
+        public Image min_image_start = global::dev_toolkit.Properties.Resources.play_16x16;
+        public Image min_image_stop = global::dev_toolkit.Properties.Resources.stop_16x16;
 
         public serial_connect_s(
             RepositoryItemComboBox com_port_eidt,
             RepositoryItemComboBox com_baudrate_eidt,
             BarEditItem com_port,
             BarEditItem com_baudrate,
-            BarButtonItem com_connect)
+            BarButtonItem com_connect,
+            BarButtonItem com_connect_dis)
         {
             this.com_port_eidt = com_port_eidt;
             this.com_baudrate_eidt = com_baudrate_eidt;
@@ -217,6 +232,17 @@ namespace dev_toolkit
             this.com_port = com_port;
             this.com_baudrate = com_baudrate;
             this.com_connect = com_connect;
+            this.com_connect_dis = com_connect_dis;
+        }
+    }
+
+    public class test_DataBindings
+    {
+        public BarButtonItem com_connect;
+
+        public test_DataBindings()
+        {
+            com_connect = new BarButtonItem();
         }
     }
 

@@ -59,24 +59,24 @@ namespace dev_toolkit.frame
             set { serial_connect.com_baudrate_eidt = value; }
         }
 
-        public Image _com_connect
+        public void com_connect(bool connect)
         {
-            set { serial_connect.com_connect.ImageOptions.LargeImage = value; }
-        }
+            if (connect == true)
+            {
+                serial_connect.com_connect.ImageOptions.LargeImage = serial_connect.image_start;
+                serial_connect.com_connect_dis.ImageOptions.Image = serial_connect.min_image_start;
 
-        public string _com_connect_val
-        {
-            set { serial_connect.com_connect.Caption = value; }
-        }
+                serial_connect.com_connect.Caption = "连接";
+                serial_connect.com_connect_dis.Caption = "连接";
+            }
+            else
+            {
+                serial_connect.com_connect.ImageOptions.LargeImage = serial_connect.image_stop;
+                serial_connect.com_connect_dis.ImageOptions.Image = serial_connect.min_image_stop;
 
-        public Image _com_connect_start
-        {
-            get { return serial_connect.image_start; }
-        }
-
-        public Image _com_connect_stop
-        {
-            get { return serial_connect.image_stop; }
+                serial_connect.com_connect.Caption = "断开";
+                serial_connect.com_connect_dis.Caption = "断开";
+            }
         }
 
         struct serial_var_s
@@ -135,6 +135,7 @@ namespace dev_toolkit.frame
             //_serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_read);
 
             serial_connect.com_connect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);
+            serial_connect.com_connect_dis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);      
         }
 
         void serial_init()
@@ -207,8 +208,7 @@ namespace dev_toolkit.frame
         {
             if (connect)
             {
-                _com_connect = _com_connect_stop;
-                _com_connect_val = "断开";
+                com_connect(false);            
                 //_com_port.Enabled = false;
                 //_com_baudrate.Enabled = false;
                 _com_port_edit.Enabled = false;
@@ -216,8 +216,7 @@ namespace dev_toolkit.frame
             }
             else
             {
-                _com_connect = _com_connect_start;
-                _com_connect_val = "连接";
+                com_connect(true);
                 //_com_port.Enabled = true;
                 //_com_baudrate.Enabled = true;
                 _com_port_edit.Enabled = true;
