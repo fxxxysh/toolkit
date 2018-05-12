@@ -71,7 +71,7 @@ namespace dev_toolkit.frame
             string port_name = _com_port_val;
 
             string port = port_name.Split(' ')[0];
-            status = operate_port(_com_port_val, _com_baudrate_val);
+            status = operate_port(port, _com_baudrate_val);
             set_serial_status(status);
         }
 
@@ -85,11 +85,6 @@ namespace dev_toolkit.frame
                 _hander.Invoke(new Action(() => { set_serial_port(device_ports); }));
                 //set_serial_port(device_ports);
             }
-        }
-
-        private void com_port_DropDownClosed(object sender, EventArgs e)
-        {
-            _lost_focus.Focus();
         }
     }
 }

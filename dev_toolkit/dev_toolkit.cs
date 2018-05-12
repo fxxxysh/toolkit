@@ -55,6 +55,18 @@ namespace dev_toolkit
             set { plotTool = value; }
         }
 
+        public PlotToolBarButton _click_start_track
+        {
+            get { return plotToolBarButton1; }
+            set { plotToolBarButton1 = value; }
+        }
+
+        public PlotToolBarButton _click_stop_track
+        {
+            get { return plotToolBarButton2; }
+            set { plotToolBarButton2 = value; }
+        }
+
         public PlotToolBarButton _click_cursor
         {
             get { return plotToolBarButton12; }

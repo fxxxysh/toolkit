@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Iocomp.Classes.PlotChannelTrace plotChannelTrace1 = new Iocomp.Classes.PlotChannelTrace();
             Iocomp.Classes.PlotChannelTrace plotChannelTrace2 = new Iocomp.Classes.PlotChannelTrace();
             Iocomp.Classes.PlotChannelTrace plotChannelTrace3 = new Iocomp.Classes.PlotChannelTrace();
@@ -72,7 +71,7 @@
             this.plotToolBarButton19 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton20 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton21 = new Iocomp.Classes.PlotToolBarButton();
-            this.ToolBar_image = new System.Windows.Forms.ImageList(this.components);
+            this.ToolBar_image = new System.Windows.Forms.ImageList();
             this.TabPage_data = new CCWin.SkinControl.SkinTabPage();
             this.TabPage_device = new CCWin.SkinControl.SkinTabPage();
             this.com_panel = new System.Windows.Forms.Panel();
@@ -111,7 +110,6 @@
             this.TabControl_func.PageBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TabControl_func.PageCloseHover = null;
             this.TabControl_func.PageCloseNormal = null;
-            this.TabControl_func.PageDown = global::dev_toolkit.Properties.Resources.button_down;
             this.TabControl_func.PageHover = null;
             this.TabControl_func.PageHoverTxtColor = System.Drawing.Color.DarkTurquoise;
             this.TabControl_func.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Top;
@@ -663,7 +661,7 @@
             this.com_switch.Size = new System.Drawing.Size(39, 39);
             this.com_switch.Text = "端口";
             // 
-            // wave_form
+            // tool_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -673,7 +671,7 @@
             this.Controls.Add(this.com_panel);
             this.Controls.Add(this.TabControl_func);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "wave_form";
+            this.Name = "tool_form";
             this.Text = "TOOL";
             this.TabControl_func.ResumeLayout(false);
             this.TabPage_wave.ResumeLayout(false);

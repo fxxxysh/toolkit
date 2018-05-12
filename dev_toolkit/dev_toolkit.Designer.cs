@@ -715,6 +715,7 @@
             this.kit_com_port_edit.AutoHeight = false;
             this.kit_com_port_edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.kit_com_port_edit.DropDownRows = 20;
             this.kit_com_port_edit.Name = "kit_com_port_edit";
             // 
             // kit_com_baudrate
@@ -730,6 +731,7 @@
             this.kit_com_baudrate_edit.AutoHeight = false;
             this.kit_com_baudrate_edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.kit_com_baudrate_edit.DropDownRows = 20;
             this.kit_com_baudrate_edit.Name = "kit_com_baudrate_edit";
             // 
             // ribbonPageGroup2

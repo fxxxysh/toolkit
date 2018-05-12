@@ -19,7 +19,6 @@ namespace dev_toolkit.frame
         private SerialPort _serialPort; //串口控件
         private Plot _plot; //示波器控件
 
-        private Panel _lost_focus;
         public dev_toolkit _hander;
 
         private serial_connect_s serial_connect;
@@ -62,7 +61,12 @@ namespace dev_toolkit.frame
 
         public Image _com_connect
         {
-            set { serial_connect.com_connect.ImageOptions.Image = value; }
+            set { serial_connect.com_connect.ImageOptions.LargeImage = value; }
+        }
+
+        public string _com_connect_val
+        {
+            set { serial_connect.com_connect.Caption = value; }
         }
 
         public Image _com_connect_start
@@ -113,9 +117,6 @@ namespace dev_toolkit.frame
 
         void mode_init()
         {
-            _lost_focus = new Panel();
-            _hander.Invoke(new Action(() => { _hander.Controls.Add(_lost_focus); }));
-
             _serialPort = new SerialPort();
 
             //串口解析任务
@@ -134,7 +135,6 @@ namespace dev_toolkit.frame
             //_serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_read);
 
             serial_connect.com_connect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);
-            //_com_port.DropDownClosed += new System.EventHandler(com_port_DropDownClosed);
         }
 
         void serial_init()
@@ -143,6 +143,28 @@ namespace dev_toolkit.frame
             _serialPort.DataBits = 8; //数据位
             _serialPort.Parity = Parity.None; //无校验
             _serialPort.StopBits = StopBits.One; //停止位
+
+            _hander.Invoke(new Action(() =>
+            {
+                _com_baudrate_edit.Items.AddRange(new object[] {
+                "9600",
+                "14400",
+                "19200",
+                "38400",
+                "57600",
+                "115200",
+                "128000",
+                "153600",
+                "230400",
+                "250000",
+                "256000",
+                "460800",
+                "500000",
+                "576000",
+                "625000"});
+
+                _com_baudrate.EditValue = "500000";
+            }));
         }
 
         // 串口发送
@@ -181,19 +203,25 @@ namespace dev_toolkit.frame
         }
 
         // 设置串口状态
-        public void set_serial_status(bool sw)
+        public void set_serial_status(bool connect)
         {
-            if (sw)
+            if (connect)
             {
-                _com_connect = _com_connect_start;
-                _com_port.Enabled = false;
-                _com_baudrate.Enabled = false;
+                _com_connect = _com_connect_stop;
+                _com_connect_val = "断开";
+                //_com_port.Enabled = false;
+                //_com_baudrate.Enabled = false;
+                _com_port_edit.Enabled = false;
+                _com_baudrate_edit.Enabled = false;
             }
             else
             {
-                _com_connect = _com_connect_stop;
-                _com_port.Enabled = true;
-                _com_baudrate.Enabled = true;
+                _com_connect = _com_connect_start;
+                _com_connect_val = "连接";
+                //_com_port.Enabled = true;
+                //_com_baudrate.Enabled = true;
+                _com_port_edit.Enabled = true;
+                _com_baudrate_edit.Enabled = true;
             }
         }
 

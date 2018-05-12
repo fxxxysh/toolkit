@@ -26,12 +26,14 @@ namespace dev_toolkit.dev
             if (_ribbon.ShowPageHeadersMode != ShowPageHeadersMode.Hide)
             {
                _ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Hide;
-               _ribbon_hide.Caption = "显示菜单";
+                _ribbon.Minimized = true;
+                _ribbon_hide.Caption = "显示菜单";
             }
             else
             {
                _ribbon.ShowPageHeadersMode = ShowPageHeadersMode.Show;
-               _ribbon_hide.Caption = "隐藏菜单";
+                _ribbon.Minimized = false;
+                _ribbon_hide.Caption = "隐藏菜单";
             }
         }
     }

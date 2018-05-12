@@ -142,8 +142,8 @@ namespace dev_toolkit.frame
         // test
         void test_set_label() 
         {
-            Action<int, String> write = (ind, str) => { _hander._label[ind].Text = str; };
-            Action<int, int> lable_lock = (x, y) => { _hander._label[0].Location = new System.Drawing.Point(x, y); };
+            //Action<int, String> write = (ind, str) => { _hander._label[ind].Text = str; };
+            //Action<int, int> lable_lock = (x, y) => { _hander._label[0].Location = new System.Drawing.Point(x, y); };
             string[] lab_str = new string[10];
             
             try
@@ -164,7 +164,7 @@ namespace dev_toolkit.frame
             {
                 try
                 {
-                    _hander.Invoke(write, ind, lab_str[ind]);
+                    //_hander.Invoke(write, ind, lab_str[ind]);
                 }
                 catch { };
             }
