@@ -125,3 +125,4 @@ C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.csproj.CoreCo
 C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.csproj.CopyComplete
 C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.exe
 C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.pdb
+C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.exe.licenses

@@ -70,6 +70,12 @@
     <Compile Include="dev_toolkit.Designer.cs">
       <DependentUpon>dev_toolkit.cs</DependentUpon>
     </Compile>
+    <Compile Include="frame\serial_port\serial_port.cs" />
+    <Compile Include="frame\serial_port\serial_port_task.cs" />
+    <Compile Include="frame\wave_form\wave_form..cs" />
+    <Compile Include="frame\WMI\wmi.cs" />
+    <Compile Include="modules\comlink\comlink.cs" />
+    <Compile Include="modules\comlink\comlink_msg.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,10 +83,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Properties\licenses.licx" />
     <EmbeddedResource Include="dev_toolkit.resx">
       <DependentUpon>dev_toolkit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -116,6 +122,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stop_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="device\gnss\" />
+    <Folder Include="modules\logger\" />
+    <Folder Include="modules\wave\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

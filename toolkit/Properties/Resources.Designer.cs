@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace toolkit.Properties {
+namespace dev_toolkit.Properties {
     using System;
     
     

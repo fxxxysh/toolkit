@@ -1,4 +1,4 @@
-﻿namespace toolkit
+﻿namespace dev_toolkit
 {
     partial class tool_form
     {
@@ -111,7 +111,7 @@
             this.TabControl_func.PageBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TabControl_func.PageCloseHover = null;
             this.TabControl_func.PageCloseNormal = null;
-            this.TabControl_func.PageDown = global::toolkit.Properties.Resources.button_down;
+            this.TabControl_func.PageDown = global::dev_toolkit.Properties.Resources.button_down;
             this.TabControl_func.PageHover = null;
             this.TabControl_func.PageHoverTxtColor = System.Drawing.Color.DarkTurquoise;
             this.TabControl_func.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Top;

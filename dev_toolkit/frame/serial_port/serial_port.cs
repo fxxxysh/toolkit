@@ -7,7 +7,8 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
 using System.Text.RegularExpressions;
-
+using System.Drawing;
+using DevExpress.XtraEditors.Repository;
 using Iocomp.Instrumentation.Plotting;
 using dev_toolkit.modules;
 
@@ -19,11 +20,60 @@ namespace dev_toolkit.frame
         private Plot _plot; //示波器控件
 
         private Panel _lost_focus;
-        public tool_form _hander;
+        public dev_toolkit _hander;
 
-        public ToolStripComboBox _com_port;
-        public ToolStripComboBox _com_baudrate;
-        public ToolStripButton _com_switch;
+        private serial_connect_s serial_connect;
+
+        public DevExpress.XtraBars.BarEditItem _com_port
+        {
+            get { return serial_connect.com_port; }
+            set { serial_connect.com_port = value; }
+        }
+
+        public DevExpress.XtraBars.BarEditItem _com_baudrate
+        {
+            get { return serial_connect.com_baudrate; }
+            set { serial_connect.com_baudrate = value; }
+        }
+
+        public string _com_port_val
+        {
+            get { return (string)_com_port.EditValue; }
+            set { _com_port.EditValue = value; }
+        }
+
+        public string _com_baudrate_val
+        {
+            get { return (string)_com_baudrate.EditValue; }
+            set { _com_baudrate.EditValue = value; }
+        }
+
+        public RepositoryItemComboBox _com_port_edit
+        {
+            get { return serial_connect.com_port_eidt; }
+            set { serial_connect.com_port_eidt = value; }
+        }
+
+        public RepositoryItemComboBox _com_baudrate_edit
+        {
+            get { return serial_connect.com_baudrate_eidt; }
+            set { serial_connect.com_baudrate_eidt = value; }
+        }
+
+        public Image _com_connect
+        {
+            set { serial_connect.com_connect.ImageOptions.Image = value; }
+        }
+
+        public Image _com_connect_start
+        {
+            get { return serial_connect.image_start; }
+        }
+
+        public Image _com_connect_stop
+        {
+            get { return serial_connect.image_stop; }
+        }
 
         struct serial_var_s
         {
@@ -49,13 +99,12 @@ namespace dev_toolkit.frame
         };
         serial_var_s serial_var = new serial_var_s(false);
 
-        public serial_port(tool_form hander) : base()
+        public serial_port(object sender) : base()
         {
-            _hander = hander;
+            _hander = (dev_toolkit)sender;
             _plot = _hander._plot;
-            _com_port = _hander._com_port;
-            _com_baudrate = _hander._com_baudrate;
-            _com_switch = _hander._com_switch;
+
+            serial_connect = _hander._serial_connect;
 
             mode_init();
             event_init();
@@ -83,8 +132,9 @@ namespace dev_toolkit.frame
         void event_init()
         {
             //_serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_read);
-            _com_switch.Click += new System.EventHandler(com_switch_Click);
-            _com_port.DropDownClosed += new System.EventHandler(com_port_DropDownClosed);
+
+            serial_connect.com_connect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);
+            //_com_port.DropDownClosed += new System.EventHandler(com_port_DropDownClosed);
         }
 
         void serial_init()
@@ -105,27 +155,27 @@ namespace dev_toolkit.frame
         public void set_serial_port(string[] device_ports)
         {
             bool current_port_sign = false;
-            string current_port = _com_port.Text;
+            string current_port = _com_port_val;
 
             if (device_ports.Length != 0)
             {
-                _com_port.Items.Clear();
-                _com_port.Items.Add("AUTO");
+                _com_port_edit.Items .Clear();
+                _com_port_edit.Items.Add("AUTO");
 
                 foreach (string ports in device_ports)
                 {
-                    _com_port.Items.Add(ports);
+                    _com_port_edit.Items.Add(ports);
 
                     if (current_port == ports)
                     {
                         current_port_sign = true;
                     }
-                    _com_port.Text = device_ports[0];
+                    _com_port_val = device_ports[0];
                 }
 
                 if (current_port_sign)
                 {
-                    _com_port.Text = current_port;
+                    _com_port_val = current_port;
                 }
             }
         }
@@ -135,13 +185,13 @@ namespace dev_toolkit.frame
         {
             if (sw)
             {
-                _com_switch.Image = Properties.Resources.port_open;
+                _com_connect = _com_connect_start;
                 _com_port.Enabled = false;
                 _com_baudrate.Enabled = false;
             }
             else
             {
-                _com_switch.Image = Properties.Resources.port_close;
+                _com_connect = _com_connect_stop;
                 _com_port.Enabled = true;
                 _com_baudrate.Enabled = true;
             }

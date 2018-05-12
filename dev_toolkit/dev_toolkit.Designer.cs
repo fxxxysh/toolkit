@@ -58,7 +58,7 @@
             this.plotToolBarButton3 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton2 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton1 = new Iocomp.Classes.PlotToolBarButton();
-            this.plotToolBarStandard1 = new Iocomp.Instrumentation.Plotting.PlotToolBarStandard();
+            this.plotTool = new Iocomp.Instrumentation.Plotting.PlotToolBarStandard();
             this.plotToolBarButton12 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton14 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton15 = new Iocomp.Classes.PlotToolBarButton();
@@ -89,21 +89,21 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.kit_com_port = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.kit_com_port_edit = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.kit_com_baudrate = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.kit_com_baudrate_edit = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.kit_com_connect = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.kit_sys_id = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.kit_sys_id_edit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.kit_dev_id = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.kit_dev_id_edit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.software_version = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.software_version_edit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.hardware_version = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.hardware_version_edit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.kit_com_connect_dis = new DevExpress.XtraBars.BarButtonItem();
             this.kit_hide = new DevExpress.XtraBars.BarButtonItem();
             this.kit_ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -129,12 +129,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_frame)).BeginInit();
             this.kit_nav_frame.SuspendLayout();
             this.nav_data_page.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_com_port_edit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_com_baudrate_edit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_sys_id_edit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_dev_id_edit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.software_version_edit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hardware_version_edit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.in_nav_msg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
@@ -256,11 +256,11 @@
             this.plotToolBarButton1.ToolTipText = "Tracking Resume";
             this.plotToolBarButton1.LoadingEnd();
             // 
-            // plotToolBarStandard1
+            // plotTool
             // 
-            this.plotToolBarStandard1.LoadingBegin();
-            this.plotToolBarStandard1.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-            this.plotToolBarStandard1.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
+            this.plotTool.LoadingBegin();
+            this.plotTool.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
+            this.plotTool.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
             this.plotToolBarButton1,
             this.plotToolBarButton2,
             this.plotToolBarButton3,
@@ -282,16 +282,16 @@
             this.plotToolBarButton19,
             this.plotToolBarButton20,
             this.plotToolBarButton21});
-            this.plotToolBarStandard1.Dock = System.Windows.Forms.DockStyle.None;
-            this.plotToolBarStandard1.DropDownArrows = true;
-            this.plotToolBarStandard1.ImageList = this.plot_imageList;
-            this.plotToolBarStandard1.Location = new System.Drawing.Point(0, -2);
-            this.plotToolBarStandard1.Name = "plotToolBarStandard1";
-            this.plotToolBarStandard1.Plot = this.wave_plot;
-            this.plotToolBarStandard1.ShowToolTips = true;
-            this.plotToolBarStandard1.Size = new System.Drawing.Size(384, 28);
-            this.plotToolBarStandard1.TabIndex = 3;
-            this.plotToolBarStandard1.LoadingEnd();
+            this.plotTool.Dock = System.Windows.Forms.DockStyle.None;
+            this.plotTool.DropDownArrows = true;
+            this.plotTool.ImageList = this.plot_imageList;
+            this.plotTool.Location = new System.Drawing.Point(0, -2);
+            this.plotTool.Name = "plotTool";
+            this.plotTool.Plot = this.wave_plot;
+            this.plotTool.ShowToolTips = true;
+            this.plotTool.Size = new System.Drawing.Size(384, 28);
+            this.plotTool.TabIndex = 3;
+            this.plotTool.LoadingEnd();
             // 
             // plotToolBarButton12
             // 
@@ -558,7 +558,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel1.Controls.Add(this.plotToolBarStandard1);
+            this.panel1.Controls.Add(this.plotTool);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
@@ -705,32 +705,32 @@
             // kit_com_port
             // 
             this.kit_com_port.Caption = "串口   ";
-            this.kit_com_port.Edit = this.repositoryItemComboBox1;
+            this.kit_com_port.Edit = this.kit_com_port_edit;
             this.kit_com_port.EditWidth = 100;
             this.kit_com_port.Id = 1;
             this.kit_com_port.Name = "kit_com_port";
             // 
-            // repositoryItemComboBox1
+            // kit_com_port_edit
             // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.kit_com_port_edit.AutoHeight = false;
+            this.kit_com_port_edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            this.kit_com_port_edit.Name = "kit_com_port_edit";
             // 
             // kit_com_baudrate
             // 
             this.kit_com_baudrate.Caption = "波特率";
-            this.kit_com_baudrate.Edit = this.repositoryItemComboBox2;
+            this.kit_com_baudrate.Edit = this.kit_com_baudrate_edit;
             this.kit_com_baudrate.EditWidth = 100;
             this.kit_com_baudrate.Id = 2;
             this.kit_com_baudrate.Name = "kit_com_baudrate";
             // 
-            // repositoryItemComboBox2
+            // kit_com_baudrate_edit
             // 
-            this.repositoryItemComboBox2.AutoHeight = false;
-            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.kit_com_baudrate_edit.AutoHeight = false;
+            this.kit_com_baudrate_edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            this.kit_com_baudrate_edit.Name = "kit_com_baudrate_edit";
             // 
             // ribbonPageGroup2
             // 
@@ -754,32 +754,32 @@
             // kit_sys_id
             // 
             this.kit_sys_id.Caption = "系统ID";
-            this.kit_sys_id.Edit = this.repositoryItemSpinEdit1;
+            this.kit_sys_id.Edit = this.kit_sys_id_edit;
             this.kit_sys_id.EditWidth = 80;
             this.kit_sys_id.Id = 6;
             this.kit_sys_id.Name = "kit_sys_id";
             // 
-            // repositoryItemSpinEdit1
+            // kit_sys_id_edit
             // 
-            this.repositoryItemSpinEdit1.AutoHeight = false;
-            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.kit_sys_id_edit.AutoHeight = false;
+            this.kit_sys_id_edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            this.kit_sys_id_edit.Name = "kit_sys_id_edit";
             // 
             // kit_dev_id
             // 
             this.kit_dev_id.Caption = "设备ID";
-            this.kit_dev_id.Edit = this.repositoryItemSpinEdit2;
+            this.kit_dev_id.Edit = this.kit_dev_id_edit;
             this.kit_dev_id.EditWidth = 80;
             this.kit_dev_id.Id = 7;
             this.kit_dev_id.Name = "kit_dev_id";
             // 
-            // repositoryItemSpinEdit2
+            // kit_dev_id_edit
             // 
-            this.repositoryItemSpinEdit2.AutoHeight = false;
-            this.repositoryItemSpinEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.kit_dev_id_edit.AutoHeight = false;
+            this.kit_dev_id_edit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemSpinEdit2.Name = "repositoryItemSpinEdit2";
+            this.kit_dev_id_edit.Name = "kit_dev_id_edit";
             // 
             // ribbonPageGroup4
             // 
@@ -791,28 +791,28 @@
             // software_version
             // 
             this.software_version.Caption = "软件版本";
-            this.software_version.Edit = this.repositoryItemTextEdit1;
+            this.software_version.Edit = this.software_version_edit;
             this.software_version.EditWidth = 100;
             this.software_version.Id = 8;
             this.software_version.Name = "software_version";
             // 
-            // repositoryItemTextEdit1
+            // software_version_edit
             // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.software_version_edit.AutoHeight = false;
+            this.software_version_edit.Name = "software_version_edit";
             // 
             // hardware_version
             // 
             this.hardware_version.Caption = "硬件版本";
-            this.hardware_version.Edit = this.repositoryItemTextEdit2;
+            this.hardware_version.Edit = this.hardware_version_edit;
             this.hardware_version.EditWidth = 100;
             this.hardware_version.Id = 9;
             this.hardware_version.Name = "hardware_version";
             // 
-            // repositoryItemTextEdit2
+            // hardware_version_edit
             // 
-            this.repositoryItemTextEdit2.AutoHeight = false;
-            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            this.hardware_version_edit.AutoHeight = false;
+            this.hardware_version_edit.Name = "hardware_version_edit";
             // 
             // kit_com_connect_dis
             // 
@@ -852,12 +852,12 @@
             this.kit_ribbon.QuickToolbarItemLinks.Add(this.kit_hide);
             this.kit_ribbon.QuickToolbarItemLinks.Add(this.kit_com_connect_dis);
             this.kit_ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemComboBox1,
-            this.repositoryItemComboBox2,
-            this.repositoryItemSpinEdit1,
-            this.repositoryItemSpinEdit2,
-            this.repositoryItemTextEdit1,
-            this.repositoryItemTextEdit2});
+            this.kit_com_port_edit,
+            this.kit_com_baudrate_edit,
+            this.kit_sys_id_edit,
+            this.kit_dev_id_edit,
+            this.software_version_edit,
+            this.hardware_version_edit});
             this.kit_ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.kit_ribbon.ShowToolbarCustomizeItem = false;
             this.kit_ribbon.Size = new System.Drawing.Size(1022, 150);
@@ -1048,12 +1048,12 @@
             this.kit_nav_frame.ResumeLayout(false);
             this.nav_data_page.ResumeLayout(false);
             this.nav_data_page.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_com_port_edit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_com_baudrate_edit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_sys_id_edit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kit_dev_id_edit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.software_version_edit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hardware_version_edit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.in_nav_msg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
@@ -1081,7 +1081,7 @@
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton3;
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton2;
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton1;
-        private Iocomp.Instrumentation.Plotting.PlotToolBarStandard plotToolBarStandard1;
+        private Iocomp.Instrumentation.Plotting.PlotToolBarStandard plotTool;
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton12;
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton14;
         private Iocomp.Classes.PlotToolBarButton plotToolBarButton15;
@@ -1112,21 +1112,21 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarEditItem kit_com_port;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox kit_com_port_edit;
         private DevExpress.XtraBars.BarEditItem kit_com_baudrate;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox kit_com_baudrate_edit;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.BarButtonItem kit_com_connect;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarEditItem kit_sys_id;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit kit_sys_id_edit;
         private DevExpress.XtraBars.BarEditItem kit_dev_id;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit kit_dev_id_edit;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarEditItem software_version;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit software_version_edit;
         private DevExpress.XtraBars.BarEditItem hardware_version;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit hardware_version_edit;
         private DevExpress.XtraBars.BarButtonItem kit_com_connect_dis;
         private DevExpress.XtraBars.BarButtonItem kit_hide;
         private DevExpress.XtraBars.Ribbon.RibbonControl kit_ribbon;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace toolkit
+namespace dev_toolkit
 {
     static class Program
     {

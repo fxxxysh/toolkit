@@ -64,14 +64,14 @@ namespace dev_toolkit.frame
         }
 
         // 串口开关
-        private void com_switch_Click(object sender, EventArgs e)
+        //private void com_connect_Click(object sender, EventArgs e)
+        private void com_connect_Click(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bool status;
-            string baudrate = _com_baudrate.Text;
-            string port_name = _com_port.Text;
+            string port_name = _com_port_val;
 
             string port = port_name.Split(' ')[0];
-            status = operate_port(port, baudrate);
+            status = operate_port(_com_port_val, _com_baudrate_val);
             set_serial_status(status);
         }
 

@@ -12,9 +12,9 @@ using System.IO.Ports;
 using System.Text.RegularExpressions;
 using Iocomp.Instrumentation.Plotting;
 using Iocomp.Classes;
-using toolkit.frame;
+using dev_toolkit.frame;
 
-namespace toolkit
+namespace dev_toolkit
 {
     public partial class tool_form : Form
     {
