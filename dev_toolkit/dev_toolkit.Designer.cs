@@ -518,7 +518,7 @@
             this.wave_plot.Name = "wave_plot";
             this.wave_plot.Size = new System.Drawing.Size(801, 423);
             this.wave_plot.TabIndex = 2;
-            this.wave_plot.UpdateFrameRate = 25D;
+            this.wave_plot.UpdateFrameRate = 40D;
             plotXAxis1.CanFocus = false;
             plotXAxis1.DockOrder = 0;
             plotXAxis1.Name = "X-Axis 1";

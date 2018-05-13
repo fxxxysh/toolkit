@@ -129,6 +129,10 @@ namespace dev_toolkit.frame
             Thread th1 = new Thread(port_refresh_task)
             { Priority = ThreadPriority.BelowNormal, IsBackground = true };
             th1.Start();
+
+            Thread th2 = new Thread(plot_task)
+            { Priority = ThreadPriority.Normal, IsBackground = true };
+            th2.Start();
         }
 
         void event_init()

@@ -19,7 +19,8 @@ namespace dev_toolkit.frame
         wave_axes_s axes = new wave_axes_s();
         bool axes_sign = false;
         bool track_sign = false;
-        bool plot_active_sign = false;
+        bool cursor_active_sign = false;
+        bool cursor_pushed = false;
 
         struct wave_axes_s
         {
@@ -58,8 +59,8 @@ namespace dev_toolkit.frame
         {
             _hander._plotTool.MouseUp += new MouseEventHandler(plotTool_MouseUp);
             _hander._plotTool.ButtonClick += new ToolBarButtonClickEventHandler(plotTool_ButtonClick);
-            //_hander._plot.MouseEnter += new EventHandler(wave_plot_MouseEnter);
-            //_hander._plot.MouseLeave += new EventHandler(wave_plot_MouseLeave);
+            _hander._plot.MouseEnter += new EventHandler(wave_plot_MouseEnter);
+            _hander._plot.MouseLeave += new EventHandler(wave_plot_MouseLeave);
             _hander._plot.Click += new EventHandler(wave_plot_Click);
         }
 
@@ -99,10 +100,10 @@ namespace dev_toolkit.frame
                 plot_channels(channel).Markers.Visible = state;
             }
         }
-       
+
         void plot_zoom()
         {
-            if ((_plot.XAxes[0].Span < 350))// || (_plot.YAxes[0].Span < 350)
+            if ((_plot.XAxes[0].Span < 150))// || (_plot.YAxes[0].Span < 350)
             {
                 plot_markers(true);
             }
@@ -110,26 +111,12 @@ namespace dev_toolkit.frame
             {
                 plot_markers(false);
             }
-
-            // 防止界面卡顿
-            if (_plot.XAxes[0].Span > 30000)
-            {
-                //_plot.XAxes[0].Min = (_plot.XAxes[0].Min + _plot.XAxes[0].Max) / 2;
-                //_plot.XAxes[0].Span = 30000;
-            }
         }
 
         // 光标跟踪
         void plot_track()
         {
-            bool pushed = false;
-            //try {
-            //    _hander.Invoke(new Action(() => pushed = _hander._click_cursor.Pushed));
-            //} catch { };
-
-           // _plot.Cursor
-
-            if ((pushed) && (plot_active_sign))
+            if ((cursor_pushed) && (cursor_active_sign))
             {
                 int width_l = 50;
                 int width_r = 17;
@@ -234,17 +221,22 @@ namespace dev_toolkit.frame
             if (e.Button == _hander._click_start_track)
             {
                 track_sign = true;
-            }    
+            }
+
+            if (e.Button == _hander._click_cursor)
+            {
+                _hander.Invoke(new Action(() => cursor_pushed = !_hander._click_cursor.Pushed));
+            }
         }
         
         private void wave_plot_MouseEnter(object sender, EventArgs e)
         {
-            plot_active_sign = true;
+            cursor_active_sign = true;
         }
 
         private void wave_plot_MouseLeave(object sender, EventArgs e)
         {
-            plot_active_sign = false;
+            cursor_active_sign = false;
         }
         
         private void wave_plot_Click(object sender, EventArgs e)
