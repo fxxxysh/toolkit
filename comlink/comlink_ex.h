@@ -2,8 +2,6 @@
 
 #include "comlink.h"
 
-#define DLL_EXPORTS
-
 #ifdef DLL_EXPORTS
 #define DLL_API __declspec(dllexport)
 #else
@@ -12,8 +10,6 @@
 #endif
 
 #include "stdint.h"
-
-typedef void(*Trans)(uint8_t *, int);
 
 DLL_API uint8_t comlink_parse(uint8_t *buffer, int buffer_size);
 

@@ -42,6 +42,8 @@ namespace dev_toolkit.modules
 
         const int MSG_ID_HEARTBEAT = 0;
 
+        const int MAX_MSG_IND = 128;
+
         public enum parse_state_t
         {
             PARSE_STATE_UNINIT = 0,
@@ -142,11 +144,18 @@ namespace dev_toolkit.modules
             return (T)structure;
         }
 
-        public static void serial_trans(ref message_t msg, int pkg_size)
+        public static void serial_trans(ref message_t msg, int msg_size)
         {
-            byte[] buffer = struct_to_byte<message_t>(msg);
+            test_send_buffer = struct_to_byte<message_t>(msg);
+            test_send_buffer_size = msg_size;
             //trans(buffer, pkg_size);
         }
+
+        public static byte[] test_send_buffer;
+        public static int test_send_buffer_size;
+
+        public static message_t[] rx_msg = new message_t[MAX_MSG_IND];
+        public static __attitude_t[] attitude = new __attitude_t[MAX_MSG_IND];
 
         public void test_parse()
         {
@@ -163,16 +172,17 @@ namespace dev_toolkit.modules
             attitude.yawspeed = 2.65f;
 
             byte pkg_length = (byte)Marshal.SizeOf(typeof(__attitude_t));
+            int msg_length = pkg_length + 8;
+
             byte[] pkg = struct_to_byte<__attitude_t>(attitude);
             comlink_encode(ref tx_msg, ref pkg[0], 1, 2, pkg_length);
-            serial_trans(ref tx_msg, pkg_length);
+            serial_trans(ref tx_msg, msg_length);
 
             // 拆包
             __attitude_t attitude1 = byte_to_struct<__attitude_t>(tx_msg.payload);
 
             // 模拟解析数据
-            int msg_number = 10;
-            int msg_length = pkg_length + 8;
+            int msg_number = 10;      
             byte[] msg_buffer = new byte[msg_length * msg_number];
 
             for (int i = 0; i < msg_number; i++)
@@ -186,8 +196,8 @@ namespace dev_toolkit.modules
             }
 
             // 消息和数据包缓存
-            message_t[] rx_msg = new message_t[64];
-            __attitude_t[] attitude2 = new __attitude_t[64];
+            message_t[] rx_msg = new message_t[MAX_MSG_IND];
+            __attitude_t[] attitude2 = new __attitude_t[MAX_MSG_IND];
 
             // 解析
             byte msg_cnt = comlink_parse(ref msg_buffer[0], msg_length * msg_number);
@@ -201,27 +211,28 @@ namespace dev_toolkit.modules
         }
         public void pkg_decode(byte msg_cnt)
         {
-            message_t[] rx_msg = new message_t[64];
+            rx_msg = new message_t[MAX_MSG_IND];
 
             for (int i = 0; i < msg_cnt; i++)
             {
                 // 拆包
                 comlink_get_msg(ref rx_msg[i], (byte)i);
+                attitude[i] = byte_to_struct<__attitude_t>(rx_msg[i].payload);
 
-             switch (rx_msg[i].msgid)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        //attitude2[i] = byte_to_struct<__attitude_t>(rx_msg[i].payload);
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                }
+                //switch (rx_msg[i].msgid)
+                //   {
+                //       case 0:
+                //           break;
+                //       case 1:
+                //           //attitude2[i] = byte_to_struct<__attitude_t>(rx_msg[i].payload);
+                //           break;
+                //       case 2:
+                //           break;
+                //       case 3:
+                //           break;
+                //       case 4:
+                //           break;
+                //   }
             }
         }
 

@@ -407,8 +407,6 @@
             plotChannelTrace1.Markers.Size = 2;
             plotChannelTrace1.MarkersTurnOffLimit = 0;
             plotChannelTrace1.Name = "Channel 1";
-            plotChannelTrace1.SendXAxisTrackingData = false;
-            plotChannelTrace1.SendYAxisTrackingData = false;
             plotChannelTrace1.TitleText = "CH1";
             plotChannelTrace2.CanFocus = false;
             plotChannelTrace2.Color = System.Drawing.Color.Blue;
@@ -751,7 +749,7 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.kit_sys_id);
             this.ribbonPageGroup3.ItemLinks.Add(this.kit_dev_id);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ID配置";
+            this.ribbonPageGroup3.Text = "配置";
             // 
             // kit_sys_id
             // 

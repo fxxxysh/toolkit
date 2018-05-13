@@ -17,6 +17,7 @@ namespace dev_toolkit.frame
     public partial class serial_port : s_comlink
     {
         private SerialPort _serialPort; //串口控件
+        private const int SERAL_BUFFER_SIZE = 10240; //串口缓存大小
         private Plot _plot; //示波器控件
 
         public dev_toolkit _hander;
@@ -98,7 +99,7 @@ namespace dev_toolkit.frame
                 send_byte = 0;
                 receive_cache_size = 0;
 
-                receive_cache = new Byte[4096];
+                receive_cache = new Byte[SERAL_BUFFER_SIZE];
             }
         };
         serial_var_s serial_var = new serial_var_s(false);
@@ -144,6 +145,7 @@ namespace dev_toolkit.frame
             _serialPort.DataBits = 8; //数据位
             _serialPort.Parity = Parity.None; //无校验
             _serialPort.StopBits = StopBits.One; //停止位
+            _serialPort.ReadBufferSize = SERAL_BUFFER_SIZE;
 
             _hander.Invoke(new Action(() =>
             {
