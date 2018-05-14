@@ -516,7 +516,7 @@
             this.wave_plot.Location = new System.Drawing.Point(0, 26);
             this.wave_plot.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.wave_plot.Name = "wave_plot";
-            this.wave_plot.Size = new System.Drawing.Size(801, 423);
+            this.wave_plot.Size = new System.Drawing.Size(810, 423);
             this.wave_plot.TabIndex = 2;
             this.wave_plot.UpdateFrameRate = 40D;
             plotXAxis1.CanFocus = false;
@@ -901,7 +901,7 @@
             this.in_nav_msg.Margin = new System.Windows.Forms.Padding(0);
             this.in_nav_msg.Name = "in_nav_msg";
             this.in_nav_msg.OptionsNavPane.ExpandedWidth = 220;
-            this.in_nav_msg.Size = new System.Drawing.Size(220, 256);
+            this.in_nav_msg.Size = new System.Drawing.Size(220, 298);
             this.in_nav_msg.TabIndex = 0;
             this.in_nav_msg.Text = "navBarControl2";
             // 
@@ -953,7 +953,7 @@
             this.panelControl1.Controls.Add(this.simpleButton2);
             this.panelControl1.Controls.Add(this.dropDownButton1);
             this.panelControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelControl1.Location = new System.Drawing.Point(-1, 256);
+            this.panelControl1.Location = new System.Drawing.Point(-1, 298);
             this.panelControl1.LookAndFeel.SkinName = "Office 2016 Black";
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Margin = new System.Windows.Forms.Padding(0);

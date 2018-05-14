@@ -20,3 +20,5 @@ DLL_API void comlink_get_status(parse_status_t *status);
 DLL_API void comlink_get_msg(message_t *msg, uint8_t cnt);
 
 DLL_API void comlink_test(Trans trans);
+
+DLL_API void comlink_memcpy(void *dst, void const* src, int size);

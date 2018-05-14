@@ -1,7 +1,7 @@
 ﻿  stdafx.cpp
-  comlink.cpp
-  comlink_msg.h
   dllmain.cpp
+  comlink_msg.h
+  comlink.cpp
   正在生成代码...
-    正在创建库 C:\Users\12082\Documents\toolkit\Debug\comlink.lib 和对象 C:\Users\12082\Documents\toolkit\Debug\comlink.exp
-  comlink.vcxproj -> C:\Users\12082\Documents\toolkit\Debug\comlink.dll
+    正在创建库 F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.lib 和对象 F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.exp
+  comlink.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.dll

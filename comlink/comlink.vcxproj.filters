@@ -41,6 +41,9 @@
     <ClCompile Include="comlink_msg.h">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="comlink_msg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="comlink.def">

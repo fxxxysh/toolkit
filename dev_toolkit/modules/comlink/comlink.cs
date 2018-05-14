@@ -27,6 +27,9 @@ namespace dev_toolkit.modules
         [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_get_msg", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_get_msg(ref message_t msg, byte number);
 
+        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_memcpy", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_memcpy(ref byte dst, ref byte src, int size);
+
         //[DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_trans", CallingConvention = CallingConvention.Cdecl)]
         //public static extern byte comlink_trans(SerialTrans trans, ref message_t msg, ref byte packet, byte compid, byte msg_id, byte length);
 
@@ -151,6 +154,73 @@ namespace dev_toolkit.modules
             //trans(buffer, pkg_size);
         }
 
+        public class TypeStruct
+        {
+            string name;
+        }
+
+        public class TypeBase
+        {
+            public string name;
+            public Byte type;
+            public Byte ind;
+
+            public Byte _u8;
+            public char _i8;
+
+            public UInt16 _u16;
+            public Int16 _i16;
+
+            public UInt32 _u32;
+            public Int32 _i32;
+
+            public UInt64 _u64;
+            public Int64 _i64;
+
+            public float _float;
+            public double _double;
+
+            public TypeBase(string name, Byte type, Byte ind)
+            {
+                this.name = name;
+
+                switch (type)
+                {
+                    case 1: break;
+                    case 2: break;
+                    case 3: break;
+                    case 4: break;
+                }
+            }
+
+            //public val()
+            //{
+
+            //}
+        }
+
+        class MSG_TypeBase
+        {
+            public Dictionary<string, object> Fields;
+
+            public MSG_TypeBase()
+            {
+                Fields = new Dictionary<string, object>();
+            }
+        }
+
+        class msg_type
+        {
+           List<TypeBase> _msg;
+
+            public msg_type(string type)
+            {
+                type = "byte";
+                type = "name1:I8[3],nma2:1,name3:2";
+
+            }
+        }
+
         public static byte[] test_send_buffer;
         public static int test_send_buffer_size;
 
@@ -212,13 +282,30 @@ namespace dev_toolkit.modules
         public void pkg_decode(byte msg_cnt)
         {
             rx_msg = new message_t[MAX_MSG_IND];
-
+            int x2;
             for (int i = 0; i < msg_cnt; i++)
             {
                 // 拆包
                 comlink_get_msg(ref rx_msg[i], (byte)i);
                 attitude[i] = byte_to_struct<__attitude_t>(rx_msg[i].payload);
 
+                Array.Copy(rx_msg[i].payload, 0, rx_msg[i].payload, 0, 6);
+
+                MSG_TypeBase TEST = new MSG_TypeBase();
+
+                TEST.Fields.Add("1", 12);
+                TEST.Fields.Add("2", 23);
+                TEST.Fields.Add("3", 45);
+
+                int x1 = (int)TEST.Fields["1"];
+                //x1 = (int)TEST.Fields["2"];
+                //x1 = (int)TEST.Fields["3"];
+
+                //x2 = ref x1; 
+                //comlink_memcpy()
+
+                //BitConverter.GetBytes(rx_msg[i].payload);
+                //System.Buffer.BlockCopy(attitude, 0, rx_msg[i].payload, 0, 6);
                 //switch (rx_msg[i].msgid)
                 //   {
                 //       case 0:

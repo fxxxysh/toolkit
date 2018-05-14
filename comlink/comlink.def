@@ -6,3 +6,4 @@ EXPORTS
 	comlink_get_status
 	comlink_test
 	comlink_trans
+	comlink_memcpy
