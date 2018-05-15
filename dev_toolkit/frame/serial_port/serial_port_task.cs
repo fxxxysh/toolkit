@@ -81,9 +81,10 @@ namespace dev_toolkit.frame
             Fields.Add(name_ind[8], -200);
             Fields.Add(name_ind[9], -38000);
 
-            Array.Copy((Array)(Fields[1]), 0, name_ind, 1, 2);
-            int tt = Convert.ToInt16(Fields[1]);
-            Fields[1] = Convert.ToDouble(Fields[1]) * 100;
+            //Array.Copy((Array)(Fields[1]), 0, name_ind, 1, 2);
+            //int tt = Convert.ToInt16(Fields[1]);
+            //Fields[1] = Convert.ToDouble(Fields[1]) * 100;
+
             while (true)
             {
                 if (_serialPort.IsOpen == false)

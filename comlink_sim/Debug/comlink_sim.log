@@ -1,6 +1,6 @@
-﻿  stdafx.cpp
+﻿  comlink_sim.cpp
+  comlink_msg.cpp
+f:\项目管理\2016-08-30\group\github\toolkit\comlink\comlink_msg.cpp(53): warning C4305: “=”: 从“double”到“float”截断
   comlink.cpp
-  comlink_sim.cpp
   正在生成代码...
-    正在创建库 C:\Users\12082\Documents\toolkit\Debug\comlink_sim.lib 和对象 C:\Users\12082\Documents\toolkit\Debug\comlink_sim.exp
-  comlink_sim.vcxproj -> C:\Users\12082\Documents\toolkit\Debug\comlink_sim.exe
+f:\项目管理\2016-08-30\group\github\toolkit\comlink\comlink.cpp(332): error C4716: “comlink_msg_copye”: 必须返回一个值

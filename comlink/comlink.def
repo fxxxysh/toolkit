@@ -4,6 +4,8 @@ EXPORTS
 	comlink_encode
 	comlink_get_msg
 	comlink_get_status
-	comlink_test
 	comlink_trans
-	comlink_memcpy
+	comlink_add_msgpart
+	comlink_add_msginfo
+	comlink_up_msgmap
+	comlink_msgpart_value

@@ -21,7 +21,6 @@ F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\bin\Debug\CSkin.dll
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\bin\Debug\plot.dll
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\bin\Debug\common.pdb
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\bin\Debug\plot.pdb
-F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.tool_form.resources
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.Properties.Resources.resources
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.csproj.GenerateResource.Cache
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\toolkit.csproj.CoreCompileInputs.cache
@@ -43,3 +42,4 @@ C:\Users\12082\Documents\toolkit\toolkit\bin\Debug\common.pdb
 C:\Users\12082\Documents\toolkit\toolkit\bin\Debug\plot.pdb
 C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\toolkit.csproj.CopyComplete
 C:\Users\12082\Documents\toolkit\toolkit\obj\Debug\dev_toolkit.tool_form.resources
+F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\obj\Debug\dev_toolkit.tool_form.resources

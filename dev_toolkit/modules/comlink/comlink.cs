@@ -15,6 +15,9 @@ namespace dev_toolkit.modules
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SerialTrans(byte[] buffer, int size);
 
+        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_test", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_test(SerialTrans trans);
+
         [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_parse", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte comlink_parse(ref byte buffer, int buffer_size);
 
@@ -24,17 +27,15 @@ namespace dev_toolkit.modules
         [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_get_status", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_get_status(ref parse_status_t m_status);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_get_msg", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_add_msgpart", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_get_msg(ref message_t msg, byte number);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_memcpy", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void comlink_memcpy(ref byte dst, ref byte src, int size);
+        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_add_msg", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_add_msgpart(string name, byte type_sign, byte number);
 
-        //[DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_trans", CallingConvention = CallingConvention.Cdecl)]
-        //public static extern byte comlink_trans(SerialTrans trans, ref message_t msg, ref byte packet, byte compid, byte msg_id, byte length);
+        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_add_msginfo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_add_msginfo(byte msg_id, string name, int map_ind, byte size, byte number);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_test", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void comlink_test(SerialTrans trans);
 
         const int STX = 0xFE;
         const int SYS_ID = 10;
@@ -46,6 +47,17 @@ namespace dev_toolkit.modules
         const int MSG_ID_HEARTBEAT = 0;
 
         const int MAX_MSG_IND = 128;
+
+        const byte TYPE_U8 = 1;
+        const byte TYPE_I8 = 2;
+        const byte TYPE_U16 = 3;
+        const byte TYPE_I16 = 4;
+        const byte TYPE_U32 = 5;
+        const byte TYPE_I32 = 6;
+        const byte TYPE_U64 = 7;
+        const byte TYPE_I64 = 8;
+        const byte TYPE_FLOAT = 9;
+        const byte TYPE_DOUBLE = 10;
 
         public enum parse_state_t
         {
@@ -60,7 +72,7 @@ namespace dev_toolkit.modules
             PARSE_STATE_GOT_MSGID,
             PARSE_STATE_GOT_PAYLOAD,
             PARSE_STATE_GOT_CRC1,
-            PARSE_STATE_GOT_BAD_CRC1,
+            PARSE_STATE_GOT_BAD_CRC1
         };
 
         public enum framing_t
@@ -154,51 +166,6 @@ namespace dev_toolkit.modules
             //trans(buffer, pkg_size);
         }
 
-        public class TypeStruct
-        {
-            string name;
-        }
-
-        public class TypeBase
-        {
-            public string name;
-            public Byte type;
-            public Byte ind;
-
-            public Byte _u8;
-            public char _i8;
-
-            public UInt16 _u16;
-            public Int16 _i16;
-
-            public UInt32 _u32;
-            public Int32 _i32;
-
-            public UInt64 _u64;
-            public Int64 _i64;
-
-            public float _float;
-            public double _double;
-
-            public TypeBase(string name, Byte type, Byte ind)
-            {
-                this.name = name;
-
-                switch (type)
-                {
-                    case 1: break;
-                    case 2: break;
-                    case 3: break;
-                    case 4: break;
-                }
-            }
-
-            //public val()
-            //{
-
-            //}
-        }
-
         class MSG_TypeBase
         {
             public Dictionary<string, object> Fields;
@@ -211,13 +178,12 @@ namespace dev_toolkit.modules
 
         class msg_type
         {
-           List<TypeBase> _msg;
+           List<int> _msg;
 
             public msg_type(string type)
             {
                 type = "byte";
                 type = "name1:I8[3],nma2:1,name3:2";
-
             }
         }
 
@@ -279,6 +245,15 @@ namespace dev_toolkit.modules
                 attitude2[i] = byte_to_struct<__attitude_t>(rx_msg[i].payload);
             }
         }
+
+        void test_decode_msg_info(string info)
+        {
+            string[] str_array = info.Split('=');
+            string str_name = str_array[0];
+
+            string[] str_part = str_array[1].Split(',');
+        }
+
         public void pkg_decode(byte msg_cnt)
         {
             rx_msg = new message_t[MAX_MSG_IND];
@@ -298,6 +273,14 @@ namespace dev_toolkit.modules
                 TEST.Fields.Add("3", 45);
 
                 int x1 = (int)TEST.Fields["1"];
+
+                comlink_add_msgpart("1", TYPE_U16, 1);
+                comlink_add_msgpart("2", TYPE_U16, 1);
+                comlink_add_msgpart("3", TYPE_U16, 1);
+                comlink_add_msgpart("4", TYPE_U16, 1);
+
+              
+                //int tt1 = 
                 //x1 = (int)TEST.Fields["2"];
                 //x1 = (int)TEST.Fields["3"];
 
@@ -333,6 +316,9 @@ namespace dev_toolkit.modules
             {
                 pkg_decode(msg_cnt);
             }
+
+            string test_msg_name = "MSG1=name1:3,name2:3,name3:4,nmae3:5";
+            test_decode_msg_info(test_msg_name);
 
             return msg_cnt;
         }

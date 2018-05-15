@@ -29,6 +29,9 @@
     <ClCompile Include="comlink_sim.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\comlink\comlink_msg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="..\comlink\comlink.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

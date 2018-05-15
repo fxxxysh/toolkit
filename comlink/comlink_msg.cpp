@@ -1,109 +1,79 @@
 
-#ifdef DLL_EXPORTS
 #include "comlink_ex.h"
-#include <stdio.h>
-#else
-#include "platforms/platforms.h"
-#endif
-
-#include "string.h"
 #include "comlink.h"
-#include <map>
 
-using namespace std;
+extern int msg_ind;
+extern unordered_map<int, TypeBase*> msg_map;
+extern unordered_map<string, int> key_map;
 
-class TypeBase
-{
-public:
-
-	string name;
-	uint8_t type_sign = 0;
-
-	TypeBase(string name, uint8_t type_sign)
-	{
-		this->name = name;
-		this->type_sign = type_sign;
-
-		memcpy((uint8_t *)&_type, 0, sizeof(_type));
-	}
-
-	union
-	{
-		uint8_t _u8;
-		int8_t _i8;
-
-		uint16_t _u16;
-		int16_t _i16;
-
-		uint32_t _u32;
-		int32_t _i32;
-
-		uint64_t _u64;
-		int64_t _i64;
-
-		float _float;
-		double _double;
-	}_type;
-
-	// set
-	void value(uint8_t data) { _type._u8 = data; }
-
-	void value(int8_t data) { _type._i8 = data; }
-
-	void value(uint16_t data) { _type._u16 = data; }
-
-	void value(int16_t data) { _type._i16 = data; }
-
-	void value(uint32_t data) { _type._u32 = data; }
-
-	void value(int32_t data) { _type._i32 = data; }
-
-	void value(uint64_t data) { _type._u64 = data; }
-
-	void value(int64_t data) { _type._i64 = data; }
-
-	void value(float data) { _type._float = data; }
-
-	void value(double data) { _type._double = data; }
-
-	// get
-	double value()
-	{
-		double val = 0;
-		switch (type_sign)
-		{
-		case 1:val = (double)_type._u8; break;
-		case 2:val = (double)_type._i8; break;
-		case 3:val = (double)_type._u16; break;
-		case 4:val = (double)_type._i16; break;
-		case 5:val = (double)_type._u32; break;
-		case 6:val = (double)_type._i32; break;
-		case 7:val = (double)_type._u64; break;
-		case 8:val = (double)_type._i64; break;
-		case 9:val = (double)_type._float; break;
-		case 10:val = (double)_type._double; break;
-		}
-		return val;
-	}
-};
-
-map<int, TypeBase*> msg_map;
-map<int, double> msg_val_list;
-
+// test
 int plot_list[10];
 
 double test_plot[10];
+
+#pragma pack(push,1)
+struct MyStruct
+{
+	double _double;
+	uint64_t _u64;
+	int64_t _i64;
+
+	float _float;
+	uint32_t _u32[4];
+	int32_t _i32;
+
+	uint16_t _u16;
+	int16_t _i16;
+
+	uint8_t _u8;
+	int8_t _i8;
+};
+#pragma pack(pop)
+
 void msg_list_init()
 {
 	for (int i = 0; i < 10; i++)
 	{
-		//string name = 
 		plot_list[i] = i;
-		msg_map.insert(make_pair(1, new TypeBase("1",1)));
 	}
 
-	for(int i = 0;i<10;i++)
-	{ 
-		test_plot[i] = msg_map[plot_list[i]]->value();
+	comlink_add_msg("1", TYPE_DOUBLE, 1);
+	comlink_add_msg("2", TYPE_U64, 1);
+	comlink_add_msg("3", TYPE_I64, 1);
+	comlink_add_msg("4", TYPE_FLOAT, 1);
+	comlink_add_msg("5", TYPE_U32, 4);
+	comlink_add_msg("6", TYPE_I32, 1);
+	comlink_add_msg("7", TYPE_U16, 1);
+	comlink_add_msg("8", TYPE_I16, 1);
+	comlink_add_msg("9", TYPE_U8, 1);
+	comlink_add_msg("10", TYPE_I8, 1);
+
+	MyStruct tt;
+	tt._double = 123456.789123;
+	tt._float = 123456.123;
+	tt._i16 = -12345;
+	tt._u16 = 12345;
+	tt._i32 = -123450;
+
+	tt._u32[0] = 1112345;
+	tt._u32[1] = 2212345;
+	tt._u32[2] = 3312345;
+	tt._u32[3] = 4412345;
+
+	tt._i64 = -123456789;
+	tt._u64 = 123456789;
+	tt._i8 = -123;
+	tt._u8 = 123;
+	uint8_t tt_arry[100];
+	memcpy(tt_arry, (uint8_t *)&tt, sizeof(MyStruct));
+
+	uint8_t *str_ind = tt_arry;
+	for (int i = 0; i < 10; i++)
+	{
+		str_ind = msg_map[plot_list[i]]->copy(str_ind);
+
+		test_plot[i] = msg_map[plot_list[i]]->get();
 	}
+
+	double tt1 = msg_map[key_map["9"]]->get();
 }
