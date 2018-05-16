@@ -77,6 +77,8 @@
     <Compile Include="frame\WMI\wmi.cs" />
     <Compile Include="modules\comlink\comlink.cs" />
     <Compile Include="modules\comlink\comlink_msg.cs" />
+    <Compile Include="modules\comlink\comlink_parse.cs" />
+    <Compile Include="modules\comlink\test\test_comlink.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
