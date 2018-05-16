@@ -12,31 +12,35 @@ namespace dev_toolkit.modules
 {
     public partial class s_comlink
     {
+        const string dll_path = "../../../Debug/comlink.dll";
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SerialTrans(byte[] buffer, int size);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_test", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_test", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_test(SerialTrans trans);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_parse", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_parse", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte comlink_parse(ref byte buffer, int buffer_size);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_encode", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_encode", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte comlink_encode(ref message_t msg, ref byte packet, byte compid, byte msg_id, byte length);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_get_status", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_get_status", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_get_status(ref parse_status_t m_status);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_add_msgpart", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_get_msg", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_get_msg(ref message_t msg, byte number);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_add_msg", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_add_msgpart", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_add_msgpart(string name, byte type_sign, byte number);
 
-        [DllImport("../../../Debug/comlink.dll", EntryPoint = "comlink_add_msginfo", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_add_msginfo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_add_msginfo(byte msg_id, string name, int map_ind, byte size, byte number);
 
-
+        [DllImport(dll_path, EntryPoint = "comlink_msgmap_ind", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int comlink_msgmap_ind();
+  
         const int STX = 0xFE;
         const int SYS_ID = 10;
 
@@ -58,6 +62,32 @@ namespace dev_toolkit.modules
         const byte TYPE_I64 = 8;
         const byte TYPE_FLOAT = 9;
         const byte TYPE_DOUBLE = 10;
+
+        const byte SPECIAL_MSG_HEARTBEAT = 0;
+        const byte SPECIAL_MSG_COMMAND = 1;
+        const byte SPECIAL_MSG_INFO = 5;
+
+        public byte commlink_get_typesize(byte type_sign)
+        {
+            byte size = 0;
+            switch (type_sign)
+            {
+                case TYPE_U8:
+                case TYPE_I8: size = 1; break;
+
+                case TYPE_U16:
+                case TYPE_I16: size = 2; break;
+
+                case TYPE_U32:
+                case TYPE_I32:
+                case TYPE_FLOAT: size = 4; break;
+
+                case TYPE_U64:
+                case TYPE_I64:
+                case TYPE_DOUBLE: size = 8; break;
+            }
+            return size;
+        }
 
         public enum parse_state_t
         {
@@ -123,6 +153,45 @@ namespace dev_toolkit.modules
             public byte packet_idx; // 当前包接收计数
             public byte current_rx_seq; //接收消息包序列码
             public byte current_tx_seq; //发送消息包序列码
+        };
+
+        public class MsgInfo
+        {
+            public string _name;
+            public int _map_ind;
+            public int _size;
+            public int _number;
+            part_t[] _part;
+            int _part_ind = 0;
+
+            public struct part_t
+            {
+                public string part_name;
+                public byte part_type;
+                public byte part_number;
+            }
+
+            public MsgInfo(int number)
+            {
+                _number = number;
+                _part = new part_t[number];
+            }
+
+            public void info(string name, int map_ind, int size)
+            {
+                _name = name;
+                _map_ind = map_ind;
+                _size = size;
+                       
+            }
+
+            public void add_part(string part_name, byte part_type, byte part_number)
+            {
+                _part[_part_ind].part_name = part_name;
+                _part[_part_ind].part_type = part_type;
+                _part[_part_ind].part_number = part_number;
+                _part_ind++;
+            }
         };
 
         public static byte[] struct_to_byte<T>(T structure)
@@ -246,18 +315,89 @@ namespace dev_toolkit.modules
             }
         }
 
-        void test_decode_msg_info(string info)
+        public Dictionary<int, MsgInfo> msg_infomap = new Dictionary<int, MsgInfo>();
+        int msg_infomap_ind = 0;
+
+        /// <summary>
+        /// 解析包信息，并添加到消息表
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        void decode_msg_info(string info)
         {
             string[] str_array = info.Split('=');
-            string str_name = str_array[0];
-
             string[] str_part = str_array[1].Split(',');
+
+            MsgInfo msg_info = new MsgInfo(str_part.Length);
+
+            string msg_name = str_array[0].Split(':')[0];
+            byte msg_id = Convert.ToByte(str_array[0].Split(':')[1]);
+
+            int msg_ind = comlink_msgmap_ind();
+            byte msg_size = 0;
+
+            foreach (string str_now in str_part)
+            {
+                string[] part = str_now.Split(':');
+                string part_name = part[0];
+                int str_size = part[1].Length;
+                byte part_type = Convert.ToByte(part[1].Substring(0, 1));
+                byte part_number;
+        
+                if (str_size > 1)
+                {
+                    part_number = Convert.ToByte(part[1].Substring(1));
+                }
+                else
+                {
+                    part_number = 1;
+                }
+
+                msg_size += (byte)(part_number * commlink_get_typesize(part_type));
+
+                // 消息成员信息
+                msg_info.add_part(part_name, part_type, part_number);
+
+                // 添加消息成员到comlink 消息表
+                comlink_add_msgpart(part_name, part_type, part_number);
+            }
+
+            // 消息信息
+            msg_info.info(msg_name, msg_ind, msg_size);
+            
+            // 添加信息表到本地
+            msg_infomap.Add(msg_infomap_ind++, msg_info);
+
+            // 添加消息信息到comlink 信息表
+            comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)str_part.Length);     
         }
 
-        public void pkg_decode(byte msg_cnt)
+        /// <summary>
+        /// 解析特殊消息包
+        /// </summary>
+        /// <param name="msg_cnt"></param>
+        /// <returns></returns>
+        public void decode_special_msg(message_t msg)
+        {
+            switch (msg.msgid)
+            {
+                case SPECIAL_MSG_HEARTBEAT:
+
+                    break;
+                case SPECIAL_MSG_COMMAND:
+
+                    break;
+                case SPECIAL_MSG_INFO:
+
+                    string info = System.Text.Encoding.Default.GetString(msg.payload);
+                    decode_msg_info(info);
+                    break;
+            }
+        }
+
+        public void test_pkg_decode(byte msg_cnt)
         {
             rx_msg = new message_t[MAX_MSG_IND];
-            int x2;
             for (int i = 0; i < msg_cnt; i++)
             {
                 // 拆包
@@ -278,31 +418,30 @@ namespace dev_toolkit.modules
                 comlink_add_msgpart("2", TYPE_U16, 1);
                 comlink_add_msgpart("3", TYPE_U16, 1);
                 comlink_add_msgpart("4", TYPE_U16, 1);
+            }
+        }
 
-              
-                //int tt1 = 
-                //x1 = (int)TEST.Fields["2"];
-                //x1 = (int)TEST.Fields["3"];
+        /// <summary>
+        /// 消息拆包
+        /// </summary>
+        /// <param name="msg_cnt"></param>
+        /// <returns></returns>
+        public void pkg_decode(byte msg_cnt)
+        {
+            rx_msg = new message_t[MAX_MSG_IND];
+            for (int i = 0; i < msg_cnt; i++)
+            {
+                // 拆包
+                comlink_get_msg(ref rx_msg[i], (byte)i);
 
-                //x2 = ref x1; 
-                //comlink_memcpy()
+                if (rx_msg[i].msgid > 10)
+                {
 
-                //BitConverter.GetBytes(rx_msg[i].payload);
-                //System.Buffer.BlockCopy(attitude, 0, rx_msg[i].payload, 0, 6);
-                //switch (rx_msg[i].msgid)
-                //   {
-                //       case 0:
-                //           break;
-                //       case 1:
-                //           //attitude2[i] = byte_to_struct<__attitude_t>(rx_msg[i].payload);
-                //           break;
-                //       case 2:
-                //           break;
-                //       case 3:
-                //           break;
-                //       case 4:
-                //           break;
-                //   }
+                }
+                else
+                {
+                    decode_special_msg(rx_msg[i]);
+                }
             }
         }
 
@@ -317,8 +456,14 @@ namespace dev_toolkit.modules
                 pkg_decode(msg_cnt);
             }
 
-            string test_msg_name = "MSG1=name1:3,name2:3,name3:4,nmae3:5";
-            test_decode_msg_info(test_msg_name);
+            //string test_msg_name = "MSG1:10=name1:311,name2:3,name3:4,nmae3:53";
+            //string test_msg_name1 = "MSG1:11=name2:313,name2:3,name31:4,nmae3:53";
+
+            //decode_msg_info(test_msg_name);
+            //decode_msg_info(test_msg_name1);
+
+            //MsgInfo msg_info1 = msg_infomap[0];
+            //MsgInfo msg_info2 = msg_infomap[1];
 
             return msg_cnt;
         }

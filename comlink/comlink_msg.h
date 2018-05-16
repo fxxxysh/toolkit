@@ -71,6 +71,7 @@ public:
 		this->type_sign = type_sign;
 		this->type_size = get_size() * number;
 		_type = new union_type[number];
+		memset(_type, 0, sizeof(union_type) * number);
 	}
 
 	uint8_t get_size()
