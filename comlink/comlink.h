@@ -48,16 +48,6 @@ typedef enum {
 	FRAMING_BAD_SIGNATURE = 3
 } framing_t;
 
-typedef struct
-{
-	uint32_t custom_mode;
-	uint8_t type; //设备类型
-	uint8_t version; //设备型号
-	uint8_t base_mode;
-	uint8_t system_status;
-	uint8_t comversion;
-}heartbeat_t;
-
 #pragma pack(push,1)
 typedef struct
 {
@@ -90,7 +80,6 @@ typedef uint8_t(*Trans)(uint8_t *, int);
 class comlink
 {
 public:
-
 	virtual ~comlink() {};
 	comlink()
 	{

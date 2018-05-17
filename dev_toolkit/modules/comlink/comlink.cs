@@ -39,11 +39,8 @@ namespace dev_toolkit.modules
             // 连接状态
             public bool _connect = false;
 
-            // 上一次时间戳
-            public UInt64 _last_timestamp = 0;
-
             // 设备id
-            public byte _dev_id = 0;
+            public byte _slave_id = 0;
 
             // 软件版本
             string _software_version;
@@ -52,7 +49,7 @@ namespace dev_toolkit.modules
             string _hardware_version;
 
             // 首次心跳包信息
-            public msg_heartbeat_t heartbeat_info;
+            public msg_heartbeat_s heartbeat_info;
 
             // 连接初始化状态
             public bool _connect_init = false;
@@ -65,6 +62,9 @@ namespace dev_toolkit.modules
 
             // 消息信息表数量
             public byte _msg_infomap_number = 0;
+
+            // 传输事件
+            public event Action<byte[], int> Trans;
 
             public comlink_connect_t()
             {
@@ -136,22 +136,68 @@ namespace dev_toolkit.modules
                 _hardware_version = version.Split(':')[1];
             }
 
+            // 上一次连接状态
+            bool last_connect = false;
+            byte connect_sign = 0;
+
+            public void connect_step()
+            {
+                // 首次连接
+                if ((last_connect == false) && (_connect == true))
+                {
+                    switch (connect_sign)
+                    {
+                        case 0:
+                            message_t msg = new message_t();
+                            msg_control_s control = new msg_control_s();
+                            control.ctl_msg_info.flag = 1;
+
+                            byte[] pkg = struct_to_byte<msg_control_s>(control);
+                            byte pkg_length = (byte)Marshal.SizeOf(typeof(msg_control_s));
+                            int msg_length = pkg_length + 8;
+
+                            // 封包
+                            comlink_encode(ref msg, ref pkg[0], _slave_id, MSG_ID_CONTROL, pkg_length);
+                            byte[] send_buffer = struct_to_byte<message_t>(msg);
+
+                            Trans(send_buffer, msg_length);                        
+                            connect_sign = 1;
+                            break;
+
+                        case 1:
+
+                            break;
+                    }
+                }
+
+                if (_connect == false)
+                {
+                    connect_sign = 0;
+                }
+                last_connect = _connect;
+            }
+
+            // 上一次时间戳
+            public UInt64 last_timestamp = 0;
+
             // 循环调用
             public void task(UInt64 timestamp)
             {
                 if (_init != true)
                 {
-                    _last_timestamp = timestamp;
+                    last_timestamp = timestamp;
                     _init = true;
                 }
 
-                if ((timestamp - _last_timestamp) > 1000)
+                if ((timestamp - last_timestamp) > 1000)
                 {
                     if (_time_out++ > 2)
                     {
                         _connect = false;
                     }
                 }
+
+                connect_step();
             }
 
             // 心跳包处理
@@ -159,13 +205,13 @@ namespace dev_toolkit.modules
             {           
                 if (_connect_init != true)
                 {
-                    msg_heartbeat_t msg_heartbeat = byte_to_struct<msg_heartbeat_t>(msg.payload);
+                    msg_heartbeat_s msg_heartbeat = byte_to_struct<msg_heartbeat_s>(msg.payload);
 
                     heartbeat_info.type = msg_heartbeat.type;
                     heartbeat_info.flag = msg_heartbeat.flag;
                     heartbeat_info.system_status = msg_heartbeat.system_status;
                     heartbeat_info.comlink_version = msg_heartbeat.comlink_version;
-                    _dev_id = msg.compid;
+                    _slave_id = msg.sysid;
 
                     _time_out = 0;
                     _connect = true;
@@ -178,7 +224,7 @@ namespace dev_toolkit.modules
             }
         }
  
-        comlink_connect_t comlink_connect = new comlink_connect_t();
+        public comlink_connect_t comlink_connect = new comlink_connect_t();
 
         /// <summary>
         /// 解析特殊消息包
@@ -225,7 +271,7 @@ namespace dev_toolkit.modules
 
                 if (rx_msg[i].msgid > 10)
                 {
-
+                    comlink_up_msgmap(msg_cnt);
                 }
                 else
                 {
@@ -241,8 +287,6 @@ namespace dev_toolkit.modules
 
         public byte parse(byte[] buffer, int size)
         {
-            //test_parse();
-
             byte msg_cnt = comlink_parse(ref buffer[0], size);
 
             if (msg_cnt > 0)

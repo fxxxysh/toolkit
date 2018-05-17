@@ -22,8 +22,12 @@ DLL_API void comlink_get_status(parse_status_t *status);
 
 DLL_API void comlink_get_msg(message_t *msg, uint8_t cnt);
 
-DLL_API void comlink_test(Trans trans);
+DLL_API uint8_t comlink_parse(uint8_t *buffer, int buffer_size);
 
-DLL_API void comlink_memcpy(void *dst, void const* src, int size);
+DLL_API void comlink_add_msgpart(char *name, uint8_t type_sign, uint8_t number);
 
-DLL_API void comlink_add_msg(string name, uint8_t type_sign, uint8_t number);
+DLL_API void comlink_add_msginfo(uint8_t msg_id, char *name, int map_ind, uint8_t size, uint8_t number);
+
+DLL_API int comlink_msgmap_ind();
+
+DLL_API void comlink_up_msgmap(uint8_t cnt);

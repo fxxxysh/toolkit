@@ -1,10 +1,2 @@
-﻿  stdafx.cpp
-  dllmain.cpp
-  comlink_msg.h
-  comlink_msg.cpp
-f:\项目管理\2016-08-30\group\github\toolkit\comlink\comlink_msg.cpp(53): warning C4305: “=”: 从“double”到“float”截断
-  comlink.cpp
-  正在生成代码...
-Debug\comlink_msg.obj : warning LNK4042: 对象被多次指定；已忽略多余的指定
-    正在创建库 F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.lib 和对象 F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.exp
-  comlink.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.dll
+﻿  comlink.cpp
+  comlink.vcxproj -> C:\Users\12082\Documents\toolkit\Debug\comlink.dll

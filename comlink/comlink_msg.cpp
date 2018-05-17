@@ -30,6 +30,18 @@ struct MyStruct
 };
 #pragma pack(pop)
 
+#pragma pack(push,1)
+typedef struct __mavlink_attitude_t {
+	uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+	float roll; /*< Roll angle (rad, -pi..+pi)*/
+	float pitch; /*< Pitch angle (rad, -pi..+pi)*/
+	float yaw; /*< Yaw angle (rad, -pi..+pi)*/
+	float rollspeed; /*< Roll angular speed (rad/s)*/
+	float pitchspeed; /*< Pitch angular speed (rad/s)*/
+	float yawspeed; /*< Yaw angular speed (rad/s)*/
+} mavlink_attitude_t;
+#pragma pack(pop) 
+
 void msg_list_init()
 {
 	for (int i = 0; i < 10; i++)
@@ -37,16 +49,16 @@ void msg_list_init()
 		plot_list[i] = i;
 	}
 
-	comlink_add_msg("1", TYPE_DOUBLE, 1);
-	comlink_add_msg("2", TYPE_U64, 1);
-	comlink_add_msg("3", TYPE_I64, 1);
-	comlink_add_msg("4", TYPE_FLOAT, 1);
-	comlink_add_msg("5", TYPE_U32, 4);
-	comlink_add_msg("6", TYPE_I32, 1);
-	comlink_add_msg("7", TYPE_U16, 1);
-	comlink_add_msg("8", TYPE_I16, 1);
-	comlink_add_msg("9", TYPE_U8, 1);
-	comlink_add_msg("10", TYPE_I8, 1);
+	//comlink_add_msg("1", TYPE_DOUBLE, 1);
+	//comlink_add_msg("2", TYPE_U64, 1);
+	//comlink_add_msg("3", TYPE_I64, 1);
+	//comlink_add_msg("4", TYPE_FLOAT, 1);
+	//comlink_add_msg("5", TYPE_U32, 4);
+	//comlink_add_msg("6", TYPE_I32, 1);
+	//comlink_add_msg("7", TYPE_U16, 1);
+	//comlink_add_msg("8", TYPE_I16, 1);
+	//comlink_add_msg("9", TYPE_U8, 1);
+	//comlink_add_msg("10", TYPE_I8, 1);
 
 	MyStruct tt;
 	tt._double = 123456.789123;

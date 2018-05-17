@@ -24,6 +24,9 @@ namespace dev_toolkit.frame
 
         public void parse_task()
         {
+            // 添加串口传输事件
+            this.comlink_connect.Trans += serial_trans;
+
             while (true)
             {             
                 if (_serialPort.IsOpen && serial_var.receive)
