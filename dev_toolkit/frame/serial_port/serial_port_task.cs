@@ -45,6 +45,8 @@ namespace dev_toolkit.frame
                 time_error = time_now - time_last;
                 time_last = time_now;
 
+                comlink_task((ulong)time_now);
+
                 Thread.Sleep(30);
             }
         }

@@ -71,7 +71,7 @@ namespace dev_toolkit.modules
         const byte TYPE_FLOAT = 9;
         const byte TYPE_DOUBLE = 10;
 
-        public byte commlink_get_typesize(byte type_sign)
+        static public byte commlink_get_typesize(byte type_sign)
         {
             byte size = 0;
             switch (type_sign)
@@ -220,58 +220,6 @@ namespace dev_toolkit.modules
             return (T)structure;
         }
 
-        /// <summary>
-        /// 解析包信息，并添加到消息表
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        void decode_msg_info(string info)
-        {
-            string[] str_array = info.Split('=');
-            string[] str_part = str_array[1].Split(',');
 
-            MsgInfo msg_info = new MsgInfo(str_part.Length);
-
-            string msg_name = str_array[0].Split(':')[0];
-            byte msg_id = Convert.ToByte(str_array[0].Split(':')[1]);
-
-            int msg_ind = comlink_msgmap_ind();
-            byte msg_size = 0;
-
-            foreach (string str_now in str_part)
-            {
-                string[] part = str_now.Split(':');
-                string part_name = part[0];
-                int str_size = part[1].Length;
-                byte part_type = Convert.ToByte(part[1].Substring(0, 1));
-                byte part_number;
-
-                if (str_size > 1)
-                {
-                    part_number = Convert.ToByte(part[1].Substring(1));
-                }
-                else
-                {
-                    part_number = 1;
-                }
-
-                msg_size += (byte)(part_number * commlink_get_typesize(part_type));
-
-                // 消息成员信息
-                msg_info.add_part(part_name, part_type, part_number);
-
-                // 添加消息成员到comlink 消息表
-                comlink_add_msgpart(part_name, part_type, part_number);
-            }
-
-            // 消息信息
-            msg_info.info(msg_name, msg_ind, msg_size);
-
-            // 添加信息表到本地
-            msg_infomap.Add(msg_infomap_ind++, msg_info);
-
-            // 添加消息信息到comlink 信息表
-            comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)str_part.Length);
-        }
     }
 }
