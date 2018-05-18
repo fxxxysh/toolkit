@@ -170,13 +170,15 @@ namespace dev_toolkit.modules
                 {
                     connect_sign = 1;
                 }
-
                 last_connect = _connect;
-
-                if (_connect == false) {
+                
+                // 再次连接，恢复标志
+                if (_connect == false)
+                {
                     connect_sign = 0;
                 }
 
+                // 获取相关消息包
                 if (connect_sign > 0)
                 {
                     message_t msg = new message_t();
@@ -235,6 +237,7 @@ namespace dev_toolkit.modules
                     {
                         _connect = false;
                     }
+                    last_timestamp = timestamp;
                 }
                 connect_step(timestamp);
             }

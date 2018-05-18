@@ -165,7 +165,7 @@ namespace dev_toolkit.frame
 
         public long absolute_time()
         {
-           return DateTime.Now.Ticks / 1000;
+           return DateTime.Now.Ticks / 10000; //ms
         }
 
         public bool serial_data_read()
