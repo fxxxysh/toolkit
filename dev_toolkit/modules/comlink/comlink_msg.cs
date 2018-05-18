@@ -12,20 +12,23 @@ namespace dev_toolkit.modules
 {
     public partial class s_comlink
     {
-        // 用于更新消息包信息, string结构
-        const byte MSG_ID_INFO = 5;
+        const byte MSG_ID_FIX_CNT = 20;
 
-        //设备版本号 
-        const byte MSG_ID_VERSION = 6;
+        // 用于更新消息包信息, string结构
+        const byte MSG_ID_INFO = 10;
+
+        // 设备版本号 
+        const byte MSG_ID_VERSION = 11;
 
         // 控制基类结构体
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct link_command_s
         {
             public byte flag; // 控制标志，0禁用，1使能
+            public byte id;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.U1)]
-            public byte[] code; // 控制码, 自定义
+            public byte trans_cnt; //传输次数, OXFF为连续发送
+            public byte idle; 
         };
 
         // 心跳包，1hz
@@ -49,25 +52,12 @@ namespace dev_toolkit.modules
             public byte msg_status; //应答状态
         }
 
-        // 包控制
+        // 控制包
         const int MSG_ID_CONTROL = 2;
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct msg_control_s
         {
-            public link_command_s ctl_msg_trans; // 消息包发送控制 code1:消息id,code2:使能控制
-            public link_command_s ctl_msg_info; // 消息包信息反馈
-        }
-
-        // 消息包信息
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct msg_info_s
-        {
-            public byte msg_number; // 消息数量
-            public byte msg_ind; // 当前消息序列号
-
-            // 消息包信息
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 255, ArraySubType = UnmanagedType.U1)]
-            public byte[] info;
+            public link_command_s ctl_msg_trans; // 消息包发送控制 code1:消息id, id < 20 则 code2:传输次数 255一直发送
         }
     }
 }

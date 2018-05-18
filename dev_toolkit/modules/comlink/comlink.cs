@@ -12,6 +12,8 @@ namespace dev_toolkit.modules
 {
     public partial class s_comlink
     {
+        public comlink_connect_t comlink_connect = new comlink_connect_t();
+
         public enum connect_state_t
         {
             CONNECT_STATE_UNINIT = 0,
@@ -69,6 +71,25 @@ namespace dev_toolkit.modules
             public comlink_connect_t()
             {
                 _msg_infomap = new Dictionary<int, MsgInfo>();
+            }
+
+            /// <summary>
+            /// pkg发送函数
+            /// </summary>
+            /// <param name="msg"></param>
+            /// <param name="structure"></param>
+            /// <returns></returns>
+            public void pkg_trans<T>(ref message_t msg, T structure, byte slave_id, byte msg_id)
+            {
+                byte[] pkg = struct_to_byte<T>(structure);
+                byte pkg_length = (byte)Marshal.SizeOf(typeof(T));
+                int msg_length = pkg_length + 8;
+
+                // 封包
+                comlink_encode(ref msg, ref pkg[0], slave_id, msg_id, pkg_length);
+                byte[] send_buffer = struct_to_byte<message_t>(msg);
+
+                Trans(send_buffer, msg_length);
             }
 
             /// <summary>
@@ -133,52 +154,71 @@ namespace dev_toolkit.modules
             public void decode_msg_version(string version)
             {
                 _software_version = version.Split(',')[0];
-                _hardware_version = version.Split(':')[1];
+                _hardware_version = version.Split(',')[1];
             }
 
-            // 上一次连接状态
-            bool last_connect = false;
-            byte connect_sign = 0;
+            bool last_connect = false; // 上一次连接状态
+            byte connect_sign = 0; // 连接标识          
+            public UInt64 last_timestamp = 0; // 上一次时间戳
+            public UInt64 last_connect_timestamp = 0; // 上一次时间戳
 
-            public void connect_step()
+            // 连接后读取设备信息
+            public void connect_step(UInt64 timestamp)
             {
                 // 首次连接
                 if ((last_connect == false) && (_connect == true))
                 {
+                    connect_sign = 1;
+                }
+
+                last_connect = _connect;
+
+                if (_connect == false) {
+                    connect_sign = 0;
+                }
+
+                if (connect_sign > 0)
+                {
+                    message_t msg = new message_t();
+                    msg_control_s control = new msg_control_s();
+
                     switch (connect_sign)
                     {
-                        case 0:
-                            message_t msg = new message_t();
-                            msg_control_s control = new msg_control_s();
-                            control.ctl_msg_info.flag = 1;
+                        // 获取消息包信息
+                        case 1:
+                            control.ctl_msg_trans.flag = 1;
+                            control.ctl_msg_trans.id = MSG_ID_INFO;
+                            control.ctl_msg_trans.trans_cnt = 1;
 
-                            byte[] pkg = struct_to_byte<msg_control_s>(control);
-                            byte pkg_length = (byte)Marshal.SizeOf(typeof(msg_control_s));
-                            int msg_length = pkg_length + 8;
+                            pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
 
-                            // 封包
-                            comlink_encode(ref msg, ref pkg[0], _slave_id, MSG_ID_CONTROL, pkg_length);
-                            byte[] send_buffer = struct_to_byte<message_t>(msg);
-
-                            Trans(send_buffer, msg_length);                        
+                            if (connect_sign == 0)
+                            {
+                                last_connect_timestamp = timestamp;
+                            }
                             connect_sign = 1;
                             break;
 
-                        case 1:
+                        case 2:
+                            control.ctl_msg_trans.flag = 1;
+                            control.ctl_msg_trans.id = MSG_ID_VERSION;
+                            control.ctl_msg_trans.trans_cnt = 1;
 
+                            pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
+
+                            connect_sign = 3;
                             break;
                     }
                 }
 
-                if (_connect == false)
+                // 已经连接完成
+                if (connect_sign == 1)
                 {
-                    connect_sign = 0;
+                    if ((timestamp - last_connect_timestamp) > 1000) {
+                        connect_sign = 2;
+                    }
                 }
-                last_connect = _connect;
             }
-
-            // 上一次时间戳
-            public UInt64 last_timestamp = 0;
 
             // 循环调用
             public void task(UInt64 timestamp)
@@ -196,8 +236,7 @@ namespace dev_toolkit.modules
                         _connect = false;
                     }
                 }
-
-                connect_step();
+                connect_step(timestamp);
             }
 
             // 心跳包处理
@@ -220,12 +259,11 @@ namespace dev_toolkit.modules
                 else
                 {
                     _time_out = 0;
+                    _connect = true;               
                 }
             }
         }
  
-        public comlink_connect_t comlink_connect = new comlink_connect_t();
-
         /// <summary>
         /// 解析特殊消息包
         /// </summary>
@@ -243,14 +281,20 @@ namespace dev_toolkit.modules
                     break;
 
                 case MSG_ID_INFO:
-                    string info = System.Text.Encoding.Default.GetString(msg.payload);
-                    comlink_connect._msg_infomap_number = msg.payload[0];
-                    info = info.Substring(2);
+                    byte[] info_str = new byte[msg.len];
+                    Array.Copy(msg.payload, info_str, msg.len);
+
+                    string info = System.Text.Encoding.Default.GetString(info_str);
+                    comlink_connect._msg_infomap_number ++;
+                    //info = info.Substring(2);
                     comlink_connect.decode_msg_info(info);
                     break;
 
                 case MSG_ID_VERSION:
-                    string version = System.Text.Encoding.Default.GetString(msg.payload);
+                    byte[] version_str = new byte[msg.len];
+                    Array.Copy(msg.payload, version_str, msg.len);
+
+                    string version = System.Text.Encoding.Default.GetString(version_str);
                     comlink_connect.decode_msg_version(version);
                     break;
             }
@@ -269,13 +313,13 @@ namespace dev_toolkit.modules
                 // 拆包
                 comlink_get_msg(ref rx_msg[i], (byte)i);
 
-                if (rx_msg[i].msgid > 10)
+                if (rx_msg[i].msgid < MSG_ID_FIX_CNT)
                 {
-                    comlink_up_msgmap(msg_cnt);
+                    decode_special_msg(rx_msg[i]);
                 }
                 else
                 {
-                    decode_special_msg(rx_msg[i]);
+                    comlink_up_msgmap(msg_cnt);               
                 }
             }
         }
@@ -285,6 +329,11 @@ namespace dev_toolkit.modules
             comlink_connect.task(timestamp);
         }
 
+        public void map_reset()
+        {
+            comlink_map_reset();
+        }  
+
         public byte parse(byte[] buffer, int size)
         {
             byte msg_cnt = comlink_parse(ref buffer[0], size);
@@ -293,7 +342,6 @@ namespace dev_toolkit.modules
             {
                 pkg_decode(msg_cnt);
             }
-
             return msg_cnt;
         }
     }

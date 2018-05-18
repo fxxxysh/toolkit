@@ -31,3 +31,5 @@ DLL_API void comlink_add_msginfo(uint8_t msg_id, char *name, int map_ind, uint8_
 DLL_API int comlink_msgmap_ind();
 
 DLL_API void comlink_up_msgmap(uint8_t cnt);
+
+DLL_API void comlink_map_reset();

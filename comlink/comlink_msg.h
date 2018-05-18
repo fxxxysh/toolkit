@@ -18,6 +18,9 @@ using namespace std;
 #define TYPE_FLOAT 9
 #define TYPE_DOUBLE 10
 
+// 固定消息数量
+#define MSG_ID_FIX_CNT 20
+
 typedef union
 {
 	double _double;

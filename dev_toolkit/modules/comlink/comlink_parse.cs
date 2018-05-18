@@ -44,6 +44,9 @@ namespace dev_toolkit.modules
         [DllImport(dll_path, EntryPoint = "comlink_up_msgmap", CallingConvention = CallingConvention.Cdecl)]
         public static extern int comlink_up_msgmap(byte cnt);
 
+        [DllImport(dll_path, EntryPoint = "comlink_map_reset", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_map_reset();
+
         // 帧头
         const int STX = 0xFE;
 
@@ -177,7 +180,6 @@ namespace dev_toolkit.modules
                 _name = name;
                 _map_ind = map_ind;
                 _size = size;
-
             }
 
             public void add_part(string part_name, byte part_type, byte part_number)
@@ -222,7 +224,5 @@ namespace dev_toolkit.modules
             }
             return (T)structure;
         }
-
-
     }
 }

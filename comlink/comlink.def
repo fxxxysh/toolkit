@@ -10,3 +10,4 @@ EXPORTS
 	comlink_up_msgmap
 	comlink_msgpart_value
 	comlink_msgmap_ind
+	comlink_map_reset

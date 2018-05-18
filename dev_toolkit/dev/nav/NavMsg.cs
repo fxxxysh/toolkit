@@ -59,46 +59,49 @@ namespace dev_toolkit.dev
 
         public void creat_msg(nav_msg_s msg_list)
         {
-            int group_item = msg_list._item_number;
-            if (group_item > 9)
+            _nav_msg.Invoke(new Action(() =>
             {
-                group_item = 9;
-            }
+                int group_item = msg_list._item_number;
+                if (group_item > 9)
+                {
+                    group_item = 9;
+                }
 
-            int group_hight = 15 + 17 * group_item;
-            int container_hight = 208;
-            int container_width = group_hight;
+                int group_hight = 15 + 17 * group_item;
+                int container_hight = 208;
+                int container_width = group_hight;
 
-            NavBarGroup bar_group = new NavBarGroup();
-            NavBarGroupControlContainer bar_container = new NavBarGroupControlContainer();
-            CheckedListBoxControl check_list = new CheckedListBoxControl();
+                NavBarGroup bar_group = new NavBarGroup();
+                NavBarGroupControlContainer bar_container = new NavBarGroupControlContainer();
+                CheckedListBoxControl check_list = new CheckedListBoxControl();
 
-            //_nav_msg.ActiveGroup = bar_group;
-            _nav_msg.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] { bar_group });
-            _nav_msg.Controls.Add(bar_container);
+                //_nav_msg.ActiveGroup = bar_group;
+                _nav_msg.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] { bar_group });
+                _nav_msg.Controls.Add(bar_container);
 
-            bar_group.Caption = msg_list._name;
-            bar_group.ControlContainer = bar_container;
-            bar_group.Expanded = false;
-            bar_group.GroupClientHeight = group_hight;
-            bar_group.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            bar_group.Name = "bar_group";
+                bar_group.Caption = msg_list._name;
+                bar_group.ControlContainer = bar_container;
+                bar_group.Expanded = false;
+                bar_group.GroupClientHeight = group_hight;
+                bar_group.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+                bar_group.Name = "bar_group";
 
-            bar_container.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            bar_container.Appearance.Options.UseBackColor = true;
-            bar_container.Controls.Add(check_list);
-            bar_container.Name = "bar_container";
-            bar_container.Size = new System.Drawing.Size(container_hight, container_width);
-            bar_container.TabIndex = 0;
+                bar_container.Appearance.BackColor = System.Drawing.SystemColors.Control;
+                bar_container.Appearance.Options.UseBackColor = true;
+                bar_container.Controls.Add(check_list);
+                bar_container.Name = "bar_container";
+                bar_container.Size = new System.Drawing.Size(container_hight, container_width);
+                bar_container.TabIndex = 0;
 
-            check_list.Cursor = System.Windows.Forms.Cursors.Default;
-            check_list.CheckOnClick = true;
-            check_list.Dock = System.Windows.Forms.DockStyle.Fill;
-            check_list.Items.AddRange(msg_list._item);
-            check_list.Location = new System.Drawing.Point(0, 0);
-            check_list.Name = "check_list";
-            check_list.Size = new System.Drawing.Size(container_hight, container_width);
-            check_list.TabIndex = 0;
+                check_list.Cursor = System.Windows.Forms.Cursors.Default;
+                check_list.CheckOnClick = true;
+                check_list.Dock = System.Windows.Forms.DockStyle.Fill;
+                check_list.Items.AddRange(msg_list._item);
+                check_list.Location = new System.Drawing.Point(0, 0);
+                check_list.Name = "check_list";
+                check_list.Size = new System.Drawing.Size(container_hight, container_width);
+                check_list.TabIndex = 0;
+            }));
         }
     }
 }

@@ -14,7 +14,7 @@ using dev_toolkit.modules;
 
 namespace dev_toolkit.frame
 {
-    public partial class serial_port : s_comlink
+    public partial class serial_port
     {
         private SerialPort _serialPort; //串口控件
         private const int SERAL_BUFFER_SIZE = 10240; //串口缓存大小

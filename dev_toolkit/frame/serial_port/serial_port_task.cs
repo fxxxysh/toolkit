@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using dev_toolkit.modules;
 
 namespace dev_toolkit.frame
 {
     public partial class serial_port
     {
+        s_comlink lingk;
+        byte slave_id = 0;
+
         public int plot_axis_x = 0;
         public byte msg_cnt = 0;
 
@@ -22,11 +26,26 @@ namespace dev_toolkit.frame
         long time_error1 = 0;
         long time_last1= 0;
 
+        public void link_connect()
+        {
+            lingk = new s_comlink();
+            lingk.comlink_connect.Trans += serial_trans;  // 添加串口传输事件
+        }
+
+        public void link_reconnect()
+        {
+            if((slave_id!= 0) && (slave_id != lingk.comlink_connect._slave_id))
+            {
+                lingk.map_reset();
+                link_connect();
+            }
+
+            slave_id = lingk.comlink_connect._slave_id;
+        }
+
         public void parse_task()
         {
-            // 添加串口传输事件
-            this.comlink_connect.Trans += serial_trans;
-
+            link_connect();
             while (true)
             {             
                 if (_serialPort.IsOpen && serial_var.receive)
@@ -37,18 +56,19 @@ namespace dev_toolkit.frame
                     serial_var.receiving = false;
                     if (parse_sign)
                     {
-                        time_now = DateTime.Now.Ticks / 1000;
-                        msg_cnt = parse(serial_var.receive_cache, serial_var.receive_byte);
+                        time_now = absolute_time();
+                        msg_cnt = lingk.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
-                        time_error2 = DateTime.Now.Ticks / 1000 - time_now;
+                        time_error2 = absolute_time() - time_now;
                     }
                     //serial_trans(test_send_buffer, test_send_buffer_size); 
                 }
-                time_now = DateTime.Now.Ticks / 1000;
+                time_now = absolute_time();
                 time_error = time_now - time_last;
                 time_last = time_now;
 
-                comlink_task((ulong)time_now);
+                link_reconnect();
+                lingk.comlink_task((ulong)time_now);
 
                 Thread.Sleep(30);
             }
@@ -103,12 +123,12 @@ namespace dev_toolkit.frame
     
         public void plot_task()
         {
-            __attitude_t _attitude;
+            //__attitude_t _attitude;
             while (true)
             {
                 for (int i = 0; i < msg_cnt; i++)
                 {
-                    _attitude = attitude[i];
+                   // _attitude = attitude[i];
 
                     //_plot.Channels[0].AddXY(plot_axis_x, _attitude.pitch);
                     //_plot.Channels[1].AddXY(plot_axis_x, 0);
@@ -141,6 +161,11 @@ namespace dev_toolkit.frame
 
                 Thread.Sleep(25);
             }
+        }
+
+        public long absolute_time()
+        {
+           return DateTime.Now.Ticks / 1000;
         }
 
         public bool serial_data_read()
