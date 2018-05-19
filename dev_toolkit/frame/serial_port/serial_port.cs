@@ -137,8 +137,7 @@ namespace dev_toolkit.frame
 
         void event_init()
         {
-            //_serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_read);
-
+            //_serialPort.DataReceived += new SerialDataReceivedEventHandler(serial_data_read);
             serial_connect.com_connect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);
             serial_connect.com_connect_dis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);      
         }

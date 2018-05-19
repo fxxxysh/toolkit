@@ -42,10 +42,10 @@ namespace dev_toolkit.modules
         public static extern int comlink_msgmap_ind();
 
         [DllImport(dll_path, EntryPoint = "comlink_up_msgmap", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int comlink_up_msgmap(byte cnt);
+        public static extern int comlink_refresh_msgmap(byte cnt);
 
-        [DllImport(dll_path, EntryPoint = "comlink_map_reset", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void comlink_map_reset();
+        [DllImport(dll_path, EntryPoint = "comlink_clear_map", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_clear_map();
 
         // 帧头
         const int STX = 0xFE;
@@ -159,7 +159,7 @@ namespace dev_toolkit.modules
             public int _map_ind;
             public int _size;
             public int _number;
-            part_t[] _part;
+            public part_t[] _part;
             int _part_ind = 0;
 
             public struct part_t

@@ -7,7 +7,7 @@ EXPORTS
 	comlink_trans
 	comlink_add_msgpart
 	comlink_add_msginfo
-	comlink_up_msgmap
+	comlink_refresh_msgmap
 	comlink_msgpart_value
 	comlink_msgmap_ind
-	comlink_map_reset
+	comlink_clear_map

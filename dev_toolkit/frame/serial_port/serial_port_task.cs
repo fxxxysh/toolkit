@@ -10,7 +10,8 @@ namespace dev_toolkit.frame
 {
     public partial class serial_port
     {
-        s_comlink lingk;
+        s_comlink link = null;
+
         byte slave_id = 0;
 
         public int plot_axis_x = 0;
@@ -28,36 +29,33 @@ namespace dev_toolkit.frame
 
         public void link_connect()
         {
-            lingk = new s_comlink();
-            lingk.comlink_connect.Trans += serial_trans;  // 添加串口传输事件
-        }
+            if(((slave_id != 0) && (slave_id != link.comlink_connect._slave_id)) || (link == null))
+            {       
+                link = new s_comlink();
 
-        public void link_reconnect()
-        {
-            if((slave_id!= 0) && (slave_id != lingk.comlink_connect._slave_id))
-            {
-                lingk.map_reset();
-                link_connect();
+                link.comlink_connect.Trans += serial_trans;  // 添加串口传输事件
+                link.comlink_connect.refreshVersion += nav_refresh_version;
+                link.comlink_connect.refreshMsglist += _hander._nav_bar._nav_msg.nav_creat_msg;
+                link.comlink_connect.clearMsglist += nav_clear_msglist;
+
+                link.clear_map();
             }
 
-            slave_id = lingk.comlink_connect._slave_id;
+            slave_id = link.comlink_connect._slave_id;
         }
 
         public void parse_task()
         {
-            link_connect();
             while (true)
             {             
                 if (_serialPort.IsOpen && serial_var.receive)
                 {
-                    //test_add_data();
-                    serial_var.receiving = true;
-                    bool parse_sign = serial_data_read();
-                    serial_var.receiving = false;
-                    if (parse_sign)
+                    //test_add_data();       
+
+                    if (serial_data_read())
                     {
                         time_now = absolute_time();
-                        msg_cnt = lingk.parse(serial_var.receive_cache, serial_var.receive_byte);
+                        msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
                         time_error2 = absolute_time() - time_now;
                     }
@@ -67,22 +65,14 @@ namespace dev_toolkit.frame
                 time_error = time_now - time_last;
                 time_last = time_now;
 
-                link_reconnect();
-                lingk.comlink_task((ulong)time_now);
+                link_connect();
+                link.comlink_task((ulong)time_now);
 
                 Thread.Sleep(30);
             }
         }
 
         public Dictionary<int, object> Fields;
-        string name1 = "1";
-        string name2 = "2";
-        string name3 = "3";
-        string name4 = "4";
-        string name5 = "5";
-        string name6 = "6";
-        string name7 = "7";
-        string name8 = "8";
 
         int[] name_ind = new int[10];
         public void port_refresh_task()
@@ -92,8 +82,6 @@ namespace dev_toolkit.frame
             {
                 name_ind[i] = i;
             }
-
-            
 
             Fields.Add(name_ind[0], 100);
             Fields.Add(name_ind[1], -100.12);
@@ -163,13 +151,33 @@ namespace dev_toolkit.frame
             }
         }
 
+        public void nav_refresh_version(string s_ver, string h_ver)
+        {
+
+        }
+
+        public void nav_refresh_msglist(string name, string[] d )
+        {
+
+        }
+
+        public void nav_clear_msglist()
+        {
+
+        }
+
+        // 获取绝对时间ms
         public long absolute_time()
         {
            return DateTime.Now.Ticks / 10000; //ms
         }
 
+        // 串口读
         public bool serial_data_read()
         {
+            bool status = false;
+
+            serial_var.receiving = true;
             serial_var.receive_cache_size = _serialPort.BytesToRead;
             if (serial_var.receive_cache_size != 0)
             {
@@ -180,9 +188,11 @@ namespace dev_toolkit.frame
                 {
                     serial_var.receive_byte = SERAL_BUFFER_SIZE;
                 }
-                return true;
+                status =  true;
             }
-            return false;
+            serial_var.receiving = false;
+
+            return status;
         }
 
         // 测试波形

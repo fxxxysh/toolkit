@@ -10,9 +10,9 @@ using dev_toolkit;
 
 namespace dev_toolkit.dev
 {
-    class NavBar
+    public class NavBar
     {
-        private NavMsg _nav_msg;
+        public NavMsg _nav_msg;
         private NavigationFrame _nav_frame;
         private nav_page_s[] _page_list;
 

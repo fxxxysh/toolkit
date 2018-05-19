@@ -108,6 +108,11 @@ namespace dev_toolkit
         public ribbom_connect_s _ribbom_connect;
         public serial_connect_s _serial_connect;
 
+        public DevRibbon _dev_ribbon;
+        public NavBar _nav_bar;
+        public serial_port _serial;
+        public wave_form _wave;
+
         public dev_toolkit()
         {
             InitializeComponent();
@@ -157,16 +162,16 @@ namespace dev_toolkit
                 hardware_version);
 
             // 菜单栏
-            DevRibbon dev_ribbon = new DevRibbon(this);
+            _dev_ribbon = new DevRibbon(this);
 
             // 导航栏
-            NavBar nav_bar = new NavBar(this);
+            _nav_bar = new NavBar(this);
 
             // 串口操作
-            serial_port serial = new serial_port(this);
+            _serial = new serial_port(this);
 
             // 曲线
-            wave_form wave = new wave_form(this);
+            _wave = new wave_form(this);
 
             Thread.CurrentThread.Abort();
         }

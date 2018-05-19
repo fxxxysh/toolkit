@@ -9,7 +9,7 @@ using DevExpress.XtraEditors.Controls;
 
 namespace dev_toolkit.dev
 {
-    class NavMsg
+    public class NavMsg
     {
         public struct nav_msg_s 
         {
@@ -38,7 +38,7 @@ namespace dev_toolkit.dev
         {
             _nav_msg = (NavBarControl)sender;
 
-            test_creat_msg();
+            //test_creat_msg();
         }
 
         public void test_creat_msg()
@@ -55,6 +55,18 @@ namespace dev_toolkit.dev
             creat_msg(msg1);
             creat_msg(msg1);
             creat_msg(msg1);
+        }
+
+        public void nav_creat_msg(string name, string[] item)
+        {
+            int msg_size = item.Length;
+            nav_msg_s msg = new nav_msg_s(name, msg_size);
+
+            for (int i = 0; i < msg_size; i++)
+            {
+                msg._item[i + 1].Description = item[i];
+            }
+            creat_msg(msg);
         }
 
         public void creat_msg(nav_msg_s msg_list)

@@ -68,6 +68,15 @@ namespace dev_toolkit.modules
             // 传输事件
             public event Action<byte[], int> Trans;
 
+            // 更新版本信息
+            public event Action<string, string> refreshVersion;
+
+            // 更新消息
+            public event Action<string, string[]> refreshMsglist;
+
+            // 清除消息
+            public event Action clearMsglist;
+
             public comlink_connect_t()
             {
                 _msg_infomap = new Dictionary<int, MsgInfo>();
@@ -144,6 +153,16 @@ namespace dev_toolkit.modules
 
                 // 添加消息信息到comlink 信息表
                 comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)str_part.Length);
+
+                // 更新消息表
+                string[] msg_list = new string[msg_size];
+
+                for (int i = 0; i < msg_size; i++)
+                {
+                    msg_list[i] = msg_info._part[i].part_name;
+                }
+
+                refreshMsglist(part_name, msg_list);
             }
 
             /// <summary>
@@ -155,6 +174,9 @@ namespace dev_toolkit.modules
             {
                 _software_version = version.Split(',')[0];
                 _hardware_version = version.Split(',')[1];
+
+                // 更新版本信息
+                refreshVersion(_software_version, _hardware_version);
             }
 
             bool last_connect = false; // 上一次连接状态
@@ -172,7 +194,7 @@ namespace dev_toolkit.modules
                 }
                 last_connect = _connect;
                 
-                // 再次连接，恢复标志
+                // 再次连接，复位标识
                 if (_connect == false)
                 {
                     connect_sign = 0;
@@ -322,7 +344,7 @@ namespace dev_toolkit.modules
                 }
                 else
                 {
-                    comlink_up_msgmap(msg_cnt);               
+                    comlink_refresh_msgmap(msg_cnt);               
                 }
             }
         }
@@ -332,9 +354,9 @@ namespace dev_toolkit.modules
             comlink_connect.task(timestamp);
         }
 
-        public void map_reset()
+        public void clear_map()
         {
-            comlink_map_reset();
+            comlink_clear_map();
         }  
 
         public byte parse(byte[] buffer, int size)
