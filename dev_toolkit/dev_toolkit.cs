@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Threading;
-using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraBars;
-using DevExpress.XtraNavBar;
-using DevExpress.XtraEditors;
-using DevExpress.XtraBars.Navigation;
-using DevExpress.XtraEditors.Repository;
-
+using System.Windows.Forms;
 using dev_toolkit.dev;
-using Iocomp.Instrumentation.Plotting;
-using Iocomp.Classes;
 using dev_toolkit.frame;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Navigation;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraNavBar;
+using Iocomp.Classes;
+using Iocomp.Instrumentation.Plotting;
 
 namespace dev_toolkit
 {
@@ -174,6 +166,24 @@ namespace dev_toolkit
             _wave = new wave_form(this);
 
             Thread.CurrentThread.Abort();
+        }
+
+        public void refresh_version(string s_ver, string h_ver)
+        {
+            this.Invoke(new Action(() =>
+            {
+                this.software_version.EditValue = s_ver;
+                this.hardware_version.EditValue = h_ver;
+            }));
+        }
+
+        public void refresh_devid(string sysid, string comid)
+        {
+            this.Invoke(new Action(() =>
+            {
+                this.kit_sys_id.EditValue = sysid;
+                this.kit_dev_id.EditValue = comid;
+            }));
         }
 
         public string connect_binding

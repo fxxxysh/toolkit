@@ -704,6 +704,7 @@
             // 
             this.kit_com_port.Caption = "串口   ";
             this.kit_com_port.Edit = this.kit_com_port_edit;
+            this.kit_com_port.EditValue = "";
             this.kit_com_port.EditWidth = 100;
             this.kit_com_port.Id = 1;
             this.kit_com_port.Name = "kit_com_port";
@@ -790,8 +791,10 @@
             // 
             // software_version
             // 
+            this.software_version.AccessibleName = "";
             this.software_version.Caption = "软件版本";
             this.software_version.Edit = this.software_version_edit;
+            this.software_version.EditValue = "1234";
             this.software_version.EditWidth = 100;
             this.software_version.Id = 8;
             this.software_version.Name = "software_version";
@@ -800,11 +803,13 @@
             // 
             this.software_version_edit.AutoHeight = false;
             this.software_version_edit.Name = "software_version_edit";
+            this.software_version_edit.Tag = "";
             // 
             // hardware_version
             // 
             this.hardware_version.Caption = "硬件版本";
             this.hardware_version.Edit = this.hardware_version_edit;
+            this.hardware_version.EditValue = "";
             this.hardware_version.EditWidth = 100;
             this.hardware_version.Id = 9;
             this.hardware_version.Name = "hardware_version";

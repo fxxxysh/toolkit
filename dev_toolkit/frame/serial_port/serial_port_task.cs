@@ -34,9 +34,11 @@ namespace dev_toolkit.frame
                 link = new s_comlink();
 
                 link.comlink_connect.Trans += serial_trans;  // 添加串口传输事件
-                link.comlink_connect.refreshVersion += nav_refresh_version;
+                link.comlink_connect.refreshVersion += _hander.refresh_version;
+                link.comlink_connect.refreshDevid += _hander.refresh_devid;
+
                 link.comlink_connect.refreshMsglist += _hander._nav_bar._nav_msg.nav_creat_msg;
-                link.comlink_connect.clearMsglist += nav_clear_msglist;
+                link.comlink_connect.clearMsglist += _hander._nav_bar._nav_msg.nav_clear_msglist;
 
                 link.clear_map();
             }
@@ -149,21 +151,6 @@ namespace dev_toolkit.frame
 
                 Thread.Sleep(25);
             }
-        }
-
-        public void nav_refresh_version(string s_ver, string h_ver)
-        {
-
-        }
-
-        public void nav_refresh_msglist(string name, string[] d )
-        {
-
-        }
-
-        public void nav_clear_msglist()
-        {
-
         }
 
         // 获取绝对时间ms

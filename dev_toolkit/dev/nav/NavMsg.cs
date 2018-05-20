@@ -69,6 +69,11 @@ namespace dev_toolkit.dev
             creat_msg(msg);
         }
 
+        public void nav_clear_msglist()
+        {
+
+        }
+
         public void creat_msg(nav_msg_s msg_list)
         {
             _nav_msg.Invoke(new Action(() =>

@@ -71,9 +71,12 @@ namespace dev_toolkit.modules
             // 更新版本信息
             public event Action<string, string> refreshVersion;
 
+            // 更新ID信息
+            public event Action<string, string> refreshDevid;
+
             // 更新消息
             public event Action<string, string[]> refreshMsglist;
-
+            
             // 清除消息
             public event Action clearMsglist;
 
@@ -162,7 +165,7 @@ namespace dev_toolkit.modules
                     msg_list[i] = msg_info._part[i].part_name;
                 }
 
-                refreshMsglist(part_name, msg_list);
+                refreshMsglist(msg_name, msg_list);
             }
 
             /// <summary>
@@ -194,12 +197,6 @@ namespace dev_toolkit.modules
                 }
                 last_connect = _connect;
                 
-                // 再次连接，复位标识
-                if (_connect == false)
-                {
-                    connect_sign = 0;
-                }
-
                 // 获取相关消息包
                 if (connect_sign > 0)
                 {
@@ -249,6 +246,9 @@ namespace dev_toolkit.modules
             {
                 if (_init != true)
                 {
+                    refreshVersion("v1.0", "v1.0");
+                    refreshDevid(SYS_ID.ToString(),"");
+
                     last_timestamp = timestamp;
                     _init = true;
                 }
@@ -266,7 +266,20 @@ namespace dev_toolkit.modules
 
             // 心跳包处理
             public void heart_beat(message_t msg)
-            {           
+            {
+                _time_out = 0;
+                _connect = true;
+
+                // 两次连接的id相同则掉过初始化步骤
+                if (_slave_id == msg.sysid)
+                {
+                    last_connect = _connect;
+                }
+                else if(_slave_id != 0)
+                {
+                    _connect_init = false; // 重新初始化心跳包
+                }
+
                 if (_connect_init != true)
                 {
                     msg_heartbeat_s msg_heartbeat = byte_to_struct<msg_heartbeat_s>(msg.payload);
@@ -277,14 +290,8 @@ namespace dev_toolkit.modules
                     heartbeat_info.comlink_version = msg_heartbeat.comlink_version;
                     _slave_id = msg.sysid;
 
-                    _time_out = 0;
-                    _connect = true;
+                    refreshDevid(SYS_ID.ToString(), _slave_id.ToString());
                     _connect_init = true;
-                }
-                else
-                {
-                    _time_out = 0;
-                    _connect = true;               
                 }
             }
         }

@@ -2,9 +2,9 @@
 #include "comlink_ex.h"
 #include "comlink.h"
 
-extern int msg_ind;
-extern unordered_map<int, TypeBase*> msg_map;
-extern unordered_map<string, int> key_map;
+int msg_ind;
+unordered_map<int, TypeBase*> msg_map;
+unordered_map<string, int> key_map;
 
 // test
 int plot_list[10];
