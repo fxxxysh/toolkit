@@ -25,7 +25,7 @@ namespace dev_toolkit.dev
             _nav = _hander._nav;
             _page_list = _hander._page_list;
             _nav_frame = _hander._nav_frame;
-            _nav_msg = new NavMsg(_hander._nav_msg);
+            _nav_msg = new NavMsg(_hander);
 
             init();
         }

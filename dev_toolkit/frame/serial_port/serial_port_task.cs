@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using dev_toolkit.modules;
 using System.Windows.Forms;
+using DevExpress.XtraNavBar;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+
+using dev_toolkit.modules;
 
 namespace dev_toolkit.frame
 {
@@ -155,6 +159,25 @@ namespace dev_toolkit.frame
 
                 Thread.Sleep(25);
             }
+        }
+
+        string list_name;
+        int list_index;
+        public void check_list_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
+        {
+            CheckedListBoxControl check_list = (CheckedListBoxControl)sender;
+            list_name = check_list.Name;
+            list_index = e.Index;
+            byte msg_id = link.comlink_connect._msg_infomap[list_name]._msg_id;
+
+            byte trans_cnt = s_comlink.MSG_TRANS_OFF;
+
+            if (e.State == CheckState.Checked)
+            {
+                trans_cnt = s_comlink.MSG_TRANS_ON;
+            }
+            
+            link.comlink_connect.pkg_trans_select(s_comlink.MSG_SIGN_ENABLE, msg_id, trans_cnt);
         }
 
         // 获取绝对时间ms

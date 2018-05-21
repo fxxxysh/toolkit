@@ -58,10 +58,10 @@ namespace dev_toolkit.modules
             public bool _connect_init = false;
 
             // 消息信息表
-            public Dictionary<int, MsgInfo> _msg_infomap;
+            public Dictionary<string, MsgInfo> _msg_infomap;
 
             // 消息信息表偏移
-            public int _msg_infomap_ind = 0;
+            //public int _msg_infomap_ind = 0;
 
             // 消息信息表数量
             public byte _msg_infomap_number = 0;
@@ -89,7 +89,7 @@ namespace dev_toolkit.modules
 
             public comlink_connect_t()
             {
-                _msg_infomap = new Dictionary<int, MsgInfo>();
+                _msg_infomap = new Dictionary<string, MsgInfo>();
             }
 
             /// <summary>
@@ -156,12 +156,12 @@ namespace dev_toolkit.modules
                 }
 
                 // 消息信息
-                msg_info.info(msg_name, msg_ind, msg_size);
+                msg_info.info(msg_name, msg_id, msg_ind, msg_size);
 
-                // 添加信息表到本地
-                _msg_infomap.Add(_msg_infomap_ind++, msg_info);
+                // 添加信息表到本地,键值为消息名
+                _msg_infomap.Add(msg_name, msg_info);
 
-                // 添加消息信息到comlink 信息表
+                // 添加消息信息到comlink 信息表,键值为消息id
                 comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)str_part.Length);
 
                 // 更新消息表
@@ -207,19 +207,11 @@ namespace dev_toolkit.modules
                 // 获取相关消息包
                 if (connect_sign > 0)
                 {
-                    message_t msg = new message_t();
-                    msg_control_s control = new msg_control_s();
-
                     switch (connect_sign)
                     {
                         // 获取消息包信息
                         case 1:
-                            control.ctl_msg_trans.flag = 1;
-                            control.ctl_msg_trans.id = MSG_ID_INFO;
-                            control.ctl_msg_trans.trans_cnt = 1;
-
-                            pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
-
+                            pkg_trans_select(MSG_SIGN_ENABLE, MSG_ID_INFO, MSG_TRANS_ONCE);
                             if (connect_sign == 0)
                             {
                                 last_connect_timestamp = timestamp;
@@ -228,12 +220,7 @@ namespace dev_toolkit.modules
                             break;
 
                         case 2:
-                            control.ctl_msg_trans.flag = 1;
-                            control.ctl_msg_trans.id = MSG_ID_VERSION;
-                            control.ctl_msg_trans.trans_cnt = 1;
-
-                            pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
-
+                            pkg_trans_select(MSG_SIGN_DISABLE, MSG_ID_VERSION, MSG_TRANS_ONCE);
                             connect_sign = 3;
                             break;
                     }
@@ -246,6 +233,18 @@ namespace dev_toolkit.modules
                         connect_sign = 2;
                     }
                 }
+            }
+
+            public void pkg_trans_select(byte flag, byte msg_id, byte trans_cnt)
+            {
+                message_t msg = new message_t();
+                msg_control_s control = new msg_control_s();
+
+                control.ctl_msg_trans.flag = 1;
+                control.ctl_msg_trans.id = msg_id;
+                control.ctl_msg_trans.trans_cnt = trans_cnt;
+
+                pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
             }
 
             // 循环调用

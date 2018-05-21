@@ -12,6 +12,15 @@ namespace dev_toolkit.modules
 {
     public partial class s_comlink
     {
+        // 传输次数
+        public const byte MSG_TRANS_OFF = 0;
+        public const byte MSG_TRANS_ONCE = 1;
+        public const byte MSG_TRANS_ON = 0XFF;
+
+        // 使能标志
+        public const byte MSG_SIGN_ENABLE = 1;
+        public const byte MSG_SIGN_DISABLE = 0;
+
         const byte MSG_ID_FIX_CNT = 20;
 
         // 用于更新消息包信息, string结构

@@ -156,6 +156,7 @@ namespace dev_toolkit.modules
         public class MsgInfo
         {
             public string _name;
+            public byte _msg_id;
             public int _map_ind;
             public int _size;
             public int _number;
@@ -175,9 +176,10 @@ namespace dev_toolkit.modules
                 _part = new part_t[number];
             }
 
-            public void info(string name, int map_ind, int size)
+            public void info(string name, byte msg_id, int map_ind, int size)
             {
                 _name = name;
+                _msg_id = msg_id;
                 _map_ind = map_ind;
                 _size = size;
             }
