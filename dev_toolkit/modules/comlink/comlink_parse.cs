@@ -41,7 +41,7 @@ namespace dev_toolkit.modules
         [DllImport(dll_path, EntryPoint = "comlink_msgmap_ind", CallingConvention = CallingConvention.Cdecl)]
         public static extern int comlink_msgmap_ind();
 
-        [DllImport(dll_path, EntryPoint = "comlink_up_msgmap", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(dll_path, EntryPoint = "comlink_refresh_msgmap", CallingConvention = CallingConvention.Cdecl)]
         public static extern int comlink_refresh_msgmap(byte cnt);
 
         [DllImport(dll_path, EntryPoint = "comlink_clear_map", CallingConvention = CallingConvention.Cdecl)]
