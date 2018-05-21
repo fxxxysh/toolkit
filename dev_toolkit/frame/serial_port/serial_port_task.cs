@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using dev_toolkit.modules;
+using System.Windows.Forms;
 
 namespace dev_toolkit.frame
 {
@@ -44,6 +45,9 @@ namespace dev_toolkit.frame
             }
 
             slave_id = link.comlink_connect._slave_id;
+
+            // 更新连接状态
+            _hander._connect_status = link.comlink_connect._link_status;
         }
 
         public void parse_task()

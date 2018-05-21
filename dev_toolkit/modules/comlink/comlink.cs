@@ -7,6 +7,7 @@ using System.Threading;
 using Iocomp.Instrumentation.Plotting;
 using System.Runtime.InteropServices;
 using dev_toolkit;
+using System.Windows.Forms;
 
 namespace dev_toolkit.modules
 {
@@ -39,7 +40,7 @@ namespace dev_toolkit.modules
             public int _time_out = 0;
 
             // 连接状态
-            public bool _connect = false;
+            private bool _connect = false;
 
             // 设备id
             public byte _slave_id = 0;
@@ -79,6 +80,12 @@ namespace dev_toolkit.modules
             
             // 清除消息
             public event Action clearMsglist;
+
+            public bool _link_status
+            {
+                get { return _connect; }
+                set { _connect = value; }
+            }
 
             public comlink_connect_t()
             {
@@ -255,7 +262,7 @@ namespace dev_toolkit.modules
 
                 if ((timestamp - last_timestamp) > 1000)
                 {
-                    if (_time_out++ > 2)
+                    if (_time_out++ > 1)
                     {
                         _connect = false;
                     }

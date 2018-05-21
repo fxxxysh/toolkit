@@ -46,6 +46,8 @@
             Iocomp.Classes.PlotLegendBasic plotLegendBasic1 = new Iocomp.Classes.PlotLegendBasic();
             Iocomp.Classes.PlotXAxis plotXAxis1 = new Iocomp.Classes.PlotXAxis();
             Iocomp.Classes.PlotYAxis plotYAxis1 = new Iocomp.Classes.PlotYAxis();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             this.plotToolBarButton13 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton11 = new Iocomp.Classes.PlotToolBarButton();
             this.plotToolBarButton10 = new Iocomp.Classes.PlotToolBarButton();
@@ -107,7 +109,6 @@
             this.kit_com_connect_dis = new DevExpress.XtraBars.BarButtonItem();
             this.kit_hide = new DevExpress.XtraBars.BarButtonItem();
             this.kit_ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.nav_data = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -123,6 +124,7 @@
             this.nav_wave = new DevExpress.XtraNavBar.NavBarGroup();
             this.kit_nav_bar = new DevExpress.XtraNavBar.NavBarControl();
             this.kit_theme = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.connect_status = new DevExpress.XtraBars.BarStaticItem();
             this.panel1.SuspendLayout();
             this.nav_wave_page.SuspendLayout();
             this.nav_control_page.SuspendLayout();
@@ -850,15 +852,15 @@
             this.kit_dev_id,
             this.software_version,
             this.hardware_version,
-            this.barButtonItem1});
+            this.connect_status});
             this.kit_ribbon.Location = new System.Drawing.Point(0, 0);
-            this.kit_ribbon.MaxItemId = 11;
+            this.kit_ribbon.MaxItemId = 13;
             this.kit_ribbon.Name = "kit_ribbon";
             this.kit_ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.kit_ribbon.QuickToolbarItemLinks.Add(this.kit_hide);
             this.kit_ribbon.QuickToolbarItemLinks.Add(this.kit_com_connect_dis);
-            this.kit_ribbon.QuickToolbarItemLinks.Add(this.barButtonItem1);
+            this.kit_ribbon.QuickToolbarItemLinks.Add(this.connect_status);
             this.kit_ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.kit_com_port_edit,
             this.kit_com_baudrate_edit,
@@ -870,14 +872,6 @@
             this.kit_ribbon.ShowToolbarCustomizeItem = false;
             this.kit_ribbon.Size = new System.Drawing.Size(1022, 150);
             this.kit_ribbon.Toolbar.ShowCustomizeItem = false;
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "状态";
-            this.barButtonItem1.CloseSubMenuOnClick = false;
-            this.barButtonItem1.Id = 10;
-            this.barButtonItem1.ImageOptions.Image = global::dev_toolkit.Properties.Resources.tag_32x323;
-            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // nav_data
             // 
@@ -1041,6 +1035,15 @@
             // 
             this.kit_theme.LookAndFeel.SkinName = "Office 2016 Dark";
             // 
+            // connect_status
+            // 
+            this.connect_status.Id = 12;
+            this.connect_status.ImageOptions.Image = global::dev_toolkit.Properties.Resources.tag_32x32;
+            this.connect_status.Name = "connect_status";
+            toolTipTitleItem1.Text = "状态";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            this.connect_status.SuperTip = superToolTip1;
+            // 
             // dev_toolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1161,6 +1164,6 @@
         private DevExpress.XtraNavBar.NavBarGroup nav_wave;
         private DevExpress.XtraNavBar.NavBarControl kit_nav_bar;
         private DevExpress.LookAndFeel.DefaultLookAndFeel kit_theme;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarStaticItem connect_status;
     }
 }

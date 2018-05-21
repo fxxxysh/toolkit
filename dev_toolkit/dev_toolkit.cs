@@ -95,6 +95,18 @@ namespace dev_toolkit
             set { in_nav_msg = value; }
         }
 
+        public bool _connect_status
+        {
+            get { return connect_status.ShowImageInToolbar; }
+            set { connect_status.ShowImageInToolbar = value; }
+        }
+
+        public BarStaticItem _connect_bar
+        {
+            get { return connect_status; }
+            set { connect_status = value; }
+        }
+
         // 控件集合
         public nav_page_s[] _page_list;
         public ribbom_connect_s _ribbom_connect;
