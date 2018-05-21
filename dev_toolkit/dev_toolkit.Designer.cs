@@ -107,6 +107,7 @@
             this.kit_com_connect_dis = new DevExpress.XtraBars.BarButtonItem();
             this.kit_hide = new DevExpress.XtraBars.BarButtonItem();
             this.kit_ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.nav_data = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -516,7 +517,7 @@
             this.wave_plot.Location = new System.Drawing.Point(0, 26);
             this.wave_plot.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.wave_plot.Name = "wave_plot";
-            this.wave_plot.Size = new System.Drawing.Size(810, 423);
+            this.wave_plot.Size = new System.Drawing.Size(812, 423);
             this.wave_plot.TabIndex = 2;
             this.wave_plot.UpdateFrameRate = 40D;
             plotXAxis1.CanFocus = false;
@@ -560,7 +561,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(801, 26);
+            this.panel1.Size = new System.Drawing.Size(802, 26);
             this.panel1.TabIndex = 3;
             // 
             // navigationPage1
@@ -742,7 +743,7 @@
             // 
             this.kit_com_connect.Caption = "连接";
             this.kit_com_connect.Id = 3;
-            this.kit_com_connect.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.play_32x32;
+            this.kit_com_connect.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.apply_32x32;
             this.kit_com_connect.Name = "kit_com_connect";
             // 
             // ribbonPageGroup3
@@ -794,7 +795,7 @@
             this.software_version.AccessibleName = "";
             this.software_version.Caption = "软件版本";
             this.software_version.Edit = this.software_version_edit;
-            this.software_version.EditValue = "1234";
+            this.software_version.EditValue = "";
             this.software_version.EditWidth = 100;
             this.software_version.Id = 8;
             this.software_version.Name = "software_version";
@@ -823,16 +824,16 @@
             // 
             this.kit_com_connect_dis.Caption = "连接";
             this.kit_com_connect_dis.Id = 5;
-            this.kit_com_connect_dis.ImageOptions.Image = global::dev_toolkit.Properties.Resources.play_16x16;
-            this.kit_com_connect_dis.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.stop_32x32;
+            this.kit_com_connect_dis.ImageOptions.Image = global::dev_toolkit.Properties.Resources.apply_32x322;
+            this.kit_com_connect_dis.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.cancel_32x321;
             this.kit_com_connect_dis.Name = "kit_com_connect_dis";
             // 
             // kit_hide
             // 
             this.kit_hide.Caption = "显示菜单";
             this.kit_hide.Id = 4;
-            this.kit_hide.ImageOptions.Image = global::dev_toolkit.Properties.Resources.group2_32x32;
-            this.kit_hide.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.group2_32x32;
+            this.kit_hide.ImageOptions.Image = global::dev_toolkit.Properties.Resources.merge_32x321;
+            this.kit_hide.ImageOptions.LargeImage = global::dev_toolkit.Properties.Resources.merge_32x32;
             this.kit_hide.Name = "kit_hide";
             // 
             // kit_ribbon
@@ -848,14 +849,16 @@
             this.kit_sys_id,
             this.kit_dev_id,
             this.software_version,
-            this.hardware_version});
+            this.hardware_version,
+            this.barButtonItem1});
             this.kit_ribbon.Location = new System.Drawing.Point(0, 0);
-            this.kit_ribbon.MaxItemId = 10;
+            this.kit_ribbon.MaxItemId = 11;
             this.kit_ribbon.Name = "kit_ribbon";
             this.kit_ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.kit_ribbon.QuickToolbarItemLinks.Add(this.kit_hide);
             this.kit_ribbon.QuickToolbarItemLinks.Add(this.kit_com_connect_dis);
+            this.kit_ribbon.QuickToolbarItemLinks.Add(this.barButtonItem1);
             this.kit_ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.kit_com_port_edit,
             this.kit_com_baudrate_edit,
@@ -867,6 +870,14 @@
             this.kit_ribbon.ShowToolbarCustomizeItem = false;
             this.kit_ribbon.Size = new System.Drawing.Size(1022, 150);
             this.kit_ribbon.Toolbar.ShowCustomizeItem = false;
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "状态";
+            this.barButtonItem1.CloseSubMenuOnClick = false;
+            this.barButtonItem1.Id = 10;
+            this.barButtonItem1.ImageOptions.Image = global::dev_toolkit.Properties.Resources.tag_32x323;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // nav_data
             // 
@@ -906,7 +917,7 @@
             this.in_nav_msg.Margin = new System.Windows.Forms.Padding(0);
             this.in_nav_msg.Name = "in_nav_msg";
             this.in_nav_msg.OptionsNavPane.ExpandedWidth = 220;
-            this.in_nav_msg.Size = new System.Drawing.Size(220, 298);
+            this.in_nav_msg.Size = new System.Drawing.Size(220, 256);
             this.in_nav_msg.TabIndex = 0;
             this.in_nav_msg.Text = "navBarControl2";
             // 
@@ -958,7 +969,7 @@
             this.panelControl1.Controls.Add(this.simpleButton2);
             this.panelControl1.Controls.Add(this.dropDownButton1);
             this.panelControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelControl1.Location = new System.Drawing.Point(-1, 298);
+            this.panelControl1.Location = new System.Drawing.Point(-1, 256);
             this.panelControl1.LookAndFeel.SkinName = "Office 2016 Black";
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Margin = new System.Windows.Forms.Padding(0);
@@ -1150,5 +1161,6 @@
         private DevExpress.XtraNavBar.NavBarGroup nav_wave;
         private DevExpress.XtraNavBar.NavBarControl kit_nav_bar;
         private DevExpress.LookAndFeel.DefaultLookAndFeel kit_theme;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

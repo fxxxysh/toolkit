@@ -51,7 +51,7 @@ namespace dev_toolkit.dev
             // 折叠nav菜单栏
             _nav.Invoke(new Action(() => 
             {
-                _nav.NavigationPaneMaxVisibleGroups = 4;
+                _nav.NavigationPaneMaxVisibleGroups = 0;// 4;
             }));
 
             // nav菜单切换页面

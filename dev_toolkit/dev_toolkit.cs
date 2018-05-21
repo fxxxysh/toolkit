@@ -227,11 +227,11 @@ namespace dev_toolkit
         public BarButtonItem com_connect;
         public BarButtonItem com_connect_dis;
 
-        public Image image_start = global::dev_toolkit.Properties.Resources.play_32x32;
-        public Image image_stop = global::dev_toolkit.Properties.Resources.stop_32x32;
+        public Image image_start = global::dev_toolkit.Properties.Resources.apply_32x32;
+        public Image image_stop = global::dev_toolkit.Properties.Resources.delete_32x32;
 
-        public Image min_image_start = global::dev_toolkit.Properties.Resources.play_16x16;
-        public Image min_image_stop = global::dev_toolkit.Properties.Resources.stop_16x16;
+        public Image min_image_start = global::dev_toolkit.Properties.Resources.apply_32x32;
+        public Image min_image_stop = global::dev_toolkit.Properties.Resources.delete_32x32;
 
         public serial_connect_s(
             RepositoryItemComboBox com_port_eidt,

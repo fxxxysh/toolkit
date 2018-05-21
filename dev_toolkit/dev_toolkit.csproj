@@ -131,5 +131,56 @@
     <Folder Include="modules\logger\" />
     <Folder Include="modules\wave\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_32x322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\merge_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\merge_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\merge_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32x322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_32x323.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

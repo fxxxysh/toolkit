@@ -158,9 +158,9 @@ namespace dev_toolkit.modules
                 comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)str_part.Length);
 
                 // 更新消息表
-                string[] msg_list = new string[msg_size];
+                string[] msg_list = new string[str_part.Length];
 
-                for (int i = 0; i < msg_size; i++)
+                for (int i = 0; i < str_part.Length; i++)
                 {
                     msg_list[i] = msg_info._part[i].part_name;
                 }
