@@ -22,27 +22,40 @@ namespace dev_toolkit.frame
 
         public class ParseSign
         {
-            public byte msg_cnt = 0;
-            public int wave_channel;
+            public byte _msg_cnt = 0;
+            public int _wave_channel;
+            public byte _channel_ind = 0;
 
             public class plot_s
             {
+                public string plot_name = "CH";
+
                 public int plot_id = 0;
                 public byte msg_id = 0;
-                public int plot_x = 0;
+
             }
+
+            public int[] _plot_x;
+            public double[] _plot_y;
 
             public plot_s[] _plot;
 
             public void init()
             {
-                _plot = new plot_s[wave_channel];
+                _plot = new plot_s[_wave_channel];
+                _plot_x = new int[_wave_channel];
+                _plot_y = new double[_wave_channel];
+
+                for (int i = 0; i < _wave_channel; i++)
+                {
+                    _plot[i] = new plot_s();
+                }
             }
         }
 
         public void parse_init()
         {
-            parse_sign.wave_channel = _hander._wave.channel_max;
+            parse_sign._wave_channel = _hander._wave.channel_max;
             parse_sign.init();
         }
 
@@ -69,7 +82,7 @@ namespace dev_toolkit.frame
         }
 
         public void parse_task()
-        {
+        {       
             while (true)
             {             
                 if (_serialPort.IsOpen && serial_var.receive)
@@ -78,7 +91,7 @@ namespace dev_toolkit.frame
 
                     if (serial_data_read())
                     {
-                        parse_sign.msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
+                        parse_sign._msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
                     }
                     //serial_trans(test_send_buffer, test_send_buffer_size); 
@@ -91,28 +104,8 @@ namespace dev_toolkit.frame
             }
         }
 
-        public Dictionary<int, object> Fields;
-
-        int[] name_ind = new int[10];
         public void port_refresh_task()
         {
-            Fields = new Dictionary<int, object>();
-            for (int i = 0; i < 10; i++)
-            {
-                name_ind[i] = i;
-            }
-
-            Fields.Add(name_ind[0], 100);
-            Fields.Add(name_ind[1], -100.12);
-            Fields.Add(name_ind[2], -1000);
-            Fields.Add(name_ind[3], 1000);
-            Fields.Add(name_ind[4], 100);
-            Fields.Add(name_ind[5], 200);
-            Fields.Add(name_ind[6], 38000);
-            Fields.Add(name_ind[7], -100);
-            Fields.Add(name_ind[8], -200);
-            Fields.Add(name_ind[9], -38000);
-
             while (true)
             {
                 if (_serialPort.IsOpen == false)
@@ -122,28 +115,60 @@ namespace dev_toolkit.frame
                 Thread.Sleep(100);
             }
         }
-
     
         public void plot_task()
         {
+            int loop = 0;
             while (true)
             {
-                for (int i = 0; i < parse_sign.msg_cnt; i++)
+                // 波形输出
+                for (int i = 0; i < parse_sign._msg_cnt; i++)
                 {
-                    byte msg_id = link.rx_msg[i].msgid;
+                    // 获取当前包消息id
+                    byte msg_id = link.rx_msg[i].msgid; 
 
-                    if (msg_id > s_comlink.MSG_ID_FIX_CNT)
+                    if (msg_id >= s_comlink.MSG_ID_FIX_CNT)
                     {
-                        for (int channel = 0; channel < parse_sign.wave_channel; channel++)
+                        for (int channel = 0; channel < parse_sign._wave_channel; channel++)
                         {
                             if (msg_id == parse_sign._plot[channel].msg_id)
                             {
-                                _plot.Channels[channel].AddXY(parse_sign._plot[channel].plot_x++, s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id, 0));
+                                parse_sign._plot_y[channel] = s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id, 0);
+                                _plot.Channels[channel].AddXY(parse_sign._plot_x[channel]++, parse_sign._plot_y[channel]);
                             }
                         }
                     }
                 }
-                parse_sign.msg_cnt = 0;
+                parse_sign._msg_cnt = 0;
+                
+                //250ms时间戳 x轴对齐
+                if (loop++ > 10)
+                {                  
+                    loop = 0;
+                    int plot_x_max = parse_sign._plot_x.Max();
+
+                    for (int i = 0; i < parse_sign._channel_ind; i++)
+                    {
+                        if ((plot_x_max - parse_sign._plot_x[i]) > 10)
+                        {
+                            parse_sign._plot_x[i] = plot_x_max;
+                        }
+                    }
+
+                    if (parse_sign._channel_ind > 0)
+                    {
+                        for (int i = 0; i < parse_sign._channel_ind; i++)
+                        {
+                            int val = Convert.ToInt32(parse_sign._plot_y[i]);
+                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + " " + val.ToString();
+                        }
+
+                        for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
+                        {
+                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name;
+                        }
+                    }
+                }
 
                 Thread.Sleep(25);
             }
@@ -173,7 +198,7 @@ namespace dev_toolkit.frame
             }
 
             // 数据通道限制10个
-            if (item_count > 10)
+            if (item_count > parse_sign._wave_channel)
             {
                 check_list.Items[check_list.HotItemIndex].CheckState = CheckState.Unchecked;
             }
@@ -195,7 +220,7 @@ namespace dev_toolkit.frame
             //    }
             //}
 
-            // 检测消息表状态
+            // 消息表和plot绑定
             byte channel_ind = 0;
             for (int i = 0; i < list_cnt; i++)
             {
@@ -214,11 +239,24 @@ namespace dev_toolkit.frame
                             // 消息偏移
                             int now_map_id = link.comlink_connect._msg_infomap[msg_list[i].Name]._map_ind;
 
+                            // 修改通道名
+                            parse_sign._plot[channel_ind].plot_name = msg_list[i].Name + "_" + link.comlink_connect._msg_infomap[msg_list[i].Name]._part[j - 1].part_name;
+                            _plot.Channels[channel_ind].TitleText = parse_sign._plot[channel_ind].plot_name;
+
                             parse_sign._plot[channel_ind].msg_id = now_msg_id;
                             parse_sign._plot[channel_ind].plot_id = now_map_id + j - 1;
+
+                            channel_ind++;
                         }
                     }
                 }
+            }
+            parse_sign._channel_ind = channel_ind;
+
+            for (int i = channel_ind; i < parse_sign._wave_channel; i++)
+            {
+                parse_sign._plot[i].plot_name = "CH" + (i + 1).ToString();
+                _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name;
             }
 
             // 检测消息表状态
