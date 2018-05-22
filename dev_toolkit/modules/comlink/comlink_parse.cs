@@ -47,6 +47,9 @@ namespace dev_toolkit.modules
         [DllImport(dll_path, EntryPoint = "comlink_clear_map", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_clear_map();
 
+        [DllImport(dll_path, EntryPoint = "comlink_msgpart_value", CallingConvention = CallingConvention.Cdecl)]
+        public static extern double comlink_msgpart_value(int v_ind, byte a_ind);
+
         // 帧头
         const int STX = 0xFE;
 

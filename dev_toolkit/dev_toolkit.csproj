@@ -78,7 +78,6 @@
     <Compile Include="modules\comlink\comlink.cs" />
     <Compile Include="modules\comlink\comlink_msg.cs" />
     <Compile Include="modules\comlink\comlink_parse.cs" />
-    <Compile Include="modules\comlink\test\test_comlink.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="device\gnss\" />
+    <Folder Include="modules\comlink\test\" />
     <Folder Include="modules\logger\" />
     <Folder Include="modules\wave\" />
   </ItemGroup>

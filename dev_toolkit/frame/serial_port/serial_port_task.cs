@@ -16,21 +16,35 @@ namespace dev_toolkit.frame
     public partial class serial_port
     {
         s_comlink link = null;
+        ParseSign parse_sign = new ParseSign();
 
         byte slave_id = 0;
 
-        public int plot_axis_x = 0;
-        public byte msg_cnt = 0;
+        public class ParseSign
+        {
+            public byte msg_cnt = 0;
+            public int wave_channel;
 
-        long time_now = 0;
-        long time_error = 0;
-        long time_last = 0;
+            public class plot_s
+            {
+                public int plot_id = 0;
+                public byte msg_id = 0;
+                public int plot_x = 0;
+            }
 
-        long time_error2 = 0;
+            public plot_s[] _plot;
 
-        long time_now1 = 0;
-        long time_error1 = 0;
-        long time_last1= 0;
+            public void init()
+            {
+                _plot = new plot_s[wave_channel];
+            }
+        }
+
+        public void parse_init()
+        {
+            parse_sign.wave_channel = _hander._wave.channel_max;
+            parse_sign.init();
+        }
 
         public void link_connect()
         {
@@ -64,19 +78,14 @@ namespace dev_toolkit.frame
 
                     if (serial_data_read())
                     {
-                        time_now = absolute_time();
-                        msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
+                        parse_sign.msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
-                        time_error2 = absolute_time() - time_now;
                     }
                     //serial_trans(test_send_buffer, test_send_buffer_size); 
                 }
-                time_now = absolute_time();
-                time_error = time_now - time_last;
-                time_last = time_now;
 
                 link_connect();
-                link.comlink_task((ulong)time_now);
+                link.comlink_task((ulong)absolute_time());
 
                 Thread.Sleep(30);
             }
@@ -104,10 +113,6 @@ namespace dev_toolkit.frame
             Fields.Add(name_ind[8], -200);
             Fields.Add(name_ind[9], -38000);
 
-            //Array.Copy((Array)(Fields[1]), 0, name_ind, 1, 2);
-            //int tt = Convert.ToInt16(Fields[1]);
-            //Fields[1] = Convert.ToDouble(Fields[1]) * 100;
-
             while (true)
             {
                 if (_serialPort.IsOpen == false)
@@ -121,63 +126,119 @@ namespace dev_toolkit.frame
     
         public void plot_task()
         {
-            //__attitude_t _attitude;
             while (true)
             {
-                for (int i = 0; i < msg_cnt; i++)
+                for (int i = 0; i < parse_sign.msg_cnt; i++)
                 {
-                   // _attitude = attitude[i];
+                    byte msg_id = link.rx_msg[i].msgid;
 
-                    //_plot.Channels[0].AddXY(plot_axis_x, _attitude.pitch);
-                    //_plot.Channels[1].AddXY(plot_axis_x, 0);
-                    //_plot.Channels[2].AddXY(plot_axis_x, _attitude.roll);
-                    //_plot.Channels[3].AddXY(plot_axis_x, 0);
-                    //_plot.Channels[4].AddXY(plot_axis_x, _attitude.yaw);
-                    //_plot.Channels[5].AddXY(plot_axis_x, _attitude.time_boot_ms / 1000);
-                    //_plot.Channels[6].AddXY(plot_axis_x, msg_cnt * 10);
-                    //_plot.Channels[7].AddXY(plot_axis_x, time_error * 10);
-                    //_plot.Channels[8].AddXY(plot_axis_x, time_error1 * 10);
-                    //_plot.Channels[9].AddXY(plot_axis_x, time_error2 * 10);
-
-                    _plot.Channels[0].AddXY(plot_axis_x, Convert.ToDouble(Fields[0]));
-                    _plot.Channels[1].AddXY(plot_axis_x, Convert.ToDouble(Fields[1]));
-                    _plot.Channels[2].AddXY(plot_axis_x, Convert.ToDouble(Fields[2]));
-                    _plot.Channels[3].AddXY(plot_axis_x, Convert.ToDouble(Fields[3]));
-                    _plot.Channels[4].AddXY(plot_axis_x, Convert.ToDouble(Fields[4]));
-                    _plot.Channels[5].AddXY(plot_axis_x, Convert.ToDouble(Fields[5]));
-                    _plot.Channels[6].AddXY(plot_axis_x, Convert.ToDouble(Fields[6]));
-                    _plot.Channels[7].AddXY(plot_axis_x, Convert.ToDouble(Fields[7]));
-                    _plot.Channels[8].AddXY(plot_axis_x, Convert.ToDouble(Fields[8]));
-                    _plot.Channels[9].AddXY(plot_axis_x, Convert.ToDouble(Fields[9]));
-                    plot_axis_x++;
+                    if (msg_id > s_comlink.MSG_ID_FIX_CNT)
+                    {
+                        for (int channel = 0; channel < parse_sign.wave_channel; channel++)
+                        {
+                            if (msg_id == parse_sign._plot[channel].msg_id)
+                            {
+                                _plot.Channels[channel].AddXY(parse_sign._plot[channel].plot_x++, s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id, 0));
+                            }
+                        }
+                    }
                 }
-                msg_cnt = 0;
-
-                time_now1 = DateTime.Now.Ticks / 1000;
-                time_error1 = time_now1 - time_last1;
-                time_last1 = time_now1;
+                parse_sign.msg_cnt = 0;
 
                 Thread.Sleep(25);
             }
         }
 
-        string list_name;
-        int list_index;
         public void check_list_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
         {
             CheckedListBoxControl check_list = (CheckedListBoxControl)sender;
-            list_name = check_list.Name;
-            list_index = e.Index;
-            byte msg_id = link.comlink_connect._msg_infomap[list_name]._msg_id;
+            int list_index = e.Index;
+            byte msg_id = link.comlink_connect._msg_infomap[check_list.Name]._msg_id;
 
-            byte trans_cnt = s_comlink.MSG_TRANS_OFF;
+            // 消息句柄
+            CheckedListBoxControl[] msg_list = _hander._nav_bar._nav_msg._list;
 
-            if (e.State == CheckState.Checked)
+            // 消息数量
+            byte list_cnt = _hander._nav_bar._nav_msg._list_cnt;
+
+            // 读取总通道数
+            int item_count = 0;
+            for (int i = 0; i < list_cnt; i++)
             {
-                trans_cnt = s_comlink.MSG_TRANS_ON;
+                // 已使能
+                if (msg_list[i].Items[0].CheckState == CheckState.Checked)
+                {
+                    item_count += (msg_list[i].CheckedItemsCount - 1);
+                }
             }
-            
-            link.comlink_connect.pkg_trans_select(s_comlink.MSG_SIGN_ENABLE, msg_id, trans_cnt);
+
+            // 数据通道限制10个
+            if (item_count > 10)
+            {
+                check_list.Items[check_list.HotItemIndex].CheckState = CheckState.Unchecked;
+            }
+
+            // 当前通道数量
+            int curr_item_count = 0;
+            if (check_list.Items[0].CheckState == CheckState.Checked)
+            {
+                curr_item_count = (check_list.CheckedItemsCount - 1);
+            }
+
+            // 选择ALL
+            //if (check_list.HotItemIndex == 0)
+            //{
+            //    int item_cnt = check_list.ItemCount;
+            //    for (int j = 0; j < item_cnt; j++)
+            //    {
+            //        check_list.Items[j].CheckState = e.State;
+            //    }
+            //}
+
+            // 检测消息表状态
+            byte channel_ind = 0;
+            for (int i = 0; i < list_cnt; i++)
+            {
+                // 已使能
+                if (msg_list[i].Items[0].CheckState == CheckState.Checked)
+                {
+                    // 消息条目数
+                    int item_cnt = msg_list[i].ItemCount;
+                    for (int j = 1; j < item_cnt; j++)
+                    {
+                        if (msg_list[i].Items[j].CheckState == CheckState.Checked)
+                        {
+                            // 消息id
+                            byte now_msg_id = link.comlink_connect._msg_infomap[msg_list[i].Name]._msg_id;
+
+                            // 消息偏移
+                            int now_map_id = link.comlink_connect._msg_infomap[msg_list[i].Name]._map_ind;
+
+                            parse_sign._plot[channel_ind].msg_id = now_msg_id;
+                            parse_sign._plot[channel_ind].plot_id = now_map_id + j - 1;
+                        }
+                    }
+                }
+            }
+
+            // 检测消息表状态
+            for (int i= 0; i < list_cnt; i++)
+            {             
+                if (check_list.Items[0].CheckState == CheckState.Checked)
+                {
+                    int item_cnt = msg_list[i].ItemCount;
+
+                }
+            }
+
+            // 传输使能控制
+            byte trans_sign = s_comlink.MSG_TRANS_OFF;
+            if (curr_item_count > 0)
+            {
+                trans_sign = s_comlink.MSG_TRANS_ON;
+            }
+
+            link.comlink_connect.pkg_trans_select(s_comlink.MSG_SIGN_ENABLE, msg_id, trans_sign);
         }
 
         // 获取绝对时间ms
@@ -211,6 +272,7 @@ namespace dev_toolkit.frame
 
         // 测试波形
         int test_cnt = 0;
+        int plot_axis_x = 0;
         void test_add_data()
         {
             test_cnt++;

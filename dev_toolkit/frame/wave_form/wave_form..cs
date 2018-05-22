@@ -14,7 +14,7 @@ namespace dev_toolkit.frame
     {
         public dev_toolkit _hander;
         private Plot _plot;
-        private int channel_max;
+        public int channel_max;
 
         wave_axes_s axes = new wave_axes_s();
         bool axes_sign = false;
@@ -95,7 +95,7 @@ namespace dev_toolkit.frame
         // plot 显示type设置
         public void plot_markers(bool state)
         {
-            for (int channel = 0; channel < 10; channel++)
+            for (int channel = 0; channel < channel_max; channel++)
             {
                 plot_channels(channel).Markers.Visible = state;
             }

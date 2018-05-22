@@ -114,6 +114,7 @@ namespace dev_toolkit.frame
             mode_init();
             event_init();
             serial_init();
+            parse_init();
         }
 
         void mode_init()

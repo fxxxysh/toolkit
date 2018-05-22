@@ -14,6 +14,7 @@ namespace dev_toolkit.modules
     public partial class s_comlink
     {
         public comlink_connect_t comlink_connect = new comlink_connect_t();
+        public message_t[] rx_msg = new message_t[MAX_MSG_IND];
 
         public enum connect_state_t
         {
@@ -345,7 +346,6 @@ namespace dev_toolkit.modules
         /// <returns></returns>
         public void pkg_decode(byte msg_cnt)
         {
-            rx_msg = new message_t[MAX_MSG_IND];
             for (int i = 0; i < msg_cnt; i++)
             {
                 // 拆包

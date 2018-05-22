@@ -21,7 +21,7 @@ namespace dev_toolkit.modules
         public const byte MSG_SIGN_ENABLE = 1;
         public const byte MSG_SIGN_DISABLE = 0;
 
-        const byte MSG_ID_FIX_CNT = 20;
+        public const byte MSG_ID_FIX_CNT = 20;
 
         // 用于更新消息包信息, string结构
         const byte MSG_ID_INFO = 10;

@@ -33,3 +33,5 @@ DLL_API int comlink_msgmap_ind();
 DLL_API void comlink_refresh_msgmap(uint8_t cnt);
 
 DLL_API void comlink_clear_map();
+
+DLL_API double comlink_msgpart_value(int v_ind, uint8_t a_ind);

@@ -171,11 +171,11 @@ namespace dev_toolkit
             // 导航栏
             _nav_bar = new NavBar(this);
 
-            // 串口操作
-            _serial = new serial_port(this);
-
             // 曲线
             _wave = new wave_form(this);
+
+            // 串口操作
+            _serial = new serial_port(this);
 
             Thread.CurrentThread.Abort();
         }

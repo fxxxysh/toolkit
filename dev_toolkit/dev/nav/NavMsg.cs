@@ -11,6 +11,9 @@ namespace dev_toolkit.dev
 {
     public class NavMsg
     {
+        public CheckedListBoxControl[] _list = new CheckedListBoxControl[50];
+        public byte _list_cnt = 0;
+
         public struct nav_msg_s 
         {
             public string _name;
@@ -21,6 +24,7 @@ namespace dev_toolkit.dev
             {
                 _item_number = item_number + 1;
                 _name = name;
+
                 _item = new CheckedListBoxItem[_item_number];
 
                 for (int i = 0; i < _item_number; i++)
@@ -28,7 +32,7 @@ namespace dev_toolkit.dev
                     _item[i] = new CheckedListBoxItem("null");
                 }
 
-                _item[0].Description = "ALL";
+                _item[0].Description = "ENABLE";
             }
         }
 
@@ -106,8 +110,11 @@ namespace dev_toolkit.dev
 
                 NavBarGroup bar_group = new NavBarGroup();
                 NavBarGroupControlContainer bar_container = new NavBarGroupControlContainer();
-                CheckedListBoxControl check_list = new CheckedListBoxControl();
+
+                _list[_list_cnt] = new CheckedListBoxControl();
+                CheckedListBoxControl check_list = _list[_list_cnt];
                 check_list.ItemCheck += _hander._serial.check_list_ItemCheck;
+                _list_cnt++;
 
                 //_nav_msg.ActiveGroup = bar_group;
                 _nav_msg.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] { bar_group });

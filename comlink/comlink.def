@@ -11,3 +11,4 @@ EXPORTS
 	comlink_msgpart_value
 	comlink_msgmap_ind
 	comlink_clear_map
+	comlink_msgpart_value
