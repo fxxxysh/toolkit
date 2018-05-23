@@ -20,7 +20,7 @@ namespace dev_toolkit.frame
         bool axes_sign = false;
         bool track_sign = false;
         bool cursor_active_sign = false;
-        bool cursor_pushed = false;
+        public bool cursor_pushed = false;
 
         struct wave_axes_s
         {
@@ -132,6 +132,10 @@ namespace dev_toolkit.frame
                 {
                     _plot.DataCursors.Channels[0].PositionX = (_plot.PointToClient(Control.MousePosition).X - width_l) / width;
                 }));
+            }
+            if (cursor_pushed)
+            {
+
             }
         }
 

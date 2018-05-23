@@ -346,7 +346,7 @@ namespace dev_toolkit.modules
         /// <returns></returns>
         public void pkg_decode(byte msg_cnt)
         {
-            for (int i = 0; i < msg_cnt; i++)
+            for (byte i = 0; i < msg_cnt; i++)
             {
                 // 拆包
                 comlink_get_msg(ref rx_msg[i], (byte)i);
@@ -357,7 +357,7 @@ namespace dev_toolkit.modules
                 }
                 else
                 {
-                    comlink_refresh_msgmap(msg_cnt);               
+                    comlink_refresh_msgmap(i);               
                 }
             }
         }

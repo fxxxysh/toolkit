@@ -160,7 +160,7 @@ namespace dev_toolkit.frame
                         for (int i = 0; i < parse_sign._channel_ind; i++)
                         {
                             int val = Convert.ToInt32(parse_sign._plot_y[i]);
-                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + " " + val.ToString();
+                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();//.PadRight(8, '0');
                         }
 
                         for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
@@ -255,7 +255,8 @@ namespace dev_toolkit.frame
 
             for (int i = channel_ind; i < parse_sign._wave_channel; i++)
             {
-                parse_sign._plot[i].plot_name = "CH" + (i + 1).ToString();
+                parse_sign._plot[i].msg_id = 0;
+               parse_sign._plot[i].plot_name = "CH" + (i + 1).ToString();
                 _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name;
             }
 
