@@ -16,7 +16,7 @@ namespace dev_toolkit.frame
     public partial class serial_port
     {
         s_comlink link = null;
-        ParseSign parse_sign = new ParseSign();
+        public ParseSign parse_sign = new ParseSign();
 
         byte slave_id = 0;
 
@@ -160,12 +160,19 @@ namespace dev_toolkit.frame
                         for (int i = 0; i < parse_sign._channel_ind; i++)
                         {
                             int val = Convert.ToInt32(parse_sign._plot_y[i]);
-                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();//.PadRight(8, '0');
-                        }
 
-                        for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
+                            if (_hander._wave.cursor_pushed == false)
+                            {
+                                _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
+                            }
+                        }
+                        if (_hander._wave.cursor_pushed == false)
                         {
-                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name;
+                            for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
+                            {
+                                int val = 0;
+                                _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
+                            }
                         }
                     }
                 }

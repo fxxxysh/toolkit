@@ -483,11 +483,13 @@
             plotDataCursorChannels1.Hint.Fill.Pen.Visible = false;
             plotDataCursorChannels1.Hint.Fill.Visible = false;
             plotDataCursorChannels1.Hint.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            plotDataCursorChannels1.Hint.Visible = false;
             plotDataCursorChannels1.HitRegionSize = 0;
             plotDataCursorChannels1.Name = "Data-Cursor";
             plotDataCursorChannels1.PositionX = 0.2D;
             plotDataCursorChannels1.TitleText = "Data-Cursor";
             plotDataCursorChannels1.Window.Size = 3;
+            plotDataCursorChannels1.Window.Visible = false;
             this.wave_plot.DataCursors.Add(plotDataCursorChannels1);
             plotDataView1.CanFocus = false;
             plotDataView1.Color = System.Drawing.Color.Gainsboro;
@@ -520,7 +522,7 @@
             this.wave_plot.Location = new System.Drawing.Point(0, 26);
             this.wave_plot.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.wave_plot.Name = "wave_plot";
-            this.wave_plot.Size = new System.Drawing.Size(812, 423);
+            this.wave_plot.Size = new System.Drawing.Size(802, 423);
             this.wave_plot.TabIndex = 2;
             this.wave_plot.UpdateFrameRate = 40D;
             plotXAxis1.CanFocus = false;

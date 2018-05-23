@@ -21,7 +21,9 @@ namespace Iocomp.Classes
 
 		private int m_MarginOuterPixels;
 
-		private int m_MarkerSize;
+        private int test_m_MarginOuterPixels;
+
+        private int m_MarkerSize;
 
 		private int m_MarkerWidthPixels;
 
@@ -193,7 +195,7 @@ namespace Iocomp.Classes
 				num = (int)Math.Ceiling((double)Math.Max(num, p.Graphics.MeasureString(channel.DisplayDescription, base.Font).Width));
 			}
 			this.m_SpacingPixels = (int)Math.Ceiling((double)p.Graphics.MeasureString(base.Font).Width * this.Spacing);
-			this.m_MaxElementWidth = this.m_MarkerWidthPixels + this.m_TitleMarginPixels + num;
+            this.m_MaxElementWidth = 120;// this.m_MarkerWidthPixels + this.m_TitleMarginPixels + num;
 			if (base.DockHorizontal)
 			{
 				this.m_MaxElementCount = (base.Bounds.Height + this.m_SpacingPixels - this.m_MarginOuterPixels) / (this.m_MarkerSize + this.m_SpacingPixels);
@@ -311,34 +313,34 @@ namespace Iocomp.Classes
 			}
 			else
 			{
-				int num = base.BoundsAlignment.Top + this.m_MarginOuterPixels;
-				int num2 = base.BoundsAlignment.Left + this.m_MarginOuterPixels;
-				this.m_Rect.Top = num;
-				this.m_Rect.Left = num2;
-				this.m_Rect.Height = this.m_MarkerSize;
-				this.m_Rect.Width = this.m_MarkerWidthPixels;
-				for (int j = 0; j < base.Channels.Count; j++)
-				{
-					PlotChannelBase plotChannelBase = base.Channels[j] as PlotChannelBase;
-					Brush titleBrush = this.GetTitleBrush(p, plotChannelBase);
-					string displayDescription = plotChannelBase.DisplayDescription;
-					size = p.Graphics.MeasureString(displayDescription, base.Font);
-					int num3 = j / this.m_MaxElementCount;
-					int num4 = j % this.m_MaxElementCount;
-					this.m_Rect.Top = num + num3 * (this.m_WrapMarginPixels + this.m_MarkerSize);
-					this.m_Rect.Left = num2 + num4 * (this.m_MaxElementWidth + this.m_SpacingPixels);
-					rectangle = new Rectangle(this.m_Rect.Left - this.m_MarginOuterPixels, this.m_Rect.Top, this.m_MarginOuterPixels + this.m_MarkerWidthPixels + this.m_TitleMarginPixels + size.Width, size.Height);
-					rectangle.Inflate(1, 1);
-					plotChannelBase.LegendRectangle = rectangle;
-					if (plotChannelBase.Focused && !rectangle.IsEmpty)
-					{
-						p.Graphics.DrawFocusRectangle(rectangle, base.BackColor);
-					}
-					((IPlotChannelBase)plotChannelBase).DrawLegendMarker(p, this.m_Rect.Rectangle);
-					this.m_Rect.Left = num2 + num4 * (this.m_MaxElementWidth + this.m_SpacingPixels) + this.m_MarkerWidthPixels + this.m_TitleMarginPixels;
-					p.Graphics.DrawString(displayDescription, base.Font, titleBrush, (float)this.m_Rect.Left, (float)this.m_Rect.Top, genericTypographic);
-				}
-			}
+                int num = base.BoundsAlignment.Top + this.m_MarginOuterPixels;
+                int num2 = base.BoundsAlignment.Left + this.m_MarginOuterPixels;
+                this.m_Rect.Top = num;
+                this.m_Rect.Left = num2;
+                this.m_Rect.Height = this.m_MarkerSize;
+                this.m_Rect.Width = this.m_MarkerWidthPixels;
+                for (int j = 0; j < base.Channels.Count; j++)
+                {
+                    PlotChannelBase plotChannelBase = base.Channels[j] as PlotChannelBase;
+                    Brush titleBrush = this.GetTitleBrush(p, plotChannelBase);
+                    string displayDescription = plotChannelBase.DisplayDescription;
+                    size = p.Graphics.MeasureString(displayDescription, base.Font);
+                    int num3 = j / this.m_MaxElementCount;
+                    int num4 = j % this.m_MaxElementCount;
+                    this.m_Rect.Top = num + num3 * (this.m_WrapMarginPixels + this.m_MarkerSize);
+                    this.m_Rect.Left = num2 + num4 * (this.m_MaxElementWidth + this.m_SpacingPixels);
+                    rectangle = new Rectangle(this.m_Rect.Left - this.m_MarginOuterPixels, this.m_Rect.Top, this.m_MarginOuterPixels + this.m_MarkerWidthPixels + this.m_TitleMarginPixels + size.Width, size.Height);
+                    rectangle.Inflate(1, 1);
+                    plotChannelBase.LegendRectangle = rectangle;
+                    if (plotChannelBase.Focused && !rectangle.IsEmpty)
+                    {
+                        p.Graphics.DrawFocusRectangle(rectangle, base.BackColor);
+                    }
+                    ((IPlotChannelBase)plotChannelBase).DrawLegendMarker(p, this.m_Rect.Rectangle);
+                    this.m_Rect.Left = num2 + num4 * (this.m_MaxElementWidth + this.m_SpacingPixels) + this.m_MarkerWidthPixels + this.m_TitleMarginPixels;
+                    p.Graphics.DrawString(displayDescription, base.Font, titleBrush, (float)this.m_Rect.Left, (float)this.m_Rect.Top, genericTypographic);
+                }
+            }
 		}
 	}
 }

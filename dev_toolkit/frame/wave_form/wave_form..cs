@@ -15,6 +15,7 @@ namespace dev_toolkit.frame
         public dev_toolkit _hander;
         private Plot _plot;
         public int channel_max;
+        public serial_port.ParseSign parse_sign;
 
         wave_axes_s axes = new wave_axes_s();
         bool axes_sign = false;
@@ -39,7 +40,7 @@ namespace dev_toolkit.frame
 
         public wave_form(object sender)
         {
-            _hander = (dev_toolkit)sender;
+            _hander = (dev_toolkit)sender;        
             channel_max = 10;
 
             mode_init();
@@ -68,6 +69,9 @@ namespace dev_toolkit.frame
         {
             int loop = 0;
             Thread.Sleep(1000);
+
+            // 通道名
+            parse_sign = _hander._serial.parse_sign;
 
             while (true)
             {
@@ -135,7 +139,11 @@ namespace dev_toolkit.frame
             }
             if (cursor_pushed)
             {
-
+                for (int i = 0; i < parse_sign._wave_channel; i++)
+                {
+                    int val = Convert.ToInt32(_plot.Channels[i].DataCursorY);
+                    _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
+                }
             }
         }
 
