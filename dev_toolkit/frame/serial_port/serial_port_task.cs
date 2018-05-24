@@ -32,7 +32,6 @@ namespace dev_toolkit.frame
 
                 public int plot_id = 0;
                 public byte msg_id = 0;
-
             }
 
             public int[] _plot_x;
@@ -151,7 +150,7 @@ namespace dev_toolkit.frame
                     {
                         if ((plot_x_max - parse_sign._plot_x[i]) > 10)
                         {
-                            parse_sign._plot_x[i] = plot_x_max;
+                           // parse_sign._plot_x[i] = plot_x_max;
                         }
                     }
 
@@ -176,7 +175,6 @@ namespace dev_toolkit.frame
                         }
                     }
                 }
-
                 Thread.Sleep(25);
             }
         }
@@ -247,7 +245,7 @@ namespace dev_toolkit.frame
                             int now_map_id = link.comlink_connect._msg_infomap[msg_list[i].Name]._map_ind;
 
                             // 修改通道名
-                            parse_sign._plot[channel_ind].plot_name = msg_list[i].Name + "_" + link.comlink_connect._msg_infomap[msg_list[i].Name]._part[j - 1].part_name;
+                            parse_sign._plot[channel_ind].plot_name = msg_list[i].Name + "." + link.comlink_connect._msg_infomap[msg_list[i].Name]._part[j - 1].part_name;
                             _plot.Channels[channel_ind].TitleText = parse_sign._plot[channel_ind].plot_name;
 
                             parse_sign._plot[channel_ind].msg_id = now_msg_id;
@@ -283,7 +281,6 @@ namespace dev_toolkit.frame
             {
                 trans_sign = s_comlink.MSG_TRANS_ON;
             }
-
             link.comlink_connect.pkg_trans_select(s_comlink.MSG_SIGN_ENABLE, msg_id, trans_sign);
         }
 
