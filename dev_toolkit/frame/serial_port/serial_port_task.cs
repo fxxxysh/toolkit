@@ -91,9 +91,8 @@ namespace dev_toolkit.frame
                     {
                         parse_sign._msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
-                        //plot_refresh();
+                        plot_refresh();
                     }
-                    //serial_trans(test_send_buffer, test_send_buffer_size); 
                 }
 
                 link_connect();
@@ -117,26 +116,21 @@ namespace dev_toolkit.frame
 
         public void plot_refresh()
         {
-            // 波形输出
+            // 波形输出，遍历通道
             for (int channel = 0; channel < parse_sign._wave_channel; channel++)
             {
-                // 遍历通道
                 if (parse_sign._plot[channel].msg_id >= s_comlink.MSG_ID_FIX_CNT)
                 {
-                    // 获取缓存数据大小
-                    int val_cnt = s_comlink.comlink_msgpart_value_cnt(parse_sign._plot[channel].plot_id);
+                    // 获取缓存数据个数
+                    int val_number = s_comlink.comlink_msgpart_value_cnt(parse_sign._plot[channel].plot_id);
                 
-                    for (int val_ind = 0; val_ind < val_cnt; val_ind++)
+                    for (int val_ind = 0; val_ind < val_number; val_ind++)
                     {
-                        double chanval = s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id);
-                        if ((chanval - parse_sign._plot_y[channel]) > 1)
-                        {
-                            int tt = 0;
-                        }
-                        parse_sign._plot_y[channel] = chanval;
+                        double channel_val = s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id);
+                        parse_sign._plot_y[channel] = channel_val;
 
                         // plot输出
-                        _plot.Channels[channel].AddXY(parse_sign._plot_x[channel]++, parse_sign._plot_y[channel]);
+                        _plot.Channels[channel].AddXY(parse_sign._plot_x[channel]++, channel_val);
                     }
                 }
             }
@@ -146,17 +140,18 @@ namespace dev_toolkit.frame
         {
             Thread.Sleep(200);
             while (true)
-            {          
+            {
                 //250ms时间戳 x轴对齐
-                //int plot_x_max = parse_sign._plot_x.Max();
+                int plot_x_max = parse_sign._plot_x.Max();
 
-                //for (int i = 0; i < parse_sign._channel_ind; i++)
-                //{
-                //    if ((plot_x_max - parse_sign._plot_x[i]) > 10)
-                //    {
-                //        // parse_sign._plot_x[i] = plot_x_max;
-                //    }
-                //}
+                for (int i = 0; i < parse_sign._channel_ind; i++)
+                {
+                    // x轴误差超过20个点则进行对齐
+                    if ((plot_x_max - parse_sign._plot_x[i]) > 10)
+                    {
+                        parse_sign._plot_x[i] = plot_x_max;
+                    }
+                }
 
                 if (parse_sign._channel_ind > 0)
                 {
@@ -338,30 +333,6 @@ namespace dev_toolkit.frame
             {
 
             });               
-        }
-
-        // 串口开关
-        //private void com_connect_Click(object sender, EventArgs e)
-        private void com_connect_Click(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            bool status;
-            string port_name = _com_port_val;
-
-            string port = port_name.Split(' ')[0];
-            status = operate_port(port, _com_baudrate_val);
-            set_serial_status(status);
-        }
-
-        // 串口端口列表更新
-        private void com_port_DropDown(object sender, EventArgs e)
-        {
-            string[] device_ports = get_port_list();
-
-            if (device_ports != null)
-            {
-                _hander.Invoke(new Action(() => { set_serial_port(device_ports); }));
-                //set_serial_port(device_ports);
-            }
         }
     }
 }

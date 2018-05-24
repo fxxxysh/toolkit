@@ -30,7 +30,7 @@ namespace dev_toolkit.modules
         public static extern void comlink_get_status(ref parse_status_t m_status);
 
         [DllImport(dll_path, EntryPoint = "comlink_get_msg", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void comlink_get_msg(ref message_t msg, byte number);
+        public static extern void comlink_get_msg(ref message_t msg);
 
         [DllImport(dll_path, EntryPoint = "comlink_add_msgpart", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_add_msgpart(string name, byte type_sign);
@@ -42,7 +42,7 @@ namespace dev_toolkit.modules
         public static extern int comlink_msgmap_ind();
 
         [DllImport(dll_path, EntryPoint = "comlink_refresh_msgmap", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int comlink_refresh_msgmap(ref message_t msg);
+        public static extern int comlink_refresh_msgmap();
 
         [DllImport(dll_path, EntryPoint = "comlink_clear_map", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_clear_map();
@@ -142,7 +142,7 @@ namespace dev_toolkit.modules
             public byte compid; //组件ID
             public byte msgid; //消息ID
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_PAYLOAD_LEN, ArraySubType = UnmanagedType.U1)]
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_PAYLOAD_LEN + NUM_CHECKSUM, ArraySubType = UnmanagedType.U1)]
             public byte[] payload;
 
             UInt16 checksum; //实时校验

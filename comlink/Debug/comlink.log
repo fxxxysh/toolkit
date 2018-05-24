@@ -1,3 +1,2 @@
 ﻿  comlink.cpp
-f:\项目管理\2016-08-30\group\github\toolkit\comlink\comlink.cpp(267): warning C4267: “return”: 从“size_t”转换到“uint8_t”，可能丢失数据
-  comlink.vcxproj -> F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink.dll
+  comlink.vcxproj -> C:\Users\12082\Documents\toolkit\Debug\comlink.dll

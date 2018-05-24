@@ -48,7 +48,6 @@ typedef enum {
 	FRAMING_BAD_SIGNATURE = 3
 } framing_t;
 
-#pragma pack(push,1)
 typedef struct
 {
 	uint8_t magic; //帧头
@@ -62,7 +61,6 @@ typedef struct
 	uint16_t checksum; //实时校验
 	uint8_t ck[2]; //接收校验
 }message_t;
-#pragma pack(pop)
 
 typedef struct
 {
@@ -92,9 +90,9 @@ public:
 public:
 	static comlink *_this;
 
-	uint8_t parse_msg_cnt = 0;
-	queue <uint8_t> parse_msg_ind;
-	message_t parse_msg[MAX_MSG_IND];
+	queue <message_t> parse_msg;
+	//uint8_t parse_msg_cnt = 0;
+	//message_t parse_msg[MAX_MSG_IND];
 
 	parse_status_t m_status;
 	message_t receive_msg;
@@ -131,7 +129,7 @@ public:
 	static uint8_t frame_char(message_t *rxmsg, parse_status_t *status, uint8_t c);
 
 	// 解析函数
-	uint8_t parse_char(uint8_t *ch, int length);
+	int parse_char(uint8_t *ch, int length);
 
 	status_t send_uart(const uint8_t *buf, uint16_t len);
 };

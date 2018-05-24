@@ -16,6 +16,8 @@ namespace dev_toolkit.frame
 {
     public partial class serial_port
     {
+        public event Action<bool> refreshRibbon;
+
         private SerialPort _serialPort; //串口控件
         private const int SERAL_BUFFER_SIZE = 10240; //串口缓存大小
         private Plot _plot; //示波器控件
@@ -140,7 +142,8 @@ namespace dev_toolkit.frame
         {
             //_serialPort.DataReceived += new SerialDataReceivedEventHandler(serial_data_read);
             serial_connect.com_connect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);
-            serial_connect.com_connect_dis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);      
+            serial_connect.com_connect_dis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(com_connect_Click);
+            refreshRibbon += _hander._dev_ribbon.refresh_ribbon;
         }
 
         void serial_init()
@@ -293,6 +296,31 @@ namespace dev_toolkit.frame
                 return device_ports;
             }
             return null;
+        }
+
+        // 串口开关
+        //private void com_connect_Click(object sender, EventArgs e)
+        private void com_connect_Click(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            bool status;
+            string port_name = _com_port_val;
+
+            string port = port_name.Split(' ')[0];
+            status = operate_port(port, _com_baudrate_val);
+            set_serial_status(status);
+            refreshRibbon(status);
+        }
+
+        // 串口端口列表更新
+        private void com_port_DropDown(object sender, EventArgs e)
+        {
+            string[] device_ports = get_port_list();
+
+            if (device_ports != null)
+            {
+                _hander.Invoke(new Action(() => { set_serial_port(device_ports); }));
+                //set_serial_port(device_ports);
+            }
         }
     }
 }

@@ -14,7 +14,8 @@ namespace dev_toolkit.modules
     public partial class s_comlink
     {
         public comlink_connect_t comlink_connect = new comlink_connect_t();
-        public message_t[] rx_msg = new message_t[MAX_MSG_IND];
+        //public message_t[] rx_msg = new message_t[MAX_MSG_IND];
+        message_t rx_msg_buffer = new message_t();
 
         public enum connect_state_t
         {
@@ -219,6 +220,18 @@ namespace dev_toolkit.modules
             public UInt64 last_timestamp = 0; // 上一次时间戳
             public UInt64 last_connect_timestamp = 0; // 上一次时间戳
 
+            public void pkg_trans_select(byte flag, byte msg_id, byte trans_cnt)
+            {
+                message_t msg = new message_t();
+                msg_control_s control = new msg_control_s();
+
+                control.ctl_msg_trans.flag = 1;
+                control.ctl_msg_trans.id = msg_id;
+                control.ctl_msg_trans.trans_cnt = trans_cnt;
+
+                pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
+            }
+
             // 连接后读取设备信息
             public void connect_step(UInt64 timestamp)
             {
@@ -258,18 +271,6 @@ namespace dev_toolkit.modules
                         connect_sign = 2;
                     }
                 }
-            }
-
-            public void pkg_trans_select(byte flag, byte msg_id, byte trans_cnt)
-            {
-                message_t msg = new message_t();
-                msg_control_s control = new msg_control_s();
-
-                control.ctl_msg_trans.flag = 1;
-                control.ctl_msg_trans.id = msg_id;
-                control.ctl_msg_trans.trans_cnt = trans_cnt;
-
-                pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
             }
 
             // 循环调用
@@ -364,25 +365,19 @@ namespace dev_toolkit.modules
         }
 
         /// <summary>
-        /// 消息拆包
+        /// 固定消息拆包
         /// </summary>
         /// <param name="msg_cnt"></param>
         /// <returns></returns>
         public void pkg_decode(byte msg_cnt)
-        {
+        {    
             for (byte i = 0; i < msg_cnt; i++)
-            {
-                // 拆包
-                comlink_get_msg(ref rx_msg[i], (byte)i);
+            {         
+                // 小于MSG_ID_FIX_CNT保留尾部数据
+                comlink_get_msg(ref rx_msg_buffer);
 
-                if (rx_msg[i].msgid < MSG_ID_FIX_CNT)
-                {
-                    decode_special_msg(ref rx_msg[i]);
-                }
-                else
-                {
-                    comlink_refresh_msgmap(ref rx_msg[i]);               
-                }
+                // fifo拆包
+                decode_special_msg(ref rx_msg_buffer);             
             }
         }
 
