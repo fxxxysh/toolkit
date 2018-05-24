@@ -33,7 +33,7 @@ namespace dev_toolkit.modules
         public static extern void comlink_get_msg(ref message_t msg, byte number);
 
         [DllImport(dll_path, EntryPoint = "comlink_add_msgpart", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void comlink_add_msgpart(string name, byte type_sign, byte number);
+        public static extern void comlink_add_msgpart(string name, byte type_sign);
 
         [DllImport(dll_path, EntryPoint = "comlink_add_msginfo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_add_msginfo(byte msg_id, string name, int map_ind, byte size, byte number);
@@ -42,13 +42,19 @@ namespace dev_toolkit.modules
         public static extern int comlink_msgmap_ind();
 
         [DllImport(dll_path, EntryPoint = "comlink_refresh_msgmap", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int comlink_refresh_msgmap(byte cnt);
+        public static extern int comlink_refresh_msgmap(ref message_t msg);
 
         [DllImport(dll_path, EntryPoint = "comlink_clear_map", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_clear_map();
 
         [DllImport(dll_path, EntryPoint = "comlink_msgpart_value", CallingConvention = CallingConvention.Cdecl)]
-        public static extern double comlink_msgpart_value(int v_ind, byte a_ind);
+        public static extern double comlink_msgpart_value(int msg_ind);
+
+        [DllImport(dll_path, EntryPoint = "comlink_msgpart_value_cnt", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int comlink_msgpart_value_cnt(int msg_ind);
+
+        [DllImport(dll_path, EntryPoint = "comlink_msgpart_value_clear", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_msgpart_value_clear(int msg_ind);
 
         // 帧头
         const int STX = 0xFE;
@@ -131,7 +137,7 @@ namespace dev_toolkit.modules
             public byte magic; //帧头
             public byte len; //负载长度
             public byte seq; //序列码
-                             //uint8_t flags; //标志位
+            //uint8_t flags; //标志位
             public byte sysid; //系统ID
             public byte compid; //组件ID
             public byte msgid; //消息ID
@@ -170,7 +176,6 @@ namespace dev_toolkit.modules
             {
                 public string part_name;
                 public byte part_type;
-                public byte part_number;
             }
 
             public MsgInfo(int number)
@@ -187,11 +192,10 @@ namespace dev_toolkit.modules
                 _size = size;
             }
 
-            public void add_part(string part_name, byte part_type, byte part_number)
+            public void add_part(string part_name, byte part_type)
             {
                 _part[_part_ind].part_name = part_name;
                 _part[_part_ind].part_type = part_type;
-                _part[_part_ind].part_number = part_number;
                 _part_ind++;
             }
         };

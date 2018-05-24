@@ -84,8 +84,8 @@ void msg_list_init()
 	{
 		str_ind = msg_map[plot_list[i]]->copy(str_ind);
 
-		test_plot[i] = msg_map[plot_list[i]]->get();
+		//test_plot[i] = msg_map[plot_list[i]]->pop();
 	}
 
-	double tt1 = msg_map[key_map["9"]]->get();
+	//double tt1 = msg_map[key_map["9"]]->pop();
 }

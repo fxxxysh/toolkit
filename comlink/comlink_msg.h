@@ -3,6 +3,7 @@
 #include "stdint.h"
 #include <string>
 #include <map>
+#include <queue>
 #include <unordered_map>
 
 using namespace std;
@@ -66,15 +67,16 @@ public:
 	string name;
 	uint8_t type_sign;
 	uint8_t type_size;
-	union_type *_type;
+	//union_type *_type;
+	queue <union_type> _data;
 
-	TypeBase(string name, uint8_t type_sign, uint8_t number = 1)
+	TypeBase(string name, uint8_t type_sign)
 	{
 		this->name = name;
 		this->type_sign = type_sign;
-		this->type_size = get_size() * number;
-		_type = new union_type[number];
-		memset(_type, 0, sizeof(union_type) * number);
+		this->type_size = get_size();
+		//_type = new union_type[number];
+		//memset(_type, 0, sizeof(union_type) * number);
 	}
 
 	uint8_t get_size()
@@ -99,51 +101,106 @@ public:
 		return size;
 	}
 
+	union_type type = { 0 };
+
 	// set
-	void set(uint8_t data, uint8_t ind = 0) { _type[ind]._u8 = data; }
+	void set(uint8_t data) 
+	{	
+		type._u8 = data;
+		_data.push(type);
+	}
 
-	void set(int8_t data, uint8_t ind = 0) { _type[ind]._i8 = data; }
+	void set(int8_t data) 
+	{
+		type._i8 = data;
+		_data.push(type);
+	}
 
-	void set(uint16_t data, uint8_t ind = 0) { _type[ind]._u16 = data; }
+	void set(uint16_t data) 
+	{ 
+		type._u16 = data;
+		_data.push(type);
+	}
 
-	void set(int16_t data, uint8_t ind = 0) { _type[ind]._i16 = data; }
+	void set(int16_t data)
+	{
+		type._i16 = data;
+		_data.push(type);
+	}
 
-	void set(uint32_t data, uint8_t ind = 0) { _type[ind]._u32 = data; }
+	void set(uint32_t data) 
+	{ 
+		type._u32 = data;
+		_data.push(type);
+	}
 
-	void set(int32_t data, uint8_t ind = 0) { _type[ind]._i32 = data; }
+	void set(int32_t data)
+	{
+		type._i32 = data;
+		_data.push(type);
+	}
 
-	void set(uint64_t data, uint8_t ind = 0) { _type[ind]._u64 = data; }
+	void set(uint64_t data) 
+	{
+		type._u64 = data;
+		_data.push(type);
+	}
 
-	void set(int64_t data, uint8_t ind = 0) { _type[ind]._i64 = data; }
+	void set(int64_t data) 
+	{ 
+		type._i64 = data;
+		_data.push(type);
+	}
 
-	void set(float data, uint8_t ind = 0) { _type[ind]._float = data; }
+	void set(float data) 
+	{ 
+		type._float = data;
+		_data.push(type);
+	}
 
-	void set(double data, uint8_t ind = 0) { _type[ind]._double = data; }
+	void set(double data)
+	{ 
+		type._double = data;
+		_data.push(type);
+	}
 
 	uint8_t *copy(uint8_t* data)
 	{
-		memcpy((uint8_t *)_type, data, type_size);;
+		memcpy((uint8_t *)&type, data, type_size);
+		_data.push(type);
 		return (data + type_size);
 	}
 
 	// get
-	double get(uint8_t ind = 0)
+	double pop()
 	{
 		double val = 0;
 		switch (type_sign)
 		{
-		case TYPE_U8:val = (double)_type[ind]._u8; break;
-		case TYPE_I8:val = (double)_type[ind]._i8; break;
-		case TYPE_U16:val = (double)_type[ind]._u16; break;
-		case TYPE_I16:val = (double)_type[ind]._i16; break;
-		case TYPE_U32:val = (double)_type[ind]._u32; break;
-		case TYPE_I32:val = (double)_type[ind]._i32; break;
-		case TYPE_U64:val = (double)_type[ind]._u64; break;
-		case TYPE_I64:val = (double)_type[ind]._i64; break;
-		case TYPE_FLOAT:val = (double)_type[ind]._float; break;
-		case TYPE_DOUBLE:val = (double)_type[ind]._double; break;
+		case TYPE_U8:val = (double)_data.front()._u8; break;
+		case TYPE_I8:val = (double)_data.front()._i8; break;
+		case TYPE_U16:val = (double)_data.front()._u16; break;
+		case TYPE_I16:val = (double)_data.front()._i16; break;
+		case TYPE_U32:val = (double)_data.front()._u32; break;
+		case TYPE_I32:val = (double)_data.front()._i32; break;
+		case TYPE_U64:val = (double)_data.front()._u64; break;
+		case TYPE_I64:val = (double)_data.front()._i64; break;
+		case TYPE_FLOAT:val = (double)_data.front()._float; break;
+		case TYPE_DOUBLE:val = (double)_data.front()._double; break;
 		}
+		_data.pop();
 		return val;
+	}
+
+	int size()
+	{
+		return _data.size();
+	}
+
+	void clear()
+	{
+		queue <union_type> empty;
+		swap(empty, _data);
 	}
 };
 

@@ -84,7 +84,7 @@ public:
 	comlink()
 	{
 		memset(&m_status, 0, sizeof(m_status));
-		memset(&parse_msg, 0, sizeof(parse_msg));
+		//memset(&parse_msg, 0, sizeof(parse_msg));
 		memset(&receive_msg, 0, sizeof(receive_msg));
 		_this = this;
 	}
@@ -92,8 +92,11 @@ public:
 public:
 	static comlink *_this;
 
-	parse_status_t m_status;
+	uint8_t parse_msg_cnt = 0;
+	queue <uint8_t> parse_msg_ind;
 	message_t parse_msg[MAX_MSG_IND];
+
+	parse_status_t m_status;
 	message_t receive_msg;
 
 	static void parse_error(parse_status_t *status);

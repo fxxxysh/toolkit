@@ -24,14 +24,18 @@ DLL_API void comlink_get_msg(message_t *msg, uint8_t cnt);
 
 DLL_API uint8_t comlink_parse(uint8_t *buffer, int buffer_size);
 
-DLL_API void comlink_add_msgpart(char *name, uint8_t type_sign, uint8_t number);
+DLL_API void comlink_add_msgpart(char *name, uint8_t type_sign);
 
 DLL_API void comlink_add_msginfo(uint8_t msg_id, char *name, int map_ind, uint8_t size, uint8_t number);
 
 DLL_API int comlink_msgmap_ind();
 
-DLL_API void comlink_refresh_msgmap(uint8_t cnt);
+DLL_API void comlink_refresh_msgmap(message_t *msg);
 
 DLL_API void comlink_clear_map();
 
-DLL_API double comlink_msgpart_value(int v_ind, uint8_t a_ind);
+DLL_API double comlink_msgpart_value(int msg_ind);
+
+DLL_API int comlink_msgpart_value_cnt(int msg_ind);
+
+DLL_API void comlink_msgpart_value_clear(int msg_ind);

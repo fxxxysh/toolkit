@@ -87,11 +87,11 @@ namespace dev_toolkit.frame
                 if (_serialPort.IsOpen && serial_var.receive)
                 {
                     //test_add_data();       
-
                     if (serial_data_read())
                     {
                         parse_sign._msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
+                        //plot_refresh();
                     }
                     //serial_trans(test_send_buffer, test_send_buffer_size); 
                 }
@@ -114,68 +114,71 @@ namespace dev_toolkit.frame
                 Thread.Sleep(100);
             }
         }
-    
+
+        public void plot_refresh()
+        {
+            // 波形输出
+            for (int channel = 0; channel < parse_sign._wave_channel; channel++)
+            {
+                // 遍历通道
+                if (parse_sign._plot[channel].msg_id >= s_comlink.MSG_ID_FIX_CNT)
+                {
+                    // 获取缓存数据大小
+                    int val_cnt = s_comlink.comlink_msgpart_value_cnt(parse_sign._plot[channel].plot_id);
+                
+                    for (int val_ind = 0; val_ind < val_cnt; val_ind++)
+                    {
+                        double chanval = s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id);
+                        if ((chanval - parse_sign._plot_y[channel]) > 1)
+                        {
+                            int tt = 0;
+                        }
+                        parse_sign._plot_y[channel] = chanval;
+
+                        // plot输出
+                        _plot.Channels[channel].AddXY(parse_sign._plot_x[channel]++, parse_sign._plot_y[channel]);
+                    }
+                }
+            }
+        }
+
         public void plot_task()
         {
-            int loop = 0;
+            Thread.Sleep(200);
             while (true)
-            {
-                // 波形输出
-                for (int i = 0; i < parse_sign._msg_cnt; i++)
-                {
-                    // 获取当前包消息id
-                    byte msg_id = link.rx_msg[i].msgid; 
-
-                    if (msg_id >= s_comlink.MSG_ID_FIX_CNT)
-                    {
-                        for (int channel = 0; channel < parse_sign._wave_channel; channel++)
-                        {
-                            if (msg_id == parse_sign._plot[channel].msg_id)
-                            {
-                                parse_sign._plot_y[channel] = s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id, 0);
-                                _plot.Channels[channel].AddXY(parse_sign._plot_x[channel]++, parse_sign._plot_y[channel]);
-                            }
-                        }
-                    }
-                }
-                parse_sign._msg_cnt = 0;
-                
+            {          
                 //250ms时间戳 x轴对齐
-                if (loop++ > 10)
-                {                  
-                    loop = 0;
-                    int plot_x_max = parse_sign._plot_x.Max();
+                //int plot_x_max = parse_sign._plot_x.Max();
 
+                //for (int i = 0; i < parse_sign._channel_ind; i++)
+                //{
+                //    if ((plot_x_max - parse_sign._plot_x[i]) > 10)
+                //    {
+                //        // parse_sign._plot_x[i] = plot_x_max;
+                //    }
+                //}
+
+                if (parse_sign._channel_ind > 0)
+                {
                     for (int i = 0; i < parse_sign._channel_ind; i++)
                     {
-                        if ((plot_x_max - parse_sign._plot_x[i]) > 10)
-                        {
-                           // parse_sign._plot_x[i] = plot_x_max;
-                        }
-                    }
+                        int val = Convert.ToInt32(parse_sign._plot_y[i]);
 
-                    if (parse_sign._channel_ind > 0)
-                    {
-                        for (int i = 0; i < parse_sign._channel_ind; i++)
-                        {
-                            int val = Convert.ToInt32(parse_sign._plot_y[i]);
-
-                            if (_hander._wave.cursor_pushed == false)
-                            {
-                                _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
-                            }
-                        }
                         if (_hander._wave.cursor_pushed == false)
                         {
-                            for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
-                            {
-                                int val = 0;
-                                _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
-                            }
+                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
                         }
                     }
-                }
-                Thread.Sleep(25);
+                    if (_hander._wave.cursor_pushed == false)
+                    {
+                        for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
+                        {
+                            int val = 0;
+                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
+                        }
+                    }
+                }              
+                Thread.Sleep(200);
             }
         }
 
@@ -251,6 +254,9 @@ namespace dev_toolkit.frame
                             parse_sign._plot[channel_ind].msg_id = now_msg_id;
                             parse_sign._plot[channel_ind].plot_id = now_map_id + j - 1;
 
+                            // 清空缓存数据
+                            s_comlink.comlink_msgpart_value_clear(parse_sign._plot[channel_ind].plot_id);
+
                             channel_ind++;
                         }
                     }
@@ -291,7 +297,7 @@ namespace dev_toolkit.frame
         }
 
         // 串口读
-        public bool serial_data_read()
+        public bool serial_data_read()  //public bool serial_data_read(object sender, SerialDataReceivedEventArgs e)
         {
             bool status = false;
 

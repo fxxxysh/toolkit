@@ -120,15 +120,33 @@ namespace dev_toolkit.modules
             public void decode_msg_info(string info)
             {
                 string[] str_array = info.Split('=');
-                string[] str_part = str_array[1].Split(',');
-
-                MsgInfo msg_info = new MsgInfo(str_part.Length);
-
+                string[] str_part = str_array[1].Split(',');      
                 string msg_name = str_array[0].Split(':')[0];
                 byte msg_id = Convert.ToByte(str_array[0].Split(':')[1]);
 
+                // 上一个消息偏移
                 int msg_ind = comlink_msgmap_ind();
+
+                // 消息字节大小
                 byte msg_size = 0;
+
+                // 消息成员数量，初始
+                int part_number = str_part.Length;
+
+                // 获取消息包的成员数量，包含数组
+                foreach (string str_now in str_part)
+                {
+                    string[] part = str_now.Split(':');
+                    string part_name = part[0];
+                    int str_size = part[1].Length;
+
+                    if (str_size > 1)
+                    {
+                        part_number += (Convert.ToByte(part[1].Substring(1)) - 1);
+                    }
+                }
+
+                MsgInfo msg_info = new MsgInfo(part_number);
 
                 foreach (string str_now in str_part)
                 {
@@ -136,24 +154,30 @@ namespace dev_toolkit.modules
                     string part_name = part[0];
                     int str_size = part[1].Length;
                     byte part_type = Convert.ToByte(part[1].Substring(0, 1));
-                    byte part_number;
+                    byte part_number1 = 1;
 
+                    string name = part_name;
                     if (str_size > 1)
                     {
-                        part_number = Convert.ToByte(part[1].Substring(1));
+                        part_number1 = Convert.ToByte(part[1].Substring(1));
+                        name = part_name + 1.ToString();
                     }
-                    else
-                    {
-                        part_number = 1;
+                    
+                    for (int i = 0; i < part_number1; i++)
+                    {                     
+                        if (i > 0)
+                        {
+                            name = part_name + (i + 1).ToString();
+                        }                  
+
+                        // 消息成员信息
+                        msg_info.add_part(name, part_type);
+
+                        // 添加消息成员到comlink 消息表
+                        comlink_add_msgpart(name, part_type);
                     }
 
-                    msg_size += (byte)(part_number * commlink_get_typesize(part_type));
-
-                    // 消息成员信息
-                    msg_info.add_part(part_name, part_type, part_number);
-
-                    // 添加消息成员到comlink 消息表
-                    comlink_add_msgpart(part_name, part_type, part_number);
+                    msg_size += (byte)(part_number1 * commlink_get_typesize(part_type));
                 }
 
                 // 消息信息
@@ -308,7 +332,7 @@ namespace dev_toolkit.modules
         /// </summary>
         /// <param name="msg_cnt"></param>
         /// <returns></returns>
-        public void decode_special_msg(message_t msg)
+        public void decode_special_msg(ref message_t msg)
         {
             switch (msg.msgid)
             {
@@ -353,11 +377,11 @@ namespace dev_toolkit.modules
 
                 if (rx_msg[i].msgid < MSG_ID_FIX_CNT)
                 {
-                    decode_special_msg(rx_msg[i]);
+                    decode_special_msg(ref rx_msg[i]);
                 }
                 else
                 {
-                    comlink_refresh_msgmap(i);               
+                    comlink_refresh_msgmap(ref rx_msg[i]);               
                 }
             }
         }
