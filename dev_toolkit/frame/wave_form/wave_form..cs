@@ -67,11 +67,12 @@ namespace dev_toolkit.frame
 
         public void task()
         {
-            int loop = 0;
-            Thread.Sleep(1000);
-
-            // 通道名
-            parse_sign = _hander._serial.parse_sign;
+            int loop = 0;       
+            while (_hander._serial == null)
+            {
+                Thread.Sleep(10);
+            }
+            parse_sign = _hander._serial.parse_sign;// 通道名
 
             while (true)
             {

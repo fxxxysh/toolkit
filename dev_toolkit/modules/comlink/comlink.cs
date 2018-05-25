@@ -56,9 +56,6 @@ namespace dev_toolkit.modules
             // 首次心跳包信息
             public msg_heartbeat_s heartbeat_info;
 
-            // 连接初始化状态
-            public bool _connect_init = false;
-
             // 消息信息表
             public Dictionary<string, MsgInfo> _msg_infomap;
 
@@ -215,11 +212,6 @@ namespace dev_toolkit.modules
                 refreshVersion(_software_version, _hardware_version);
             }
 
-            bool last_connect = false; // 上一次连接状态
-            byte connect_sign = 0; // 连接标识          
-            public UInt64 last_timestamp = 0; // 上一次时间戳
-            public UInt64 last_connect_timestamp = 0; // 上一次时间戳
-
             public void pkg_trans_select(byte flag, byte msg_id, byte trans_cnt)
             {
                 message_t msg = new message_t();
@@ -233,58 +225,34 @@ namespace dev_toolkit.modules
             }
 
             // 连接后读取设备信息
-            public void connect_step(UInt64 timestamp)
+            byte connect_sign = 1; // 连接标识  
+            public void connect_get_msg()
             {
-                // 首次连接
-                if ((last_connect == false) && (_connect == true))
-                {
-                    connect_sign = 1;
-                }
-                last_connect = _connect;
-                
                 // 获取相关消息包
-                if (connect_sign > 0)
+                switch (connect_sign)
                 {
-                    switch (connect_sign)
-                    {
-                        // 获取消息包信息
-                        case 1:
-                            pkg_trans_select(MSG_SIGN_ENABLE, MSG_ID_INFO, MSG_TRANS_ONCE);
-                            if (connect_sign == 0)
-                            {
-                                last_connect_timestamp = timestamp;
-                            }
-                            connect_sign = 1;
-                            break;
-
-                        case 2:
-                            pkg_trans_select(MSG_SIGN_DISABLE, MSG_ID_VERSION, MSG_TRANS_ONCE);
-                            connect_sign = 3;
-                            break;
-                    }
-                }
-
-                // 已经连接完成
-                if (connect_sign == 1)
-                {
-                    if ((timestamp - last_connect_timestamp) > 1000) {
+                    // 获取消息包信息
+                    case 1:
+                        pkg_trans_select(MSG_SIGN_ENABLE, MSG_ID_INFO, MSG_TRANS_ONCE);
                         connect_sign = 2;
-                    }
-                }
+                        break;
+
+                    case 2:
+                        pkg_trans_select(MSG_SIGN_DISABLE, MSG_ID_VERSION, MSG_TRANS_ONCE);
+                        connect_sign = 3;
+                        break;
+
+                    case 3:
+                        _init = true; // 完成初始化过程
+                        break;
+                }           
             }
 
             // 循环调用
+            public UInt64 last_timestamp = 0; // 上一次时间戳
             public void task(UInt64 timestamp)
             {
-                if (_init != true)
-                {
-                    refreshVersion("v1.0", "v1.0");
-                    refreshDevid(SYS_ID.ToString(),"");
-
-                    last_timestamp = timestamp;
-                    _init = true;
-                }
-
+                // 超时连接失败
                 if ((timestamp - last_timestamp) > 1000)
                 {
                     if (_time_out++ > 1)
@@ -293,7 +261,11 @@ namespace dev_toolkit.modules
                     }
                     last_timestamp = timestamp;
                 }
-                connect_step(timestamp);
+
+                if ((_init == false) && (_connect == true))
+                {
+                    connect_get_msg();
+                }
             }
 
             // 心跳包处理
@@ -302,18 +274,10 @@ namespace dev_toolkit.modules
                 _time_out = 0;
                 _connect = true;
 
-                // 两次连接的id相同则掉过初始化步骤
-                if (_slave_id == msg.sysid)
+                // 更新消息包
+                if (_slave_id != msg.sysid)
                 {
-                    last_connect = _connect;
-                }
-                else if(_slave_id != 0)
-                {
-                    _connect_init = false; // 重新初始化心跳包
-                }
-
-                if (_connect_init != true)
-                {
+                    _connect = true;
                     msg_heartbeat_s msg_heartbeat = byte_to_struct<msg_heartbeat_s>(msg.payload);
 
                     heartbeat_info.type = msg_heartbeat.type;
@@ -323,7 +287,6 @@ namespace dev_toolkit.modules
                     _slave_id = msg.sysid;
 
                     refreshDevid(SYS_ID.ToString(), _slave_id.ToString());
-                    _connect_init = true;
                 }
             }
         }
