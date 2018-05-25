@@ -138,7 +138,7 @@ namespace dev_toolkit.frame
 
         public void plot_task()
         {
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
             while (true)
             {
                 //250ms时间戳 x轴对齐

@@ -180,7 +180,10 @@ namespace dev_toolkit.frame
         // 串口发送
         public void serial_trans(byte[] buffer, int size)
         {
-            _serialPort.Write(buffer, 0, size);
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.Write(buffer, 0, size);
+            }
         }
 
         // 设置串口端口列表

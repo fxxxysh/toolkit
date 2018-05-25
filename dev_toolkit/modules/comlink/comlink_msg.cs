@@ -29,6 +29,9 @@ namespace dev_toolkit.modules
         // 设备版本号 
         const byte MSG_ID_VERSION = 11;
 
+        // 参数
+        const byte MSG_ID_PARAMS = 12;
+
         // 控制基类结构体
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct link_command_s

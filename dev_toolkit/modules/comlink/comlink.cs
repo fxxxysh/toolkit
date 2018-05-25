@@ -161,14 +161,14 @@ namespace dev_toolkit.modules
                     if (str_size > 1)
                     {
                         part_number1 = Convert.ToByte(part[1].Substring(1));
-                        name = part_name + 1.ToString();
+                        name = part_name + ":" + 1.ToString();
                     }
                     
                     for (int i = 0; i < part_number1; i++)
                     {                     
                         if (i > 0)
                         {
-                            name = part_name + (i + 1).ToString();
+                            name = part_name + ":" + (i + 1).ToString();
                         }                  
 
                         // 消息成员信息
@@ -188,12 +188,12 @@ namespace dev_toolkit.modules
                 _msg_infomap.Add(msg_name, msg_info);
 
                 // 添加消息信息到comlink 信息表,键值为消息id
-                comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)str_part.Length);
+                comlink_add_msginfo(msg_id, msg_name, msg_ind, msg_size, (byte)part_number);
 
                 // 更新消息表
-                string[] msg_list = new string[str_part.Length];
+                string[] msg_list = new string[part_number];
 
-                for (int i = 0; i < str_part.Length; i++)
+                for (int i = 0; i < part_number; i++)
                 {
                     msg_list[i] = msg_info._part[i].part_name;
                 }
