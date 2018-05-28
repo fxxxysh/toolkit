@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="dev\nav\NavBar.cs" />
     <Compile Include="dev\nav\NavMsg.cs" />
+    <Compile Include="dev\nav\NavParams.cs" />
     <Compile Include="dev\ribbon\DevRibbon.cs" />
     <Compile Include="dev_toolkit.cs">
       <SubType>Form</SubType>

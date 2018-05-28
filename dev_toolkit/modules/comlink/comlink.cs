@@ -75,8 +75,11 @@ namespace dev_toolkit.modules
             public event Action<string, string> refreshDevid;
 
             // 更新消息
-            public event Action<string, string[]> refreshMsglist;
-            
+            public event Action<string, string[]> refreshMsgList;
+
+            // 更新参数
+            public event Action<string, string[]> refreshParamsList;
+
             // 清除消息
             public event Action clearMsglist;
 
@@ -195,7 +198,14 @@ namespace dev_toolkit.modules
                     msg_list[i] = msg_info._part[i].part_name;
                 }
 
-                refreshMsglist(msg_name, msg_list);
+                if (msg_id >= MSG_ID_FIX_CNT && msg_id < MSG_ID_MSG_PARAMS_CNT)
+                {
+                    refreshMsgList(msg_name, msg_list);
+                }
+                else if(msg_id >= MSG_ID_MSG_PARAMS_CNT && msg_id < 40)
+                {
+                    refreshParamsList(msg_name, msg_list);
+                }
             }
 
             /// <summary>

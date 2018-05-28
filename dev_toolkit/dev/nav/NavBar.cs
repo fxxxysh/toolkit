@@ -13,6 +13,8 @@ namespace dev_toolkit.dev
     public class NavBar
     {
         public NavMsg _nav_msg;
+        public NavParams _nav_params;
+
         private NavigationFrame _nav_frame;
         private nav_page_s[] _page_list;
 
@@ -25,7 +27,9 @@ namespace dev_toolkit.dev
             _nav = _hander._nav;
             _page_list = _hander._page_list;
             _nav_frame = _hander._nav_frame;
+
             _nav_msg = new NavMsg(_hander);
+            _nav_params = new NavParams(_hander);
 
             init();
         }

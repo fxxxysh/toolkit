@@ -68,7 +68,9 @@ namespace dev_toolkit.frame
                 link.comlink_connect.refreshVersion += _hander.refresh_version;
                 link.comlink_connect.refreshDevid += _hander.refresh_devid;
 
-                link.comlink_connect.refreshMsglist += _hander._nav_bar._nav_msg.nav_creat_msg;
+                link.comlink_connect.refreshMsgList += _hander._nav_bar._nav_msg.nav_creat_msg;
+                link.comlink_connect.refreshParamsList += _hander._nav_bar._nav_params.nav_creat_msg;
+
                 link.comlink_connect.clearMsglist += _hander._nav_bar._nav_msg.nav_clear_msglist;
 
                 link.clear_map();

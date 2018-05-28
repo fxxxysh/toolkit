@@ -23,6 +23,8 @@ namespace dev_toolkit.modules
 
         public const byte MSG_ID_FIX_CNT = 20;
 
+        public const byte MSG_ID_MSG_PARAMS_CNT = 30;
+
         // 用于更新消息包信息, string结构
         const byte MSG_ID_INFO = 10;
 

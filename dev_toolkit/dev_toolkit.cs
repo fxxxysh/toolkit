@@ -95,6 +95,12 @@ namespace dev_toolkit
             set { in_nav_msg = value; }
         }
 
+        public NavBarControl _nav_params
+        {
+            get { return in_nav_params; }
+            set { in_nav_params = value; }
+        }
+
         public bool _connect_status
         {
             get { return connect_status.ShowImageInToolbar; }
