@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraEditors;
@@ -9,10 +10,49 @@ using DevExpress.XtraEditors.Controls;
 
 namespace dev_toolkit.dev
 {
+    public class ParamsInfo
+    {
+        public string name; // 消息名
+        public List<string> item; //成员名
+        public int item_cnt; //成员数
+        public DataTable dt; // 表
+
+        public ParamsInfo(string name, DataTable dt)
+        {
+            item = new List<string>();
+            this.name = name;
+            this.dt = dt;
+        }
+
+        public void add(string item)
+        {
+            this.item.Add(item);
+            this.item_cnt++;
+        }
+
+        public float get_value(int ind)
+        {
+            return (float)dt.Rows[ind][1];
+        }
+
+        public void set_value(int ind, float value)
+        {
+            dt.Rows[ind][1] = value;
+        }
+    }
+
     public class NavParams
     {
+        PageParams _page_params;
         public ListBoxControl[] _list = new ListBoxControl[50];
+        public Dictionary<string, ParamsInfo> _params_info = new Dictionary<string, ParamsInfo>();
         public byte _list_cnt = 0;
+
+        //public DataTable[] _dt_list
+        //{
+        //    get { return _page_params._dt_list; }
+        //    set { _page_params._dt_list = value; }
+        //}
 
         public struct nav_msg_s
         {
@@ -31,7 +71,6 @@ namespace dev_toolkit.dev
                 {
                     _item[i] = new CheckedListBoxItem("null");
                 }
-
                 //_item[0].Description = "ENABLE";
             }
         }
@@ -43,18 +82,39 @@ namespace dev_toolkit.dev
         {
             _hander = (dev_toolkit)sender;
             _nav_msg = _hander._nav_params;
+            _page_params = new PageParams(_hander._nav_params_page);
         }
 
+        int table_ind = 0;
         public void nav_creat_msg(string name, string[] item)
         {
             int msg_size = item.Length;
             nav_msg_s msg = new nav_msg_s(name, msg_size);
 
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ITEM", typeof(string));
+            dt.Columns.Add("VALUE", typeof(float));
+
+            ParamsInfo p_info = new ParamsInfo(name, dt);
+
             for (int i = 0; i < msg_size; i++)
             {
                 msg._item[i].Description = item[i];
+                dt.Rows.Add(new object[] { item[i], 0 });
+
+                // 添加成员
+                p_info.add(item[i]);
             }
+
+            // 导航栏添加参数消息
             creat_msg(name, msg);
+
+            // 添加表格
+            _page_params.creat_grid(name, dt);
+
+            // 表指示器累加
+            table_ind++;
+            _params_info.Add(name, p_info);
         }
 
         public void creat_msg(string name, nav_msg_s msg_list)

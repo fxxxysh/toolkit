@@ -36,10 +36,14 @@
       <HintPath>..\toolkit\lib\Iocomp\plot\bin\Debug\common.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="plot">
       <HintPath>..\toolkit\lib\Iocomp\plot\bin\Debug\plot.dll</HintPath>
     </Reference>
@@ -65,6 +69,9 @@
     <Compile Include="dev\nav\NavBar.cs" />
     <Compile Include="dev\nav\NavMsg.cs" />
     <Compile Include="dev\nav\NavParams.cs" />
+    <Compile Include="dev\page\PageData.cs" />
+    <Compile Include="dev\page\PageMain.cs" />
+    <Compile Include="dev\page\PageParams.cs" />
     <Compile Include="dev\ribbon\DevRibbon.cs" />
     <Compile Include="dev_toolkit.cs">
       <SubType>Form</SubType>

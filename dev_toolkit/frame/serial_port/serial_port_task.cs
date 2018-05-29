@@ -9,6 +9,7 @@ using DevExpress.XtraNavBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 
+using dev_toolkit.dev;
 using dev_toolkit.modules;
 
 namespace dev_toolkit.frame
@@ -17,8 +18,13 @@ namespace dev_toolkit.frame
     {
         s_comlink link = null;
         public ParseSign parse_sign = new ParseSign();
-
         byte slave_id = 0;
+
+        public Dictionary<string, ParamsInfo> _params_info
+        {
+            get { return _hander._nav_bar._nav_params._params_info; }
+            set { _hander._nav_bar._nav_params._params_info = value; }
+        }
 
         public class ParseSign
         {
@@ -136,6 +142,22 @@ namespace dev_toolkit.frame
                     }
                 }
             }
+
+            if (link.comlink_connect._msg_infomap.ContainsKey("pACC"))
+            {
+                            _params_info["pACC"].set_value(1,(float) 11.3);
+            }
+
+
+            // 参数更新
+            //if (msg_id >= s_comlink.MSG_ID_FIX_CNT && msg_id < s_comlink.MSG_ID_MSG_PARAMS_CNT)
+            //    if (msg_id >= MSG_ID_FIX_CNT && msg_id < MSG_ID_MSG_PARAMS_CNT)
+            //{
+            //    refreshMsgList(msg_name, msg_list);
+            //}
+            //else if (msg_id >= MSG_ID_MSG_PARAMS_CNT && msg_id < 40)
+            //{
+            //    r
         }
 
         public void plot_task()

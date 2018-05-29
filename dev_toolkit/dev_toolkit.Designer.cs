@@ -81,7 +81,6 @@
             this.navigationPage8 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.nav_control_page = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.nav_params_page = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.kit_nav_frame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.nav_data_page = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -133,7 +132,6 @@
             this.panel1.SuspendLayout();
             this.nav_wave_page.SuspendLayout();
             this.nav_control_page.SuspendLayout();
-            this.nav_params_page.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_frame)).BeginInit();
             this.kit_nav_frame.SuspendLayout();
             this.nav_data_page.SuspendLayout();
@@ -624,22 +622,16 @@
             this.nav_control_page.Name = "nav_control_page";
             this.nav_control_page.Size = new System.Drawing.Size(802, 449);
             // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(359, 217);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(98, 14);
-            this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "nav_params_page";
-            // 
             // nav_params_page
             // 
-            this.nav_params_page.Controls.Add(this.labelControl2);
+            this.nav_params_page.AutoScroll = true;
             this.nav_params_page.Name = "nav_params_page";
             this.nav_params_page.Size = new System.Drawing.Size(802, 449);
             // 
             // kit_nav_frame
             // 
+            this.kit_nav_frame.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.kit_nav_frame.Appearance.Options.UseBackColor = true;
             this.kit_nav_frame.Controls.Add(this.navigationPage1);
             this.kit_nav_frame.Controls.Add(this.nav_wave_page);
             this.kit_nav_frame.Controls.Add(this.nav_data_page);
@@ -1001,7 +993,6 @@
             // 
             this.nav_params.Caption = "参数";
             this.nav_params.ControlContainer = this.navBarGroupControlContainer6;
-            this.nav_params.Expanded = true;
             this.nav_params.GroupClientHeight = 80;
             this.nav_params.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.nav_params.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("nav_params.ImageOptions.LargeImage")));
@@ -1085,6 +1076,7 @@
             // 
             this.nav_wave.Caption = "波形";
             this.nav_wave.ControlContainer = this.navBarGroupControlContainer1;
+            this.nav_wave.Expanded = true;
             this.nav_wave.GroupClientHeight = 80;
             this.nav_wave.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.nav_wave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("nav_wave.ImageOptions.LargeImage")));
@@ -1093,7 +1085,7 @@
             // 
             // kit_nav_bar
             // 
-            this.kit_nav_bar.ActiveGroup = this.nav_params;
+            this.kit_nav_bar.ActiveGroup = this.nav_wave;
             this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer1);
             this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer5);
             this.kit_nav_bar.Controls.Add(this.navBarGroupControlContainer6);
@@ -1134,8 +1126,6 @@
             this.nav_wave_page.ResumeLayout(false);
             this.nav_control_page.ResumeLayout(false);
             this.nav_control_page.PerformLayout();
-            this.nav_params_page.ResumeLayout(false);
-            this.nav_params_page.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_frame)).EndInit();
             this.kit_nav_frame.ResumeLayout(false);
             this.nav_data_page.ResumeLayout(false);
@@ -1198,7 +1188,6 @@
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage8;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraBars.Navigation.NavigationPage nav_control_page;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraBars.Navigation.NavigationPage nav_params_page;
         private DevExpress.XtraBars.Navigation.NavigationFrame kit_nav_frame;
         private DevExpress.XtraBars.Navigation.NavigationPage nav_data_page;

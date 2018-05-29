@@ -101,6 +101,18 @@ namespace dev_toolkit
             set { in_nav_params = value; }
         }
 
+        public NavigationPage _nav_params_page
+        {
+            get { return nav_params_page; }
+            set { nav_params_page = value; }
+        }
+
+        public NavigationPage _nav_data_page
+        {
+            get { return nav_data_page; }
+            set { nav_data_page = value; }
+        }
+
         public bool _connect_status
         {
             get { return connect_status.ShowImageInToolbar; }
@@ -120,6 +132,7 @@ namespace dev_toolkit
 
         public DevRibbon _dev_ribbon;
         public NavBar _nav_bar;
+        public PageMain _page_main;
         public serial_port _serial;
         public wave_form _wave;
 
@@ -176,6 +189,9 @@ namespace dev_toolkit
 
             // 导航栏
             _nav_bar = new NavBar(this);
+
+            // navframe
+            _page_main = new PageMain(this);
 
             // 曲线
             _wave = new wave_form(this);
