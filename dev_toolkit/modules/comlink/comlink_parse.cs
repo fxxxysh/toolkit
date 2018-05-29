@@ -56,6 +56,15 @@ namespace dev_toolkit.modules
         [DllImport(dll_path, EntryPoint = "comlink_msgpart_value_clear", CallingConvention = CallingConvention.Cdecl)]
         public static extern void comlink_msgpart_value_clear(int msg_ind);
 
+        [DllImport(dll_path, EntryPoint = "comlink_pop_msg", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_pop_msg();
+
+        [DllImport(dll_path, EntryPoint = "comlink_get_msgid", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte comlink_get_msgid();
+
+        [DllImport(dll_path, EntryPoint = "comlink_get_msgname", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void comlink_get_msgname(byte msg_id, byte []name);
+
         // 帧头
         const int STX = 0xFE;
 

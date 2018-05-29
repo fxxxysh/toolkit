@@ -17,6 +17,9 @@ namespace dev_toolkit.modules
         //public message_t[] rx_msg = new message_t[MAX_MSG_IND];
         message_t rx_msg_buffer = new message_t();
 
+        // 更新参数表
+        public event Action<byte> refreshParamsTable;
+
         public enum connect_state_t
         {
             CONNECT_STATE_UNINIT = 0,
@@ -227,7 +230,7 @@ namespace dev_toolkit.modules
                 message_t msg = new message_t();
                 msg_control_s control = new msg_control_s();
 
-                control.ctl_msg_trans.flag = 1;
+                control.ctl_msg_trans.flag = flag;
                 control.ctl_msg_trans.id = msg_id;
                 control.ctl_msg_trans.trans_cnt = trans_cnt;
 
@@ -248,11 +251,23 @@ namespace dev_toolkit.modules
                         break;
 
                     case 2:
-                        pkg_trans_select(MSG_SIGN_DISABLE, MSG_ID_VERSION, MSG_TRANS_ONCE);
+                        pkg_trans_select(MSG_SIGN_ENABLE, MSG_ID_VERSION, MSG_TRANS_ONCE);
                         connect_sign = 3;
                         break;
 
                     case 3:
+                        pkg_trans_select(MSG_SIGN_ENABLE, 30, MSG_TRANS_ONCE);
+                        Thread.Sleep(50);
+                        pkg_trans_select(MSG_SIGN_ENABLE, 31, MSG_TRANS_ONCE);
+                        Thread.Sleep(50);
+                        pkg_trans_select(MSG_SIGN_ENABLE, 32, MSG_TRANS_ONCE);
+                        Thread.Sleep(50);
+                        pkg_trans_select(MSG_SIGN_ENABLE, 33, MSG_TRANS_ONCE);
+                        Thread.Sleep(50);
+                        connect_sign = 4;
+                        break;
+
+                    case 4:
                         _init = true; // 完成初始化过程
                         break;
                 }           
@@ -345,12 +360,30 @@ namespace dev_toolkit.modules
         public void pkg_decode(byte msg_cnt)
         {    
             for (byte i = 0; i < msg_cnt; i++)
-            {         
-                // 小于MSG_ID_FIX_CNT保留尾部数据
-                comlink_get_msg(ref rx_msg_buffer);
+            {
+                byte msg_id = comlink_get_msgid();
 
-                // fifo拆包
-                decode_special_msg(ref rx_msg_buffer);             
+                if (msg_id < MSG_ID_FIX_CNT)
+                {
+                    // 小于MSG_ID_FIX_CNT保留尾部数据
+                    comlink_get_msg(ref rx_msg_buffer);
+
+                    // fifo拆包
+                    decode_special_msg(ref rx_msg_buffer);
+                }
+                else if (msg_id < MSG_ID_MSG_PARAMS_CNT)
+                {
+                    // plot task 处理
+                    
+                }
+                else if (msg_id < MSG_ID_MSG_OTHER_CNT)
+                {
+                    // 参数
+                    refreshParamsTable(msg_id);
+                }
+
+                // 清除当前消息包
+                comlink_pop_msg();
             }
         }
 

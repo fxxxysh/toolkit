@@ -14,3 +14,6 @@ EXPORTS
 	comlink_msgpart_value
 	comlink_msgpart_value_cnt
 	comlink_msgpart_value_clear
+	comlink_pop_msg
+	comlink_get_msgid
+	comlink_get_msgname

@@ -79,6 +79,8 @@ namespace dev_toolkit.frame
 
                 link.comlink_connect.clearMsglist += _hander._nav_bar._nav_msg.nav_clear_msglist;
 
+                link.refreshParamsTable += params_refresh;
+
                 link.clear_map();
             }
 
@@ -121,6 +123,44 @@ namespace dev_toolkit.frame
                 Thread.Sleep(100);
             }
         }
+        
+        // 刷新参数表
+        public void params_refresh(byte msg_id)
+        {
+            //if (link.comlink_connect._msg_infomap.ContainsKey("pACC"))
+            {
+                _hander.Invoke(new Action(() =>
+                {
+                    // 由消息id获取消息名
+                    byte[] name = new byte[20];
+                    s_comlink.comlink_get_msgname(msg_id, name);
+
+                    string msg_name = System.Text.Encoding.UTF8.GetString(name);
+                    msg_name = msg_name.Replace("\0", "");
+
+                    // 消息偏移
+                    int now_map_id = link.comlink_connect._msg_infomap[msg_name]._map_ind;
+
+                    // 消息成员个数
+                    int part_number = link.comlink_connect._msg_infomap[msg_name]._number;
+
+                    // 获取缓存数据个数
+                    int val_number = s_comlink.comlink_msgpart_value_cnt(now_map_id);
+
+                    for (int val_ind = 0; val_ind < val_number; val_ind++)
+                    {
+                        for (int table_ind = 0; table_ind < part_number; table_ind++)
+                        {
+                            // 获取消息解析表数据
+                            double channel_val = s_comlink.comlink_msgpart_value(now_map_id + table_ind);
+
+                            // 更新表格
+                            _params_info[msg_name].set_value(table_ind, (float)channel_val);
+                        }
+                    }
+                }));
+        }
+        }
 
         public void plot_refresh()
         {
@@ -142,22 +182,6 @@ namespace dev_toolkit.frame
                     }
                 }
             }
-
-            if (link.comlink_connect._msg_infomap.ContainsKey("pACC"))
-            {
-                            _params_info["pACC"].set_value(1,(float) 11.3);
-            }
-
-
-            // 参数更新
-            //if (msg_id >= s_comlink.MSG_ID_FIX_CNT && msg_id < s_comlink.MSG_ID_MSG_PARAMS_CNT)
-            //    if (msg_id >= MSG_ID_FIX_CNT && msg_id < MSG_ID_MSG_PARAMS_CNT)
-            //{
-            //    refreshMsgList(msg_name, msg_list);
-            //}
-            //else if (msg_id >= MSG_ID_MSG_PARAMS_CNT && msg_id < 40)
-            //{
-            //    r
         }
 
         public void plot_task()
