@@ -67,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="device\gnss\gnss_main.cs" />
+    <Compile Include="device\gnss\gyro_calib.cs" />
     <Compile Include="dev\nav\NavBar.cs" />
     <Compile Include="dev\nav\NavMsg.cs" />
     <Compile Include="dev\nav\NavParams.cs" />
@@ -135,7 +137,6 @@
     <None Include="Resources\stop_16x16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="device\gnss\" />
     <Folder Include="modules\comlink\test\" />
     <Folder Include="modules\logger\" />
     <Folder Include="modules\wave\" />
