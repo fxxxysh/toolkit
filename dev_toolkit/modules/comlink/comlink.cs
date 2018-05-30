@@ -86,6 +86,8 @@ namespace dev_toolkit.modules
             // 清除消息
             public event Action clearMsglist;
 
+            public List<byte>[] link_msg_count = new List<byte>[10];
+
             public bool _link_status
             {
                 get { return _connect; }
@@ -95,6 +97,11 @@ namespace dev_toolkit.modules
             public comlink_connect_t()
             {
                 _msg_infomap = new Dictionary<string, MsgInfo>();
+
+                for (int i = 0; i < 10; i++)
+                {
+                    link_msg_count[i] = new List<byte>();
+                }
             }
 
             /// <summary>
@@ -204,10 +211,12 @@ namespace dev_toolkit.modules
                 if (msg_id >= MSG_ID_FIX_CNT && msg_id < MSG_ID_MSG_PARAMS_CNT)
                 {
                     refreshMsgList(msg_name, msg_list);
+                    link_msg_count[1].Add(msg_id);
                 }
-                else if(msg_id >= MSG_ID_MSG_PARAMS_CNT && msg_id < 40)
+                else if(msg_id >= MSG_ID_MSG_PARAMS_CNT && msg_id < MSG_ID_MSG_OTHER_CNT)
                 {
                     refreshParamsList(msg_name, msg_list);
+                    link_msg_count[2].Add(msg_id);
                 }
             }
 
@@ -256,14 +265,13 @@ namespace dev_toolkit.modules
                         break;
 
                     case 3:
-                        pkg_trans_select(MSG_SIGN_ENABLE, 30, MSG_TRANS_ONCE);
-                        Thread.Sleep(50);
-                        pkg_trans_select(MSG_SIGN_ENABLE, 31, MSG_TRANS_ONCE);
-                        Thread.Sleep(50);
-                        pkg_trans_select(MSG_SIGN_ENABLE, 32, MSG_TRANS_ONCE);
-                        Thread.Sleep(50);
-                        pkg_trans_select(MSG_SIGN_ENABLE, 33, MSG_TRANS_ONCE);
-                        Thread.Sleep(50);
+
+                        int count = link_msg_count[2].Count;
+                        for (int i = 0; i < count; i++)
+                        {
+                            pkg_trans_select(MSG_SIGN_ENABLE, link_msg_count[2][i], MSG_TRANS_ONCE);
+                            Thread.Sleep(40);
+                        }
                         connect_sign = 4;
                         break;
 
