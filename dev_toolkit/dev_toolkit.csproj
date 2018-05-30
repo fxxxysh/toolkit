@@ -35,6 +35,7 @@
     <Reference Include="common">
       <HintPath>..\toolkit\lib\Iocomp\plot\bin\Debug\common.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.BonusSkins.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -189,6 +190,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tag_32x323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hideproduct_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\showproduct_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expandcollapse_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expandcollapse_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expandcollapse_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigate_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigate_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewsetting_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expandcollapse_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelright_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\showproduct_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigate_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigate_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewsetting_32x321.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

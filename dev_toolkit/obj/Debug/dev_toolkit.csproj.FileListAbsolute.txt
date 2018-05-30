@@ -197,3 +197,4 @@ C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\de\DevExpress.Office.v17.
 C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\es\DevExpress.Office.v17.2.Core.resources.dll
 C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\ja\DevExpress.Office.v17.2.Core.resources.dll
 C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\ru\DevExpress.Office.v17.2.Core.resources.dll
+F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\bin\Debug\DevExpress.BonusSkins.v17.2.dll

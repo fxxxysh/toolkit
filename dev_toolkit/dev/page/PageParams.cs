@@ -38,7 +38,7 @@ namespace dev_toolkit
                 //int row_number = 3;
 
                 int grid_width = 179;
-                int grid_height = 258;
+                int grid_height = 258 * 2;
                 int idel_width = 17;
                 int idel_height = 20;
                 int row_number = 4;
@@ -49,7 +49,7 @@ namespace dev_toolkit
 
                 _page.Controls.Add(gridControl);
 
-                gridControl.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top);
+                gridControl.Anchor = System.Windows.Forms.AnchorStyles.None;// (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top);
 
                 gridControl.Location = new System.Drawing.Point(loction_x, loction_y);
                 gridControl.MainView = bandedGridView;

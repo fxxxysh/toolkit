@@ -16,7 +16,7 @@ namespace dev_toolkit.dev
         public NavParams _nav_params;
 
         private NavigationFrame _nav_frame;
-        private nav_page_s[] _page_list;
+        private Dictionary<string, NavigationPage> _page_list;
 
         private dev_toolkit _hander;
         private NavBarControl _nav;
@@ -36,15 +36,6 @@ namespace dev_toolkit.dev
 
         public void init()
         {
-            // 设置页面索引
-            _hander.Invoke(new Action(() => 
-            {
-                _page_list[0].ind.TopVisibleLinkIndex = 0;
-                _page_list[1].ind.TopVisibleLinkIndex = 1;
-                _page_list[2].ind.TopVisibleLinkIndex = 2;
-                _page_list[3].ind.TopVisibleLinkIndex = 3;
-            }));
-
             // 禁止页面过渡效果
             _nav_frame.Invoke(new Action(() =>
             {
@@ -62,9 +53,10 @@ namespace dev_toolkit.dev
             _nav.ActiveGroupChanged += new NavBarGroupEventHandler(nav_page_change);
         }
 
+        // 切换页面
         public void nav_page_change(object sender, NavBarGroupEventArgs e)
         {
-            _nav_frame.SelectedPage = _page_list[e.Group.TopVisibleLinkIndex].page;
+            _nav_frame.SelectedPage = _page_list[e.Group.Caption];
         }
     }
 }

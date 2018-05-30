@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -125,8 +126,10 @@ namespace dev_toolkit
             set { connect_status = value; }
         }
 
+        // 页面切换 
+        public Dictionary<string, NavigationPage> _page_list = new Dictionary<string, NavigationPage>();
+
         // 控件集合
-        public nav_page_s[] _page_list;
         public ribbom_connect_s _ribbom_connect;
         public serial_connect_s _serial_connect;
 
@@ -159,13 +162,10 @@ namespace dev_toolkit
             }
 
             // 添加页面
-            _page_list = new nav_page_s[]
-            {
-                new nav_page_s(nav_wave_page, nav_wave),
-                new nav_page_s(nav_data_page, nav_data),
-                new nav_page_s(nav_params_page, nav_params),
-                new nav_page_s(nav_control_page, nav_control)
-            };
+            _page_list["波形"] = nav_wave_page;
+            _page_list["数据"] = nav_data_page;
+            _page_list["参数"] = nav_params_page;
+            _page_list["控制"] = nav_control_page;
 
             // 串口操作相关控件
             _serial_connect = new serial_connect_s(

@@ -163,6 +163,46 @@ namespace dev_toolkit.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap expandcollapse_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("expandcollapse_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap expandcollapse_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("expandcollapse_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap expandcollapse_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("expandcollapse_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap expandcollapse_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("expandcollapse_32x321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap group_32x32 {
             get {
                 object obj = ResourceManager.GetObject("group_32x32", resourceCulture);
@@ -176,6 +216,46 @@ namespace dev_toolkit.Properties {
         internal static System.Drawing.Bitmap group2_32x32 {
             get {
                 object obj = ResourceManager.GetObject("group2_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap hideproduct_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("hideproduct_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap list_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("list_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap list_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("list_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap list_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("list_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,6 +293,56 @@ namespace dev_toolkit.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap navigate_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("navigate_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap navigate_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("navigate_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap navigate_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("navigate_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap navigate_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("navigate_32x321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap panelright_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("panelright_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap play_16x16 {
             get {
                 object obj = ResourceManager.GetObject("play_16x16", resourceCulture);
@@ -226,6 +356,26 @@ namespace dev_toolkit.Properties {
         internal static System.Drawing.Bitmap play_32x32 {
             get {
                 object obj = ResourceManager.GetObject("play_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap showproduct_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("showproduct_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap showproduct_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("showproduct_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -286,6 +436,26 @@ namespace dev_toolkit.Properties {
         internal static System.Drawing.Bitmap tag_32x323 {
             get {
                 object obj = ResourceManager.GetObject("tag_32x323", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap viewsetting_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("viewsetting_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap viewsetting_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("viewsetting_32x321", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

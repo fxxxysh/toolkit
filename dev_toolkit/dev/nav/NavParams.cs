@@ -142,6 +142,7 @@ namespace dev_toolkit.dev
                 _nav_msg.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] { bar_group });
                 _nav_msg.Controls.Add(bar_container);
 
+                bar_group.ImageOptions.SmallImage = global::dev_toolkit.Properties.Resources.list_16x16;
                 bar_group.Caption = msg_list._name;
                 bar_group.ControlContainer = bar_container;
                 bar_group.Expanded = false;
