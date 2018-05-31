@@ -239,9 +239,9 @@ namespace dev_toolkit.modules
                 message_t msg = new message_t();
                 msg_control_s control = new msg_control_s();
 
-                control.ctl_msg_trans.flag = flag;
-                control.ctl_msg_trans.id = msg_id;
-                control.ctl_msg_trans.trans_cnt = trans_cnt;
+                control.msg_trans.flag = flag;
+                control.msg_trans.module = msg_id;
+                control.msg_trans.command = trans_cnt;
 
                 pkg_trans(ref msg, control, _slave_id, MSG_ID_CONTROL);
             }

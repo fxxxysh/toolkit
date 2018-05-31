@@ -36,15 +36,15 @@ namespace dev_toolkit.modules
         // 参数
         const byte MSG_ID_PARAMS = 12;
 
-        // 控制基类结构体
+        // 控制结构体
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct link_command_s
+        public struct lingk_commander_s
         {
             public byte flag; // 控制标志，0禁用，1使能
-            public byte id;
+            public byte module;
 
-            public byte trans_cnt; //传输次数, OXFF为连续发送
-            public byte idle; 
+            public byte command; 
+            public byte idle; // 备用
         };
 
         // 心跳包，1hz
@@ -73,7 +73,33 @@ namespace dev_toolkit.modules
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct msg_control_s
         {
-            public link_command_s ctl_msg_trans; // 消息包发送控制 code1:消息id, id < 20 则 code2:传输次数 255一直发送
+            /**
+              * @brief  系统控制
+              * @part   module 0 重启 
+              * @part   command 
+              */
+            public lingk_commander_s system_ctl;
+
+            /**
+              * @brief  消息报传输控制
+              * @part   module 消息id
+              * @part   command 传输次数, MSG_TRANS_ON/MSG_TRANS_OFF/MSG_TRANS_ONCE
+              */
+            public lingk_commander_s msg_trans;
+
+            /**
+              * @brief  校准控制命令
+              * @part   module  0 陀螺仪， 1加速度计，2地磁，3水平
+              * @part   command 指令集
+              */
+            public lingk_commander_s calib;
+
+            /**
+              * @brief  陀螺校准控制
+              * @part   module  0 陀螺仪， 1加速度计，2地磁，3水平
+              * @part   command 指令集
+              */
+            public lingk_commander_s calib_ctl;
         }
     }
 }
