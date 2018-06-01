@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="device\gnss\gnss_main.cs" />
+    <Compile Include="device\gnss\dev_gnss.cs" />
     <Compile Include="device\gnss\gyro_calib.cs" />
     <Compile Include="dev\nav\NavBar.cs" />
     <Compile Include="dev\nav\NavMsg.cs" />

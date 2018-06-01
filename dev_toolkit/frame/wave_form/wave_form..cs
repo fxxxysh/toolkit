@@ -72,7 +72,7 @@ namespace dev_toolkit.frame
             {
                 Thread.Sleep(10);
             }
-            parse_sign = _hander._serial.parse_sign;// 通道名
+            parse_sign = _hander._serial._parse_sign;// 通道名
 
             while (true)
             {

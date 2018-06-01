@@ -27,6 +27,9 @@ namespace dev_toolkit.modules
 
         public const byte MSG_ID_MSG_OTHER_CNT = 40;
 
+        // 打印信息, string结构
+        const byte MSG_ID_COUT = 3;
+
         // 用于更新消息包信息, string结构
         const byte MSG_ID_INFO = 10;
 

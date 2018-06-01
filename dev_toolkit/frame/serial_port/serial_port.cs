@@ -112,17 +112,15 @@ namespace dev_toolkit.frame
             _plot = _hander._plot;
 
             serial_connect = _hander._serial_connect;
-
-            mode_init();
+    
             event_init();
             serial_init();
             parse_init();
+            mode_init();
         }
 
         void mode_init()
         {
-            _serialPort = new SerialPort();
-
             //串口解析任务
             Thread th = new Thread(parse_task)
             { Priority = ThreadPriority.Highest, IsBackground = true };
@@ -148,6 +146,7 @@ namespace dev_toolkit.frame
 
         void serial_init()
         {
+            _serialPort = new SerialPort();
             _serialPort.Encoding = Encoding.Default; //能够发送中文
             _serialPort.DataBits = 8; //数据位
             _serialPort.Parity = Parity.None; //无校验

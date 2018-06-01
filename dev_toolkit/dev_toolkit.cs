@@ -4,10 +4,12 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using dev_toolkit.dev;
+using dev_toolkit.device;
 using dev_toolkit.frame;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraNavBar;
 using Iocomp.Classes;
@@ -17,6 +19,24 @@ namespace dev_toolkit
 {
     public partial class dev_toolkit : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        public void Initialize()
+        {
+            this.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gyro_calib_groupControl)).BeginInit();
+            DevExpress.XtraEditors.SimpleButton ttgyro_calib_Button1 = new DevExpress.XtraEditors.SimpleButton();
+            ttgyro_calib_Button1.AllowFocus = false;
+            ttgyro_calib_Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            ttgyro_calib_Button1.Location = new System.Drawing.Point(27, 30);
+            ttgyro_calib_Button1.Name = "ttgyro_calib_Button1";
+            ttgyro_calib_Button1.Size = new System.Drawing.Size(80, 25);
+            ttgyro_calib_Button1.TabIndex = 11;
+            ttgyro_calib_Button1.Text = "123342534346653";
+
+            this.gyro_calib_groupControl.Controls.Add(ttgyro_calib_Button1);
+            ((System.ComponentModel.ISupportInitialize)(this.gyro_calib_groupControl)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
         // 防止界面切换闪烁
         protected override CreateParams CreateParams
         {
@@ -126,6 +146,13 @@ namespace dev_toolkit
             set { connect_status = value; }
         }
 
+        // 陀螺校准相关
+        public GroupControl _gyro_calib_groupControl
+        {
+            get { return gyro_calib_groupControl; }
+            set { gyro_calib_groupControl = value; }
+        }
+
         // 页面切换 
         public Dictionary<string, NavigationPage> _page_list = new Dictionary<string, NavigationPage>();
 
@@ -138,10 +165,12 @@ namespace dev_toolkit
         public PageMain _page_main;
         public serial_port _serial;
         public wave_form _wave;
+        public dev_gnss _dev_gnss = new dev_gnss();
 
         public dev_toolkit()
-        {
+        {            
             InitializeComponent();
+            //Initialize();
 
             Thread th_start = new Thread(start)
             { Priority = ThreadPriority.BelowNormal, IsBackground = true };
@@ -198,6 +227,8 @@ namespace dev_toolkit
 
             // 串口操作
             _serial = new serial_port(this);
+
+            _dev_gnss.init(this);
 
             Thread.CurrentThread.Abort();
         }

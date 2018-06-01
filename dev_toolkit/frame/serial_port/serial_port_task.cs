@@ -11,14 +11,15 @@ using DevExpress.XtraEditors.Controls;
 
 using dev_toolkit.dev;
 using dev_toolkit.modules;
+using static dev_toolkit.modules.s_comlink;
 
 namespace dev_toolkit.frame
 {
     public partial class serial_port
     {
-        s_comlink link = null;
-        public ParseSign parse_sign = new ParseSign();
-        byte slave_id = 0;
+        public s_comlink _link = null;
+        public ParseSign _parse_sign = new ParseSign();
+        byte last_slave_id = 0;
 
         public Dictionary<string, ParamsInfo> _params_info
         {
@@ -58,38 +59,49 @@ namespace dev_toolkit.frame
             }
         }
 
+        // 指令传输
+        public void command_trans(msg_control_s structure)
+        {
+            _link.command_trans(structure);
+        }
+
+        // 与plot打印相关
         public void parse_init()
         {
-            parse_sign._wave_channel = _hander._wave.channel_max;
-            parse_sign.init();
+            _parse_sign._wave_channel = _hander._wave.channel_max;
+            _parse_sign.init();
         }
 
+        // 初始化连接，更新连接状态
         public void link_connect()
         {
-            if(((slave_id != 0) && (slave_id != link.comlink_connect._slave_id)) || (link == null))
-            {       
-                link = new s_comlink();
+            if((_link == null) || ((last_slave_id != _link._slave_id) && (last_slave_id != 0)))
+            {
+                _link = new s_comlink();
 
-                link.comlink_connect.Trans += serial_trans;  // 添加串口传输事件
-                link.comlink_connect.refreshVersion += _hander.refresh_version;
-                link.comlink_connect.refreshDevid += _hander.refresh_devid;
+                _link.Trans += serial_trans;  // 添加串口传输事件
+                _link.refreshVersion += _hander.refresh_version;
+                _link.refreshDevid += _hander.refresh_devid;
 
-                link.comlink_connect.refreshMsgList += _hander._nav_bar._nav_msg.nav_creat_msg;
-                link.comlink_connect.refreshParamsList += _hander._nav_bar._nav_params.nav_creat_msg;
+                _link.refreshMsgList += _hander._nav_bar.creat_msg;
+                _link.refreshParamsList += _hander._nav_bar.creat_params;
 
-                link.comlink_connect.clearMsglist += _hander._nav_bar._nav_msg.nav_clear_msglist;
+                _link.clearMsglist += _hander._nav_bar.clear_msglist;
 
-                link.refreshParamsTable += params_refresh;
+                _link.refreshParamsTable += params_refresh;
 
-                link.clear_map();
+                _link.Cout += _hander._dev_gnss.info;
+
+                _link.clear_map();
             }
 
-            slave_id = link.comlink_connect._slave_id;
+            last_slave_id = _link._slave_id;
 
             // 更新连接状态
-            _hander._connect_status = link.comlink_connect._link_status;
+            _hander._connect_status = _link._connect;
         }
 
+        // 消息解析主任务
         public void parse_task()
         {       
             while (true)
@@ -99,35 +111,23 @@ namespace dev_toolkit.frame
                     //test_add_data();       
                     if (serial_data_read())
                     {
-                        parse_sign._msg_cnt = link.parse(serial_var.receive_cache, serial_var.receive_byte);
+                        _parse_sign._msg_cnt = _link.parse(serial_var.receive_cache, serial_var.receive_byte);
                         serial_var.receive_byte = 0;
                         plot_refresh();
                     }
                 }
 
                 link_connect();
-                link.comlink_task((ulong)absolute_time());
+                _link.task((ulong)absolute_time());
 
                 Thread.Sleep(30);
-            }
-        }
-
-        public void port_refresh_task()
-        {
-            while (true)
-            {
-                if (_serialPort.IsOpen == false)
-                {
-                    com_port_DropDown(null, null);
-                }
-                Thread.Sleep(100);
             }
         }
         
         // 刷新参数表
         public void params_refresh(byte msg_id)
         {
-            //if (link.comlink_connect._msg_infomap.ContainsKey("pACC"))
+            //if (link._msg_infomap.ContainsKey("pACC"))
             {
                 _hander.Invoke(new Action(() =>
                 {
@@ -139,10 +139,10 @@ namespace dev_toolkit.frame
                     msg_name = msg_name.Replace("\0", "");
 
                     // 消息偏移
-                    int now_map_id = link.comlink_connect._msg_infomap[msg_name]._map_ind;
+                    int now_map_id = _link._msg_infomap[msg_name]._map_ind;
 
                     // 消息成员个数
-                    int part_number = link.comlink_connect._msg_infomap[msg_name]._number;
+                    int part_number = _link._msg_infomap[msg_name]._number;
 
                     // 获取缓存数据个数
                     int val_number = s_comlink.comlink_msgpart_value_cnt(now_map_id);
@@ -162,62 +162,64 @@ namespace dev_toolkit.frame
         }
         }
 
+        // 刷新波形通道
         public void plot_refresh()
         {
             // 波形输出，遍历通道
-            for (int channel = 0; channel < parse_sign._wave_channel; channel++)
+            for (int channel = 0; channel < _parse_sign._wave_channel; channel++)
             {
-                if (parse_sign._plot[channel].msg_id >= s_comlink.MSG_ID_FIX_CNT)
+                if (_parse_sign._plot[channel].msg_id >= s_comlink.MSG_ID_FIX_CNT)
                 {
                     // 获取缓存数据个数
-                    int val_number = s_comlink.comlink_msgpart_value_cnt(parse_sign._plot[channel].plot_id);
+                    int val_number = s_comlink.comlink_msgpart_value_cnt(_parse_sign._plot[channel].plot_id);
                 
                     for (int val_ind = 0; val_ind < val_number; val_ind++)
                     {
-                        double channel_val = s_comlink.comlink_msgpart_value(parse_sign._plot[channel].plot_id);
-                        parse_sign._plot_y[channel] = channel_val;
+                        double channel_val = s_comlink.comlink_msgpart_value(_parse_sign._plot[channel].plot_id);
+                        _parse_sign._plot_y[channel] = channel_val;
 
                         // plot输出
-                        _plot.Channels[channel].AddXY(parse_sign._plot_x[channel]++, channel_val);
+                        _plot.Channels[channel].AddXY(_parse_sign._plot_x[channel]++, channel_val);
                     }
                 }
             }
         }
 
+        // plot处理集合
         public void plot_task()
         {
             Thread.Sleep(1000);
             while (true)
             {
                 //250ms时间戳 x轴对齐
-                int plot_x_max = parse_sign._plot_x.Max();
+                int plot_x_max = _parse_sign._plot_x.Max();
 
-                for (int i = 0; i < parse_sign._channel_ind; i++)
+                for (int i = 0; i < _parse_sign._channel_ind; i++)
                 {
                     // x轴误差超过20个点则进行对齐
-                    if ((plot_x_max - parse_sign._plot_x[i]) > 10)
+                    if ((plot_x_max - _parse_sign._plot_x[i]) > 10)
                     {
-                        parse_sign._plot_x[i] = plot_x_max;
+                        _parse_sign._plot_x[i] = plot_x_max;
                     }
                 }
 
-                if (parse_sign._channel_ind > 0)
+                if (_parse_sign._channel_ind > 0)
                 {
-                    for (int i = 0; i < parse_sign._channel_ind; i++)
+                    for (int i = 0; i < _parse_sign._channel_ind; i++)
                     {
-                        int val = Convert.ToInt32(parse_sign._plot_y[i]);
+                        int val = Convert.ToInt32(_parse_sign._plot_y[i]);
 
                         if (_hander._wave.cursor_pushed == false)
                         {
-                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
+                            _plot.Channels[i].TitleText = _parse_sign._plot[i].plot_name + "  " + val.ToString();
                         }
                     }
                     if (_hander._wave.cursor_pushed == false)
                     {
-                        for (int i = parse_sign._channel_ind; i < parse_sign._wave_channel; i++)
+                        for (int i = _parse_sign._channel_ind; i < _parse_sign._wave_channel; i++)
                         {
                             int val = 0;
-                            _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name + "  " + val.ToString();
+                            _plot.Channels[i].TitleText = _parse_sign._plot[i].plot_name + "  " + val.ToString();
                         }
                     }
                 }              
@@ -225,11 +227,12 @@ namespace dev_toolkit.frame
             }
         }
 
+        // 列表事件，更新打印通道
         public void check_list_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
         {
             CheckedListBoxControl check_list = (CheckedListBoxControl)sender;
             int list_index = e.Index;
-            byte msg_id = link.comlink_connect._msg_infomap[check_list.Name]._msg_id;
+            byte msg_id = _link._msg_infomap[check_list.Name]._msg_id;
 
             // 消息句柄
             CheckedListBoxControl[] msg_list = _hander._nav_bar._nav_msg._list;
@@ -249,7 +252,7 @@ namespace dev_toolkit.frame
             }
 
             // 数据通道限制10个
-            if (item_count > parse_sign._wave_channel)
+            if (item_count > _parse_sign._wave_channel)
             {
                 check_list.Items[check_list.HotItemIndex].CheckState = CheckState.Unchecked;
             }
@@ -285,33 +288,33 @@ namespace dev_toolkit.frame
                         if (msg_list[i].Items[j].CheckState == CheckState.Checked)
                         {
                             // 消息id
-                            byte now_msg_id = link.comlink_connect._msg_infomap[msg_list[i].Name]._msg_id;
+                            byte now_msg_id = _link._msg_infomap[msg_list[i].Name]._msg_id;
 
                             // 消息偏移
-                            int now_map_id = link.comlink_connect._msg_infomap[msg_list[i].Name]._map_ind;
+                            int now_map_id = _link._msg_infomap[msg_list[i].Name]._map_ind;
 
                             // 修改通道名
-                            parse_sign._plot[channel_ind].plot_name = msg_list[i].Name + "." + link.comlink_connect._msg_infomap[msg_list[i].Name]._part[j - 1].part_name;
-                            _plot.Channels[channel_ind].TitleText = parse_sign._plot[channel_ind].plot_name;
+                            _parse_sign._plot[channel_ind].plot_name = msg_list[i].Name + "." + _link._msg_infomap[msg_list[i].Name]._part[j - 1].part_name;
+                            _plot.Channels[channel_ind].TitleText = _parse_sign._plot[channel_ind].plot_name;
 
-                            parse_sign._plot[channel_ind].msg_id = now_msg_id;
-                            parse_sign._plot[channel_ind].plot_id = now_map_id + j - 1;
+                            _parse_sign._plot[channel_ind].msg_id = now_msg_id;
+                            _parse_sign._plot[channel_ind].plot_id = now_map_id + j - 1;
 
                             // 清空缓存数据
-                            s_comlink.comlink_msgpart_value_clear(parse_sign._plot[channel_ind].plot_id);
+                            s_comlink.comlink_msgpart_value_clear(_parse_sign._plot[channel_ind].plot_id);
 
                             channel_ind++;
                         }
                     }
                 }
             }
-            parse_sign._channel_ind = channel_ind;
+            _parse_sign._channel_ind = channel_ind;
 
-            for (int i = channel_ind; i < parse_sign._wave_channel; i++)
+            for (int i = channel_ind; i < _parse_sign._wave_channel; i++)
             {
-                parse_sign._plot[i].msg_id = 0;
-               parse_sign._plot[i].plot_name = "CH" + (i + 1).ToString();
-                _plot.Channels[i].TitleText = parse_sign._plot[i].plot_name;
+                _parse_sign._plot[i].msg_id = 0;
+               _parse_sign._plot[i].plot_name = "CH" + (i + 1).ToString();
+                _plot.Channels[i].TitleText = _parse_sign._plot[i].plot_name;
             }
 
             // 检测消息表状态
@@ -330,13 +333,26 @@ namespace dev_toolkit.frame
             {
                 trans_sign = s_comlink.MSG_TRANS_ON;
             }
-            link.comlink_connect.pkg_trans_select(s_comlink.MSG_SIGN_ENABLE, msg_id, trans_sign);
+            _link.pkg_trans_select(s_comlink.MSG_SIGN_ENABLE, msg_id, trans_sign);
         }
 
         // 获取绝对时间ms
         public long absolute_time()
         {
            return DateTime.Now.Ticks / 10000; //ms
+        }
+
+        // 更新串口列表
+        public void port_refresh_task()
+        {
+            while (true)
+            {
+                if (_serialPort.IsOpen == false)
+                {
+                    com_port_DropDown(null, null);
+                }
+                Thread.Sleep(100);
+            }
         }
 
         // 串口读

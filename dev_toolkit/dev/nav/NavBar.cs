@@ -58,5 +58,23 @@ namespace dev_toolkit.dev
         {
             _nav_frame.SelectedPage = _page_list[e.Group.Caption];
         }
+
+        // 创建参数列表
+        public void creat_params(string name, string[] item)
+        {
+            _nav_msg.nav_creat_msg(name, item);
+        }
+
+        // 创建消息列表
+        public void creat_msg(string name, string[] item)
+        {
+            _nav_params.nav_creat_msg(name, item);
+        }
+
+        // 清除消息列表
+        public void clear_msglist()
+        {
+            _nav_msg.nav_clear_msglist();
+        }
     }
 }
