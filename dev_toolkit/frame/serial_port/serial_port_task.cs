@@ -23,8 +23,8 @@ namespace dev_toolkit.frame
 
         public Dictionary<string, ParamsInfo> _params_info
         {
-            get { return _hander._nav_bar._nav_params._params_info; }
-            set { _hander._nav_bar._nav_params._params_info = value; }
+            get { return _hander._nav_bar._params_info; }
+            set { _hander._nav_bar._params_info = value; }
         }
 
         public class ParseSign
@@ -159,7 +159,7 @@ namespace dev_toolkit.frame
                         }
                     }
                 }));
-        }
+            }
         }
 
         // 刷新波形通道

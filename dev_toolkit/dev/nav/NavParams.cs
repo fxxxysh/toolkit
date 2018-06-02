@@ -114,6 +114,8 @@ namespace dev_toolkit.dev
 
             // 表指示器累加
             table_ind++;
+
+            // 创建数据表
             _params_info.Add(name, p_info);
         }
 

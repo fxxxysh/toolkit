@@ -21,6 +21,12 @@ namespace dev_toolkit.dev
         private dev_toolkit _hander;
         private NavBarControl _nav;
 
+        public Dictionary<string, ParamsInfo> _params_info
+        {
+            get { return _nav_params._params_info; }
+            set { _nav_params._params_info = value; }
+        }
+
         public NavBar(object sender)
         {
             _hander = (dev_toolkit)sender;
@@ -62,13 +68,13 @@ namespace dev_toolkit.dev
         // 创建参数列表
         public void creat_params(string name, string[] item)
         {
-            _nav_msg.nav_creat_msg(name, item);
+            _nav_params.nav_creat_msg(name, item);
         }
 
         // 创建消息列表
         public void creat_msg(string name, string[] item)
         {
-            _nav_params.nav_creat_msg(name, item);
+            _nav_msg.nav_creat_msg(name, item);
         }
 
         // 清除消息列表
