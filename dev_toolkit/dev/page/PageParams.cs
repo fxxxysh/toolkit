@@ -65,11 +65,17 @@ namespace dev_toolkit
                 bandedGridView.Name = "bandedGridView";
                 bandedGridView.OptionsView.ShowGroupPanel = false;
 
+                bandedGridView.OptionsView.ShowIndicator = false; //取消小三角形
+                bandedGridView.OptionsSelection.EnableAppearanceFocusedCell = false; //去掉选中
+                bandedGridView.OptionsSelection.EnableAppearanceFocusedRow = false;
+                bandedGridView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None; //去掉光标
+
                 gridBand.Caption = name;
                 gridBand.Name = "gridBand";
                 gridBand.VisibleIndex = 0;
 
                 gridControl.DataSource = dt;
+                bandedGridView.Columns[0].OptionsColumn.AllowEdit = false; //禁止修改第一列
             }));
         }          
 

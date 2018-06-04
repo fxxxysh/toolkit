@@ -19,13 +19,13 @@ namespace dev_toolkit.device
 
         public void info(string str)
         {
-
+            _gyro_calib.info(str);
         }
 
         public void init(object sender)
         {
             _hander = (dev_toolkit)sender;
-            _gyro_calib = new gyro_calib(_hander._gyro_calib_groupControl);
+            _gyro_calib = new gyro_calib(_hander._gyro_calib_page, _hander._gyro_calib_groupControl);
 
             // 命令传输
             _gyro_calib.trans_command += _hander._serial.command_trans;

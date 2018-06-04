@@ -12,6 +12,7 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraNavBar;
+using DevExpress.XtraTab;
 using Iocomp.Classes;
 using Iocomp.Instrumentation.Plotting;
 
@@ -21,21 +22,7 @@ namespace dev_toolkit
     {
         public void Initialize()
         {
-            this.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gyro_calib_groupControl)).BeginInit();
-            DevExpress.XtraEditors.SimpleButton ttgyro_calib_Button1 = new DevExpress.XtraEditors.SimpleButton();
-            ttgyro_calib_Button1.AllowFocus = false;
-            ttgyro_calib_Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            ttgyro_calib_Button1.Location = new System.Drawing.Point(27, 30);
-            ttgyro_calib_Button1.Name = "ttgyro_calib_Button1";
-            ttgyro_calib_Button1.Size = new System.Drawing.Size(80, 25);
-            ttgyro_calib_Button1.TabIndex = 11;
-            ttgyro_calib_Button1.Text = "123342534346653";
 
-            this.gyro_calib_groupControl.Controls.Add(ttgyro_calib_Button1);
-            ((System.ComponentModel.ISupportInitialize)(this.gyro_calib_groupControl)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
         }
         // 防止界面切换闪烁
         protected override CreateParams CreateParams
@@ -146,7 +133,14 @@ namespace dev_toolkit
             set { connect_status = value; }
         }
 
-        // 陀螺校准相关
+        // 陀螺校准页面相关
+        public XtraTabPage _gyro_calib_page
+        {
+            get { return xtraTabPage1; }
+            set { xtraTabPage1 = value; }
+        }
+
+        // 陀螺校准控制组
         public GroupControl _gyro_calib_groupControl
         {
             get { return gyro_calib_groupControl; }
