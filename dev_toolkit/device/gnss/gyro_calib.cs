@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static dev_toolkit.modules.s_comlink;
@@ -18,7 +19,8 @@ namespace dev_toolkit.device
     public class gyro_calib
     {
         private XtraTabPage _page;
-        private GroupControl _gyrop;
+        private GroupControl _gyrop_ctl;
+        private GroupControl _gyrop_grid;
 
         private GridControl gridControl;
         private DataTable _gyro_offset_dt;
@@ -35,7 +37,51 @@ namespace dev_toolkit.device
             {
                 _page.Invoke(new Action(() =>
                 {
-                    info_label.Text = str;
+                    List<string> str_list = new List<string>();
+                    string pattern = @"(?<=\[).*?(?=\])"; //提取[]内部字符串
+
+                    foreach (Match match in Regex.Matches(str, pattern))
+                    {
+                        str_list.Add(match.Value);
+                    }
+
+                    if (str_list.Count != 0)
+                    {
+                        switch (str_list[0])
+                        {
+                            case "INFO":
+                                info_label.Text = str.Split(']')[1];
+                                break;
+
+                            case "VALUE":
+                                string name = null;
+                                foreach (Match match in Regex.Matches(str, @"(?<=\]).*?(?=\[)"))//提取][内部字符串
+                                {
+                                    name = match.Groups[0].Value;
+                                }
+                                string[] str_value = str_list[1].Replace(" ", "").Split(','); //去除空格,逗号分割
+
+                                string str_index = null;
+                                foreach (Match match in Regex.Matches(name, @"[0-9]+")) //name index
+                                {
+                                    str_index = match.Groups[0].Value;
+                                }
+
+                                if (str_index != null)
+                                {
+                                    int index = int.Parse(str_index);
+                                    _gyro_offset_dt.Rows[index][0] = name; // 添加name
+
+                                    for (int i = 0; i < str_value.Count(); i++)
+                                    {
+                                        _gyro_offset_dt.Rows[index][i + 1] = float.Parse(str_value[i]); //添加值
+                                    }
+                                }
+                                break;
+
+                            default: break;
+                        }
+                    }
                 }));
             }
         }
@@ -71,14 +117,14 @@ namespace dev_toolkit.device
 
         public void new_offset_grid()
         {
-            int margin = 3;
+            int margin = 1;
 
             // 陀螺零偏补偿表
-            int grid_width = _gyrop.Width;
-            int grid_height = 80;
-
             int grid_loction_x = margin;
-            int grid_loction_y = _gyrop.Location.Y - grid_height - 5;
+            int grid_loction_y = 25; // _gyrop_grid.Location.Y - grid_height - 5;
+
+            int grid_width = _gyrop_grid.Width - 2 * margin;
+            int grid_height = _gyrop_grid.Height - grid_loction_y;
 
             _gyro_offset_dt = new DataTable();
             _gyro_offset_dt.Columns.Add("陀螺零偏", typeof(string));
@@ -86,9 +132,10 @@ namespace dev_toolkit.device
             _gyro_offset_dt.Columns.Add("Y轴", typeof(float));
             _gyro_offset_dt.Columns.Add("Z轴", typeof(float));
 
-            _gyro_offset_dt.Rows.Add(new object[] { "陀螺1", 1, 2, 4 });
-            _gyro_offset_dt.Rows.Add(new object[] { "陀螺2", 1, 2, 4 });
-            _gyro_offset_dt.Rows.Add(new object[] { "陀螺3", 1, 2, 4 });
+            _gyro_offset_dt.Rows.Add(new object[] { " ", 1, 2, 4 });
+            _gyro_offset_dt.Rows.Add(new object[] { " ", 1, 2, 4 });
+            _gyro_offset_dt.Rows.Add(new object[] { " ", 1, 2, 4 });
+
             new_grid("陀螺零偏", _gyro_offset_dt, grid_loction_x, grid_loction_y, grid_width, grid_height);
         }
 
@@ -99,7 +146,7 @@ namespace dev_toolkit.device
                 gridControl = new GridControl();
                 GridView gridView = new GridView();
 
-                _page.Controls.Add(gridControl);
+                _gyrop_grid.Controls.Add(gridControl);
 
                 gridControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
                 gridControl.Location = new Point(x, y);
@@ -159,7 +206,7 @@ namespace dev_toolkit.device
                 button.Size = new Size(80, 25);
                 button.TabIndex = i;
                 button.Click += new System.EventHandler(gyro_calib_Click);
-                _gyrop.Controls.Add(button);
+                _gyrop_ctl.Controls.Add(button);
 
                 switch (i)
                 {
@@ -173,10 +220,10 @@ namespace dev_toolkit.device
             ProgressBarControl progress = new ProgressBarControl();
             progress.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             progress.EditValue = 30;
-            progress.Location = new Point(loction_x, _gyrop.Height - 30);
+            progress.Location = new Point(loction_x, _gyrop_ctl.Height - 30);
             progress.Name = "progressBarControl1";
-            progress.Size = new Size(_gyrop.Width - 2 * loction_x, 18);
-            _gyrop.Controls.Add(progress);
+            progress.Size = new Size(_gyrop_ctl.Width - 2 * loction_x, 18);
+            _gyrop_ctl.Controls.Add(progress);
 
             // 信息显示
             info_label = new LabelControl();
@@ -185,13 +232,14 @@ namespace dev_toolkit.device
             info_label.Size = new Size(63, 14);
             info_label.TabIndex = 0;
             info_label.Text = " ";
-            _gyrop.Controls.Add(info_label);
+            _gyrop_ctl.Controls.Add(info_label);
         }
 
-        public gyro_calib(object page, object gyrop)
+        public gyro_calib(object page, object gyrop_ctl, object gyrop_grid)
         {
             _page = (XtraTabPage)page;
-            _gyrop = (GroupControl)gyrop;
+            _gyrop_ctl = (GroupControl)gyrop_ctl;
+            _gyrop_grid = (GroupControl)gyrop_grid;
 
             Initialize();
         }

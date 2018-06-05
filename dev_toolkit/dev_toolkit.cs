@@ -147,6 +147,14 @@ namespace dev_toolkit
             set { gyro_calib_groupControl = value; }
         }
 
+        // 陀螺校准参数组
+        public GroupControl _gyro_data_groupControl
+        {
+            get { return gyro_data_groupControl; }
+            set { gyro_data_groupControl = value; }
+        }
+        
+
         // 页面切换 
         public Dictionary<string, NavigationPage> _page_list = new Dictionary<string, NavigationPage>();
 
