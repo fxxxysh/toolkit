@@ -23,13 +23,14 @@ namespace dev_toolkit.device
         private GroupControl _gyrop_grid;
 
         private GridControl gridControl;
-        private DataTable _gyro_offset_dt;
+        private DataTable gyro_offset_dt = new DataTable();
 
+        ProgressBarControl progress;
         LabelControl info_label;
         private bool info_sign = false;
 
         // 发送指令
-        public event Action<msg_control_s> trans_command;
+        public event Func<msg_control_s, bool> trans_command;
 
         public void info(string str)
         {
@@ -49,6 +50,10 @@ namespace dev_toolkit.device
                     {
                         switch (str_list[0])
                         {
+                            case "END":
+                                info_sign = false;
+                                break;
+
                             case "INFO":
                                 info_label.Text = str.Split(']')[1];
                                 break;
@@ -70,15 +75,18 @@ namespace dev_toolkit.device
                                 if (str_index != null)
                                 {
                                     int index = int.Parse(str_index);
-                                    _gyro_offset_dt.Rows[index][0] = name; // 添加name
+                                    gyro_offset_dt.Rows[index][0] = name; // 添加name
 
                                     for (int i = 0; i < str_value.Count(); i++)
                                     {
-                                        _gyro_offset_dt.Rows[index][i + 1] = float.Parse(str_value[i]); //添加值
+                                        gyro_offset_dt.Rows[index][i + 1] = str_value[i];// float.Parse(str_value[i]); //添加值
                                     }
                                 }
                                 break;
 
+                            case "PROGRESS":
+                                progress.EditValue = int.Parse(str_list[1].Replace(" ", "")); //去除空格
+                                break;
                             default: break;
                         }
                     }
@@ -88,61 +96,51 @@ namespace dev_toolkit.device
 
         private void gyro_calib_Click(object sender, EventArgs e)
         {
-            SimpleButton button = (SimpleButton)sender;
-            msg_control_s control = new msg_control_s();
-
-            control.calib.flag = 1; // 使能
-            control.calib.module = 0; // 陀螺
-            control.calib.command = (byte)button.TabIndex;
-            info_sign = true;
-
-            switch (button.TabIndex)
+            if (info_sign == false)
             {
-                case 0: new_offset_grid(); break;
-                case 1: new_rotate_grid(); break;
-                case 2:break;
-            }
-            trans_command(control);
-        }
+                SimpleButton button = (SimpleButton)sender;
+                msg_control_s control = new msg_control_s();
 
-        public void offset_grid_value(int ind, float x, float y, float z)
-        {
-            _gyro_offset_dt.Rows[ind][1] = x;
+                control.calib.flag = 1; // 使能
+                control.calib.module = 0; // 陀螺
+                control.calib.command = (byte)button.TabIndex;
+
+                switch (button.TabIndex)
+                {
+                    case 0: new_offset_grid(); break;
+                    case 1: new_rotate_grid(); break;
+                    case 2: break;
+                }
+                info_sign = trans_command(control);
+            }
         }
 
         public void new_rotate_grid()
         {
-            _page.Controls.Remove(gridControl);
+            gyro_offset_dt.Rows.Clear();
         }
 
         public void new_offset_grid()
         {
-            int margin = 1;
-
-            // 陀螺零偏补偿表
-            int grid_loction_x = margin;
-            int grid_loction_y = 25; // _gyrop_grid.Location.Y - grid_height - 5;
-
-            int grid_width = _gyrop_grid.Width - 2 * margin;
-            int grid_height = _gyrop_grid.Height - grid_loction_y;
-
-            _gyro_offset_dt = new DataTable();
-            _gyro_offset_dt.Columns.Add("陀螺零偏", typeof(string));
-            _gyro_offset_dt.Columns.Add("X轴", typeof(float));
-            _gyro_offset_dt.Columns.Add("Y轴", typeof(float));
-            _gyro_offset_dt.Columns.Add("Z轴", typeof(float));
-
-            _gyro_offset_dt.Rows.Add(new object[] { " ", 1, 2, 4 });
-            _gyro_offset_dt.Rows.Add(new object[] { " ", 1, 2, 4 });
-            _gyro_offset_dt.Rows.Add(new object[] { " ", 1, 2, 4 });
-
-            new_grid("陀螺零偏", _gyro_offset_dt, grid_loction_x, grid_loction_y, grid_width, grid_height);
+            gyro_offset_dt.Rows.Clear();
+            gyro_offset_dt.Rows.Add(new object[] { " " });
+            gyro_offset_dt.Rows.Add(new object[] { " " });
+            gyro_offset_dt.Rows.Add(new object[] { " " });
         }
 
-        public void new_grid(string name, DataTable dt, int x, int y, int width, int height)
+        public void new_grid(DataTable dt)
         {
             _page.Invoke(new Action(() =>
             {
+                int margin = 1;
+
+                // 陀螺零偏补偿表
+                int x = margin;
+                int y = 25; // _gyrop_grid.Location.Y - grid_height - 5;
+
+                int width = _gyrop_grid.Width - 2 * margin;
+                int height = _gyrop_grid.Height - y;
+
                 gridControl = new GridControl();
                 GridView gridView = new GridView();
 
@@ -159,6 +157,10 @@ namespace dev_toolkit.device
                 gridView.GridControl = gridControl;
                 gridView.Name = "bandedGridView";
                 gridView.OptionsView.ShowGroupPanel = false;
+
+                gridView.FixedLineWidth = 100;
+                gridView.IndicatorWidth = 100;
+                //gridControl.colu fixedWidth 
                 //bandedGridView.OptionsBehavior.Editable = false; //禁止修改表格
 
                 // 去掉焦点选中
@@ -168,7 +170,11 @@ namespace dev_toolkit.device
                 gridView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
 
                 gridControl.DataSource = dt;
-                gridView.Columns[0].OptionsColumn.AllowEdit = false;
+                for (int i = 0; i < gridView.Columns.Count; i++)
+                {
+                    gridView.Columns[i].MinWidth = 85;
+                    gridView.Columns[0].OptionsColumn.AllowEdit = false;
+                }
             }));
         }
 
@@ -217,9 +223,9 @@ namespace dev_toolkit.device
             }
 
             // 进度条
-            ProgressBarControl progress = new ProgressBarControl();
+            progress = new ProgressBarControl();
             progress.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
-            progress.EditValue = 30;
+            progress.EditValue = 0;
             progress.Location = new Point(loction_x, _gyrop_ctl.Height - 30);
             progress.Name = "progressBarControl1";
             progress.Size = new Size(_gyrop_ctl.Width - 2 * loction_x, 18);
@@ -233,6 +239,19 @@ namespace dev_toolkit.device
             info_label.TabIndex = 0;
             info_label.Text = " ";
             _gyrop_ctl.Controls.Add(info_label);
+
+            int Columns_max = 10;
+            for (int i = 0; i < Columns_max; i++)
+            {
+                byte[] ind = { (byte)(65 + i) };
+                gyro_offset_dt.Columns.Add(System.Text.Encoding.ASCII.GetString(ind), typeof(string));
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                gyro_offset_dt.Rows.Add(new object[] { " " });
+            }
+            new_grid(gyro_offset_dt);
         }
 
         public gyro_calib(object page, object gyrop_ctl, object gyrop_grid)

@@ -66,7 +66,7 @@ namespace dev_toolkit.modules
         public byte _msg_infomap_number = 0;
 
         // 传输事件
-        public event Action<byte[], int> Trans;
+        public event Func<byte[], int, bool> Trans;
 
         // 更新版本信息
         public event Action<string, string> refreshVersion;
@@ -98,7 +98,7 @@ namespace dev_toolkit.modules
             }
         }
 
-        public void command_trans(msg_control_s structure)
+        public bool command_trans(msg_control_s structure)
         {
             message_t msg = new message_t();
             byte[] pkg = struct_to_byte<msg_control_s>(structure);
@@ -109,7 +109,7 @@ namespace dev_toolkit.modules
             comlink_encode(ref msg, ref pkg[0], _slave_id, MSG_ID_CONTROL, pkg_length);
             byte[] send_buffer = struct_to_byte<message_t>(msg);
 
-            Trans(send_buffer, msg_length);
+            return Trans(send_buffer, msg_length);
         }
 
         /// <summary>

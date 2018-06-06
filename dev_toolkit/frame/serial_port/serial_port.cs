@@ -177,11 +177,16 @@ namespace dev_toolkit.frame
         }
 
         // 串口发送
-        public void serial_trans(byte[] buffer, int size)
+        public bool serial_trans(byte[] buffer, int size)
         {
             if (_serialPort.IsOpen)
             {
                 _serialPort.Write(buffer, 0, size);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

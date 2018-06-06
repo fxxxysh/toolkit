@@ -60,9 +60,9 @@ namespace dev_toolkit.frame
         }
 
         // 指令传输
-        public void command_trans(msg_control_s structure)
+        public bool command_trans(msg_control_s structure)
         {
-            _link.command_trans(structure);
+            return _link.command_trans(structure);
         }
 
         // 与plot打印相关
