@@ -118,6 +118,9 @@ namespace dev_toolkit.device
         public void new_rotate_grid()
         {
             gyro_offset_dt.Rows.Clear();
+            gyro_offset_dt.Rows.Add(new object[] { " " });
+            gyro_offset_dt.Rows.Add(new object[] { " " });
+            gyro_offset_dt.Rows.Add(new object[] { " " });
         }
 
         public void new_offset_grid()
