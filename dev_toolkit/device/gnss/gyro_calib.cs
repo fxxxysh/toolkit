@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static dev_toolkit.modules.s_comlink;
@@ -27,7 +28,9 @@ namespace dev_toolkit.device
 
         ProgressBarControl progress;
         LabelControl info_label;
+
         private bool info_sign = false;
+        private bool strt_sign = false;
 
         // 发送指令
         public event Func<msg_control_s, bool> trans_command;
@@ -50,6 +53,11 @@ namespace dev_toolkit.device
                     {
                         switch (str_list[0])
                         {
+                            case "START":
+                                strt_sign = true;
+                                info_label.Text = "";
+                                break;
+
                             case "END":
                                 info_sign = false;
                                 break;
@@ -111,8 +119,23 @@ namespace dev_toolkit.device
                     case 1: new_rotate_grid(); break;
                     case 2: break;
                 }
+
+                strt_sign = false;
                 info_sign = trans_command(control);
+                if (info_sign == true)
+                {
+                    Thread th = new Thread(msg_ack);
+                    th.Start();
+                }
             }
+        }
+
+        public void msg_ack()
+        {    
+            Thread.Sleep(2000); //500ms内必须有反馈
+            info_sign = strt_sign;
+            strt_sign = false;
+            Thread.CurrentThread.Abort();
         }
 
         public void new_rotate_grid()

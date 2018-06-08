@@ -303,9 +303,13 @@ namespace dev_toolkit.modules
                 last_timestamp = timestamp;
             }
 
-            if ((_init == false) && (_connect == true))
+            if (_connect == true)
             {
                 connect_get_msg();
+            }
+            else if (_init == true)
+            {
+                connect_sign = 2;            
             }
         }
 
