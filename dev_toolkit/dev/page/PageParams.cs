@@ -37,9 +37,9 @@ namespace dev_toolkit
                 //int idel_height = 20;
                 //int row_number = 3;
 
-                int grid_width = 179;
-                int grid_height = 258 * 2;
-                int idel_width = 17;
+                int grid_width = 192;
+                int grid_height = 270 * 2;
+                int idel_width = 5;
                 int idel_height = 20;
                 int row_number = 4;
 
@@ -75,7 +75,14 @@ namespace dev_toolkit
                 gridBand.VisibleIndex = 0;
 
                 gridControl.DataSource = dt;
+
+                bandedGridView.Columns[0].MinWidth = 40;
                 bandedGridView.Columns[0].OptionsColumn.AllowEdit = false; //禁止修改第一列
+
+                for (int i = 1; i < bandedGridView.Columns.Count; i++)
+                {
+                    bandedGridView.Columns[i].MinWidth = 110;
+                }
             }));
         }          
 

@@ -134,6 +134,7 @@
             this.nav_wave = new DevExpress.XtraNavBar.NavBarGroup();
             this.kit_nav_bar = new DevExpress.XtraNavBar.NavBarControl();
             this.kit_theme = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.openGLControl1 = new SharpGL.OpenGLControl();
             this.panel1.SuspendLayout();
             this.nav_wave_page.SuspendLayout();
             this.nav_control_page.SuspendLayout();
@@ -164,6 +165,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_bar)).BeginInit();
             this.kit_nav_bar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // plotToolBarButton13
@@ -638,6 +640,7 @@
             // 
             // xtraTabPage1
             // 
+            this.xtraTabPage1.Controls.Add(this.openGLControl1);
             this.xtraTabPage1.Controls.Add(this.gyro_data_groupControl);
             this.xtraTabPage1.Controls.Add(this.gyro_calib_groupControl);
             this.xtraTabPage1.Name = "xtraTabPage1";
@@ -1160,6 +1163,22 @@
             // 
             this.kit_theme.LookAndFeel.SkinName = "Visual Studio 2013 Dark";
             // 
+            // openGLControl1
+            // 
+            this.openGLControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.openGLControl1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.openGLControl1.DrawFPS = false;
+            this.openGLControl1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.openGLControl1.Location = new System.Drawing.Point(3, 0);
+            this.openGLControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.openGLControl1.Name = "openGLControl1";
+            this.openGLControl1.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL4_4;
+            this.openGLControl1.RenderContextType = SharpGL.RenderContextType.DIBSection;
+            this.openGLControl1.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
+            this.openGLControl1.Size = new System.Drawing.Size(328, 179);
+            this.openGLControl1.TabIndex = 2;
+            // 
             // dev_toolkit
             // 
             this.Appearance.ForeColor = System.Drawing.Color.Transparent;
@@ -1207,6 +1226,7 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_bar)).EndInit();
             this.kit_nav_bar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1299,5 +1319,6 @@
         private DevExpress.XtraNavBar.NavBarItem mot_navBarItem;
         private DevExpress.XtraEditors.GroupControl gyro_calib_groupControl;
         private DevExpress.XtraEditors.GroupControl gyro_data_groupControl;
+        private SharpGL.OpenGLControl openGLControl1;
     }
 }

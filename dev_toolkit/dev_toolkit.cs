@@ -153,7 +153,12 @@ namespace dev_toolkit
             get { return gyro_data_groupControl; }
             set { gyro_data_groupControl = value; }
         }
-        
+
+        public SharpGL.OpenGLControl _openGLControl
+        {
+            get { return openGLControl1; }
+            set { openGLControl1 = value; }
+        }
 
         // 页面切换 
         public Dictionary<string, NavigationPage> _page_list = new Dictionary<string, NavigationPage>();

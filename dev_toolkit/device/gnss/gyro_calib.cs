@@ -29,16 +29,19 @@ namespace dev_toolkit.device
         ProgressBarControl progress;
         LabelControl info_label;
 
-        private bool info_sign = false;
-        private bool strt_sign = false;
+        private int start_timeout = 0;
+        private bool start_sign = false;
+
+        public gl_flush _gl;
 
         // 发送指令
         public event Func<msg_control_s, bool> trans_command;
 
         public void info(string str)
         {
-            if (info_sign == true)
+            if (start_sign == true)
             {
+                start_timeout = 0;
                 _page.Invoke(new Action(() =>
                 {
                     List<string> str_list = new List<string>();
@@ -53,14 +56,14 @@ namespace dev_toolkit.device
                     {
                         switch (str_list[0])
                         {
-                            case "START":
-                                strt_sign = true;
-                                info_label.Text = "";
-                                break;
+                            //case "START":
+                            //    strt_sign = true;
+                            //    info_label.Text = "";
+                            //    break;
 
-                            case "END":
-                                info_sign = false;
-                                break;
+                            //case "END":
+                            //    info_sign = false;
+                            //    break;
 
                             case "INFO":
                                 info_label.Text = str.Split(']')[1];
@@ -89,6 +92,11 @@ namespace dev_toolkit.device
                                     {
                                         gyro_offset_dt.Rows[index][i + 1] = str_value[i];// float.Parse(str_value[i]); //添加值
                                     }
+
+                                    if (index == 0)
+                                    {
+                                        _gl.rotate(float.Parse(str_value[1]) / 100, -float.Parse(str_value[2]) / 100, -float.Parse(str_value[0]) / 100);
+                                    }
                                 }
                                 break;
 
@@ -104,7 +112,7 @@ namespace dev_toolkit.device
 
         private void gyro_calib_Click(object sender, EventArgs e)
         {
-            if (info_sign == false)
+            if (start_sign == false)
             {
                 SimpleButton button = (SimpleButton)sender;
                 msg_control_s control = new msg_control_s();
@@ -120,9 +128,8 @@ namespace dev_toolkit.device
                     case 2: break;
                 }
 
-                strt_sign = false;
-                info_sign = trans_command(control);
-                if (info_sign == true)
+                start_sign = trans_command(control);
+                if (start_sign == true)
                 {
                     Thread th = new Thread(msg_ack);
                     th.Start();
@@ -132,9 +139,18 @@ namespace dev_toolkit.device
 
         public void msg_ack()
         {    
-            Thread.Sleep(2000); //500ms内必须有反馈
-            info_sign = strt_sign;
-            strt_sign = false;
+            bool loop = true;
+            start_timeout = 0;
+
+            while (loop)
+            {
+                if (start_timeout++ > 15)
+                {
+                    loop = false;
+                    start_sign = false;
+                }
+                Thread.Sleep(100);
+            }
             Thread.CurrentThread.Abort();
         }
 
@@ -280,11 +296,12 @@ namespace dev_toolkit.device
             new_grid(gyro_offset_dt);
         }
 
-        public gyro_calib(object page, object gyrop_ctl, object gyrop_grid)
+        public gyro_calib(object page, object gyrop_ctl, object gyrop_grid, object gl)
         {
             _page = (XtraTabPage)page;
             _gyrop_ctl = (GroupControl)gyrop_ctl;
             _gyrop_grid = (GroupControl)gyrop_grid;
+            _gl = (gl_flush)gl;
 
             Initialize();
         }
