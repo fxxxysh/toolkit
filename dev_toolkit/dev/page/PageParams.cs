@@ -37,9 +37,9 @@ namespace dev_toolkit
                 //int idel_height = 20;
                 //int row_number = 3;
 
-                int grid_width = 192;
+                int grid_width = 197;
                 int grid_height = 270 * 2;
-                int idel_width = 5;
+                int idel_width = 0;
                 int idel_height = 20;
                 int row_number = 4;
 
