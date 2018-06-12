@@ -29,7 +29,11 @@ namespace dev_toolkit.device
         ProgressBarControl progress;
         LabelControl info_label;
 
+        public Dictionary<int, SimpleButton> _button = new Dictionary<int, SimpleButton>();
+        public Dictionary<int, SimpleButton> _rotate_button = new Dictionary<int, SimpleButton>();  
+
         private int start_timeout = 0;
+        private int button_index = 0;
         private bool start_sign = false;
 
         public gl_flush _gl;
@@ -103,6 +107,32 @@ namespace dev_toolkit.device
                             case "PROGRESS":
                                 progress.EditValue = int.Parse(str_list[1].Replace(" ", "")); //去除空格
                                 break;
+
+                            case "ORIENTATION":
+                                int orientation = int.Parse(str_list[1].Replace(" ", "")); //去除空格
+
+                                switch (orientation)
+                                {
+                                    case 5:
+                                        _rotate_button[1].Enabled = true;
+                                        _rotate_button[0].Enabled = false;
+                                        _rotate_button[2].Enabled = false;
+                                        break;
+
+                                    case 2:
+                                        _rotate_button[2].Enabled = true;
+                                        _rotate_button[0].Enabled = false;
+                                        _rotate_button[1].Enabled = false;
+                                        break;
+
+                                    case 0:
+                                        _rotate_button[0].Enabled = true;
+                                        _rotate_button[1].Enabled = false;
+                                        _rotate_button[2].Enabled = false;
+                                        break;
+                                }
+                                break;
+
                             default: break;
                         }
                     }
@@ -116,24 +146,47 @@ namespace dev_toolkit.device
             {
                 SimpleButton button = (SimpleButton)sender;
                 msg_control_s control = new msg_control_s();
+                button_index = button.TabIndex;
 
-                control.calib.flag = 1; // 使能
-                control.calib.module = 0; // 陀螺
-                control.calib.command = (byte)button.TabIndex;
-
-                switch (button.TabIndex)
+                if (button_index < 3)
                 {
-                    case 0: new_offset_grid(); break;
-                    case 1: new_rotate_grid(); break;
-                    case 2: break;
-                }
+                    control.calib.flag = 1; // 使能
+                    control.calib.module = 0; // 陀螺
+                    control.calib.command = (byte)button.TabIndex;
 
-                start_sign = trans_command(control);
-                if (start_sign == true)
-                {
-                    Thread th = new Thread(msg_ack);
-                    th.Start();
+                    switch (button.TabIndex)
+                    {
+                        case 0: new_offset_grid(); break;
+                        case 1: new_rotate_grid(); break;
+                        case 2: break;
+                    }
+
+                    start_sign = trans_command(control);
+                    if (start_sign == true)
+                    {
+                        Thread th = new Thread(msg_ack);
+                        th.Start();
+                    }
                 }
+            }
+        }
+
+        private void gyro_func_Click(object sender, EventArgs e)
+        {
+            SimpleButton button = (SimpleButton)sender;
+
+            string text = button.Text;
+            string part = text.Substring(0, 4);
+
+            if (part == "获取旋转")
+            {
+                text = text.Remove(0, 4);
+                _rotate_button[button.TabIndex].Text = "停止获取" + text;
+            }
+            else
+            {
+                text = text.Remove(0, 4);
+                _rotate_button[button.TabIndex].Text = "获取旋转" + text;
             }
         }
 
@@ -141,33 +194,39 @@ namespace dev_toolkit.device
         {    
             bool loop = true;
             start_timeout = 0;
+            _page.Invoke(new Action(() => { _button[button_index].Enabled = false; }));
 
             while (loop)
             {
-                if (start_timeout++ > 15)
+                if (start_timeout++ > 20)
                 {
                     loop = false;
                     start_sign = false;
+                    _page.Invoke(new Action(() => { _button[button_index].Enabled = true; }));
                 }
                 Thread.Sleep(100);
             }
+
             Thread.CurrentThread.Abort();
         }
 
         public void new_rotate_grid()
         {
             gyro_offset_dt.Rows.Clear();
-            gyro_offset_dt.Rows.Add(new object[] { " " });
-            gyro_offset_dt.Rows.Add(new object[] { " " });
-            gyro_offset_dt.Rows.Add(new object[] { " " });
+
+            for (int i = 0; i < 15; i++)
+            {
+                gyro_offset_dt.Rows.Add(new object[] { " " });
+            }
         }
 
         public void new_offset_grid()
         {
             gyro_offset_dt.Rows.Clear();
-            gyro_offset_dt.Rows.Add(new object[] { " " });
-            gyro_offset_dt.Rows.Add(new object[] { " " });
-            gyro_offset_dt.Rows.Add(new object[] { " " });
+            for (int i = 0; i < 15; i++)
+            {
+                gyro_offset_dt.Rows.Add(new object[] { " " });
+            }
         }
 
         public void new_grid(DataTable dt)
@@ -188,7 +247,7 @@ namespace dev_toolkit.device
 
                 _gyrop_grid.Controls.Add(gridControl);
 
-                gridControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
+                gridControl.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
                 gridControl.Location = new Point(x, y);
                 gridControl.MainView = gridView;
                 gridControl.Name = "gridControl";
@@ -199,10 +258,6 @@ namespace dev_toolkit.device
                 gridView.GridControl = gridControl;
                 gridView.Name = "bandedGridView";
                 gridView.OptionsView.ShowGroupPanel = false;
-
-                gridView.FixedLineWidth = 100;
-                gridView.IndicatorWidth = 100;
-                //gridControl.colu fixedWidth 
                 //bandedGridView.OptionsBehavior.Editable = false; //禁止修改表格
 
                 // 去掉焦点选中
@@ -222,51 +277,71 @@ namespace dev_toolkit.device
 
         public void Initialize()
         {
-            //int margin = 3;
-
-            //int group_height = 100;
-            //int gyoup_width = _hander.Width - margin * 2;
-
-            //int group_loction_x = margin;
-            //int group_loction_y = _hander.Height - group_height - margin;
-
-            //// 功能操作
-            //GroupControl groupControl = new GroupControl();
-            //groupControl.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-            //groupControl.Location = new Point(group_loction_x, group_loction_y);
-            //groupControl.Name = "gyro_calib_groupControl";
-            //groupControl.Size = new Size(gyoup_width, group_height);
-            //groupControl.TabIndex = 0;
-            //groupControl.Text = "控制";
-            //_hander.Controls.Add(groupControl);
-
             // 功能按钮
             int button_item = 3;
             int loction_x = 10;
             int loction_y = 35;
-            int loction_width = 115;
+            int loction_width = 70;
+            int loction_height = 28;
+
+            for (int i = 0; i < button_item; i++)
+            {
+                LabelControl lable = new LabelControl();
+                lable.Location = new Point(loction_x, loction_y + i * loction_height + 5);
+                lable.Size = new Size(60, 14);
+                lable.TabIndex = i;
+                _gyrop_ctl.Controls.Add(lable);
+
+                switch (i)
+                {
+                    case 0: lable.Text = "零偏校准: "; break;
+                    case 1: lable.Text = "正交校准: "; break;
+                    case 2: lable.Text = "温度校准: "; break;
+                }
+            }
 
             for (int i = 0; i < button_item; i++)
             {
                 SimpleButton button = new SimpleButton();
                 button.AllowFocus = false;
-                button.Location = new Point(loction_x + i * loction_width, loction_y);
+                button.Location = new Point(loction_x + loction_width, loction_y + i * loction_height);
                 button.Size = new Size(80, 25);
                 button.TabIndex = i;
+                button.Text = "开始";
                 button.Click += new System.EventHandler(gyro_calib_Click);
-                _gyrop_ctl.Controls.Add(button);
 
+                _gyrop_ctl.Controls.Add(button);
+                _button[button.TabIndex] = button;
+            }
+
+            // 正交校准操作
+            for (int i = 0; i < 3; i++)
+            {
+                SimpleButton button = new SimpleButton();
+                button.AllowFocus = false;
+                button.Location = new Point(loction_x + (loction_width + 15) * (i + 2), loction_y + 1 * loction_height);
+                button.Size = new Size(80, 25);
+                button.TabIndex = i;
+                button.Enabled = false;
+
+                string rotate_str = "";
                 switch (i)
                 {
-                    case 0: button.Text = "零偏校准"; break;
-                    case 1: button.Text = "正交校准"; break;
-                    case 2: button.Text = "温度校准"; break;
+                    case 0: rotate_str = "X+"; break;
+                    case 1: rotate_str = "Y+"; break;
+                    case 2: rotate_str = "Z+"; break;
                 }
+
+                button.Text = "获取旋转" + rotate_str;
+                button.Click += new System.EventHandler(gyro_func_Click);
+
+                _gyrop_ctl.Controls.Add(button);
+                _rotate_button[button.TabIndex] = button;
             }
 
             // 进度条
             progress = new ProgressBarControl();
-            progress.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
+            progress.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
             progress.EditValue = 0;
             progress.Location = new Point(loction_x, _gyrop_ctl.Height - 30);
             progress.Name = "progressBarControl1";
@@ -275,7 +350,7 @@ namespace dev_toolkit.device
 
             // 信息显示
             info_label = new LabelControl();
-            info_label.Location = new Point(loction_x + 40 + button_item * loction_width, loction_y + 5);
+            info_label.Location = new Point(loction_x + 2, _gyrop_ctl.Height - 50);
             info_label.Name = "label";
             info_label.Size = new Size(63, 14);
             info_label.TabIndex = 0;
@@ -289,7 +364,7 @@ namespace dev_toolkit.device
                 gyro_offset_dt.Columns.Add(System.Text.Encoding.ASCII.GetString(ind), typeof(string));
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 15; i++)
             {
                 gyro_offset_dt.Rows.Add(new object[] { " " });
             }
