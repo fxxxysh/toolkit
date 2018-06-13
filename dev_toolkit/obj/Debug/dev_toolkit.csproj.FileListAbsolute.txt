@@ -199,3 +199,7 @@ C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\ru\DevExpress.Office.v17.
 F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\bin\Debug\DevExpress.BonusSkins.v17.2.dll
 F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\obj\Debug\dev_toolkit.csprojAssemblyReference.cache
 F:\项目管理\2016-08-30\GROUP\github\toolkit\dev_toolkit\obj\Debug\dev_toolkit.csproj.CopyComplete
+C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\DevExpress.BonusSkins.v17.2.dll
+C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\SharpGL.dll
+C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\SharpGL.WinForms.dll

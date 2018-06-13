@@ -205,9 +205,12 @@ namespace dev_toolkit.device
                     {
                         if (button_index == 1)
                         {
-                            _rotate_button[0].Enabled = false;
-                            _rotate_button[1].Enabled = false;
-                            _rotate_button[2].Enabled = false;
+                            for (int i = 0; i < 3; i++)
+                            {
+                                string text = _rotate_button[i].Text.Remove(0, 4);
+                                _rotate_button[i].Text = "获取旋转" + text;
+                                _rotate_button[i].Enabled = false;
+                            }                    
                             _rotate_button[3].Enabled = false;
                             _rotate_button[3].Text = "取消";
                         }
