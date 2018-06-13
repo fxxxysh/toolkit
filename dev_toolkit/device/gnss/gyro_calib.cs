@@ -30,16 +30,27 @@ namespace dev_toolkit.device
         LabelControl info_label;
 
         public Dictionary<int, SimpleButton> _button = new Dictionary<int, SimpleButton>();
-        public Dictionary<int, SimpleButton> _rotate_button = new Dictionary<int, SimpleButton>();  
+        public Dictionary<int, SimpleButton> _rotate_button = new Dictionary<int, SimpleButton>();
+        public Dictionary<int, gyro_integral_s> _rotate_buffer = new Dictionary<int, gyro_integral_s>();
 
         private int start_timeout = 0;
         private int button_index = 0;
         private bool start_sign = false;
 
+        private int dev_orientation = 0;
+        private bool[] dev_orientation_sign;
+
         public gl_flush _gl;
 
         // 发送指令
         public event Func<msg_control_s, bool> trans_command;
+
+        public struct gyro_integral_s
+        {
+            public float x;
+            public float y;
+            public float z;
+        }
 
         public void info(string str)
         {
@@ -97,9 +108,16 @@ namespace dev_toolkit.device
                                         gyro_offset_dt.Rows[index][i + 1] = str_value[i];// float.Parse(str_value[i]); //添加值
                                     }
 
-                                    if (index == 0)
+                                    // 三维显示
+                                    if ((index == 0) && (button_index == 1))
                                     {
-                                        _gl.rotate(float.Parse(str_value[1]) / 100, -float.Parse(str_value[2]) / 100, -float.Parse(str_value[0]) / 100);
+                                        gyro_integral_s gyro_integral;
+                                        gyro_integral.x = float.Parse(str_value[0]);
+                                        gyro_integral.y = float.Parse(str_value[1]);
+                                        gyro_integral.z = float.Parse(str_value[2]);
+                                        _rotate_buffer[dev_orientation] = gyro_integral;
+
+                                        _gl.rotate(gyro_integral.y / 100, -gyro_integral.z / 100, -gyro_integral.x / 100);                     
                                     }
                                 }
                                 break;
@@ -109,9 +127,9 @@ namespace dev_toolkit.device
                                 break;
 
                             case "ORIENTATION":
-                                int orientation = int.Parse(str_list[1].Replace(" ", "")); //去除空格
+                                dev_orientation = int.Parse(str_list[1].Replace(" ", "")); //去除空格
 
-                                switch (orientation)
+                                switch (dev_orientation)
                                 {
                                     case 5:
                                         _rotate_button[1].Enabled = true;
@@ -140,61 +158,40 @@ namespace dev_toolkit.device
             }
         }
 
-        private void gyro_calib_Click(object sender, EventArgs e)
+        private bool gyro_calib_command(byte command)
         {
-            if (start_sign == false)
-            {
-                SimpleButton button = (SimpleButton)sender;
-                msg_control_s control = new msg_control_s();
-                button_index = button.TabIndex;
-
-                if (button_index < 3)
-                {
-                    control.calib.flag = 1; // 使能
-                    control.calib.module = 0; // 陀螺
-                    control.calib.command = (byte)button.TabIndex;
-
-                    switch (button.TabIndex)
-                    {
-                        case 0: new_offset_grid(); break;
-                        case 1: new_rotate_grid(); break;
-                        case 2: break;
-                    }
-
-                    start_sign = trans_command(control);
-                    if (start_sign == true)
-                    {
-                        Thread th = new Thread(msg_ack);
-                        th.Start();
-                    }
-                }
-            }
+            msg_control_s control = new msg_control_s();
+            control.calib.flag = 1; // 使能
+            control.calib.module = 0; // 陀螺
+            control.calib.command = command;
+            return trans_command(control);
         }
 
-        private void gyro_func_Click(object sender, EventArgs e)
+        private bool gyro_calib_ctl_command(byte command)
         {
-            SimpleButton button = (SimpleButton)sender;
-
-            string text = button.Text;
-            string part = text.Substring(0, 4);
-
-            if (part == "获取旋转")
-            {
-                text = text.Remove(0, 4);
-                _rotate_button[button.TabIndex].Text = "停止获取" + text;
-            }
-            else
-            {
-                text = text.Remove(0, 4);
-                _rotate_button[button.TabIndex].Text = "获取旋转" + text;
-            }
+            msg_control_s control = new msg_control_s();
+            control.calib_ctl.flag = 1; // 使能
+            control.calib_ctl.module = 0; // 陀螺
+            control.calib_ctl.command = command;
+            return trans_command(control);
         }
 
-        public void msg_ack()
-        {    
+        public void gyro_calib_ack()
+        {
             bool loop = true;
             start_timeout = 0;
-            _page.Invoke(new Action(() => { _button[button_index].Enabled = false; }));
+
+            //start
+            _page.Invoke(new Action(() =>
+            {          
+                _button[button_index].Enabled = false;
+
+                if (button_index == 1)
+                {
+                    _rotate_button[3].Enabled = true;
+                    _rotate_button[3].Text = "取消";
+                }
+            }));
 
             while (loop)
             {
@@ -202,28 +199,120 @@ namespace dev_toolkit.device
                 {
                     loop = false;
                     start_sign = false;
-                    _page.Invoke(new Action(() => { _button[button_index].Enabled = true; }));
+                    
+                    // end
+                    _page.Invoke(new Action(() =>
+                    {
+                        if (button_index == 1)
+                        {
+                            _rotate_button[0].Enabled = false;
+                            _rotate_button[1].Enabled = false;
+                            _rotate_button[2].Enabled = false;
+                            _rotate_button[3].Enabled = false;
+                            _rotate_button[3].Text = "取消";
+                        }
+                        _button[button_index].Enabled = true;
+                    }));                
                 }
                 Thread.Sleep(100);
             }
-
             Thread.CurrentThread.Abort();
+        }
+
+        private void gyro_calib_Click(object sender, EventArgs e)
+        {
+            if (start_sign == false)
+            {
+                SimpleButton button = (SimpleButton)sender;
+                button_index = button.TabIndex;
+
+                new_offset_grid();
+                start_sign = gyro_calib_command((byte)button.TabIndex);
+
+                if (start_sign == true)
+                {
+                    switch (button.TabIndex)
+                    {
+                        case 0: new_offset_grid(); break;
+                        case 1: new_rotate_grid(); break;
+                        case 2: break;
+                    }
+
+                    Thread th = new Thread(gyro_calib_ack);
+                    th.Start();
+                }
+            }
+        }
+
+        private void gyro_func_Click(object sender, EventArgs e)
+        {
+            SimpleButton button = (SimpleButton)sender;
+            string text = button.Text;
+            string part = text.Substring(0, 4);
+
+            if (part == "获取旋转")
+            {            
+                if (gyro_calib_ctl_command(0) == true)
+                {
+                    text = text.Remove(0, 4);
+                    _rotate_button[button.TabIndex].Text = "停止获取" + text;
+                }
+            }
+            else
+            {
+                string rotate_str = "";
+                switch (dev_orientation)
+                {
+                    case 5:
+                        rotate_str = "Y+";
+                        dev_orientation_sign[5] = true;
+                        break;
+
+                    case 2:
+                        rotate_str = "Z+";
+                        dev_orientation_sign[2] = true;
+                        break;
+
+                    case 0:
+                        rotate_str = "X+";
+                        dev_orientation_sign[0] = true;
+                        break;
+                }
+
+                if ((dev_orientation_sign[0]) && (dev_orientation_sign[2]) && (dev_orientation_sign[5]))
+                {
+                    _rotate_button[3].Text = "完成";
+                }
+
+                gyro_offset_dt.Rows.Add(new object[] { rotate_str, _rotate_buffer[dev_orientation].x, _rotate_buffer[dev_orientation].y, _rotate_buffer[dev_orientation].z });
+                gyro_calib_ctl_command(1);
+
+                text = text.Remove(0, 4);
+                _rotate_button[button.TabIndex].Text = "获取旋转" + text;
+            }          
+        }
+
+        private void gyro_func_cancel_Click(object sender, EventArgs e)
+        {
+            gyro_calib_ctl_command(2);//退出校准
         }
 
         public void new_rotate_grid()
         {
             gyro_offset_dt.Rows.Clear();
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 3; i++)
             {
                 gyro_offset_dt.Rows.Add(new object[] { " " });
             }
+
+            dev_orientation_sign = new bool[6];
         }
 
         public void new_offset_grid()
         {
             gyro_offset_dt.Rows.Clear();
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 3; i++)
             {
                 gyro_offset_dt.Rows.Add(new object[] { " " });
             }
@@ -309,13 +398,12 @@ namespace dev_toolkit.device
                 button.TabIndex = i;
                 button.Text = "开始";
                 button.Click += new System.EventHandler(gyro_calib_Click);
-
                 _gyrop_ctl.Controls.Add(button);
                 _button[button.TabIndex] = button;
             }
 
             // 正交校准操作
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 SimpleButton button = new SimpleButton();
                 button.AllowFocus = false;
@@ -332,9 +420,16 @@ namespace dev_toolkit.device
                     case 2: rotate_str = "Z+"; break;
                 }
 
-                button.Text = "获取旋转" + rotate_str;
-                button.Click += new System.EventHandler(gyro_func_Click);
-
+                if (i == 3)
+                {
+                    button.Text = "取消";
+                    button.Click += new System.EventHandler(gyro_func_cancel_Click);
+                }
+                else
+                {
+                    button.Text = "获取旋转" + rotate_str;
+                    button.Click += new System.EventHandler(gyro_func_Click);
+                }
                 _gyrop_ctl.Controls.Add(button);
                 _rotate_button[button.TabIndex] = button;
             }
@@ -357,14 +452,14 @@ namespace dev_toolkit.device
             info_label.Text = " ";
             _gyrop_ctl.Controls.Add(info_label);
 
-            int Columns_max = 10;
+            int Columns_max = 15;
             for (int i = 0; i < Columns_max; i++)
             {
                 byte[] ind = { (byte)(65 + i) };
                 gyro_offset_dt.Columns.Add(System.Text.Encoding.ASCII.GetString(ind), typeof(string));
             }
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 3; i++)
             {
                 gyro_offset_dt.Rows.Add(new object[] { " " });
             }
