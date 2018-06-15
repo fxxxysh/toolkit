@@ -1,6 +1,8 @@
-﻿  comlink_sim.cpp
-  comlink_msg.cpp
-f:\项目管理\2016-08-30\group\github\toolkit\comlink\comlink_msg.cpp(53): warning C4305: “=”: 从“double”到“float”截断
+﻿  stdafx.cpp
   comlink.cpp
+  comlink_msg.cpp
+  comlink_sim.cpp
   正在生成代码...
-f:\项目管理\2016-08-30\group\github\toolkit\comlink\comlink.cpp(332): error C4716: “comlink_msg_copye”: 必须返回一个值
+comlink_sim.obj : error LNK2019: 无法解析的外部符号 "void __cdecl msg_list_init(void)" (?msg_list_init@@YAXXZ)，该符号在函数 _main 中被引用
+F:\项目管理\茄子\OpenCV\opencv\build\x64\vc14\lib\opencv_world310d.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+F:\项目管理\2016-08-30\GROUP\github\toolkit\Debug\comlink_sim.exe : fatal error LNK1120: 1 个无法解析的外部命令

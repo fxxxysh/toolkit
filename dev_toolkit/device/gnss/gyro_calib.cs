@@ -76,9 +76,9 @@ namespace dev_toolkit.device
                             //    info_label.Text = "";
                             //    break;
 
-                            //case "END":
-                            //    info_sign = false;
-                            //    break;
+                            case "END":
+                                start_timeout = 50; //退出
+                                break;
 
                             case "INFO":
                                 info_label.Text = str.Split(']')[1];
