@@ -148,6 +148,12 @@ namespace dev_toolkit.device
                                         _rotate_button[1].Enabled = false;
                                         _rotate_button[2].Enabled = false;
                                         break;
+
+                                    default:
+                                        _rotate_button[0].Enabled = false;
+                                        _rotate_button[1].Enabled = false;
+                                        _rotate_button[2].Enabled = false;
+                                        break;
                                 }
                                 break;
 
