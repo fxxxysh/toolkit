@@ -135,6 +135,7 @@
             this.nav_wave = new DevExpress.XtraNavBar.NavBarGroup();
             this.kit_nav_bar = new DevExpress.XtraNavBar.NavBarControl();
             this.kit_theme = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.acc_calib_groupControl = new DevExpress.XtraEditors.GroupControl();
             this.panel1.SuspendLayout();
             this.nav_wave_page.SuspendLayout();
             this.nav_control_page.SuspendLayout();
@@ -144,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gyro_data_groupControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gyro_calib_groupControl)).BeginInit();
+            this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kit_com_port_edit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kit_com_baudrate_edit)).BeginInit();
@@ -166,6 +168,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_bar)).BeginInit();
             this.kit_nav_bar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.acc_calib_groupControl)).BeginInit();
             this.SuspendLayout();
             // 
             // plotToolBarButton13
@@ -684,6 +687,7 @@
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.acc_calib_groupControl);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(796, 414);
             this.xtraTabPage2.Text = "加计校准";
@@ -1178,6 +1182,17 @@
             // 
             this.kit_theme.LookAndFeel.SkinName = "Visual Studio 2013 Dark";
             // 
+            // acc_calib_groupControl
+            // 
+            this.acc_calib_groupControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.acc_calib_groupControl.Location = new System.Drawing.Point(5, 5);
+            this.acc_calib_groupControl.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.acc_calib_groupControl.Name = "acc_calib_groupControl";
+            this.acc_calib_groupControl.Size = new System.Drawing.Size(787, 183);
+            this.acc_calib_groupControl.TabIndex = 1;
+            this.acc_calib_groupControl.Text = "控制";
+            // 
             // dev_toolkit
             // 
             this.Appearance.ForeColor = System.Drawing.Color.Transparent;
@@ -1203,6 +1218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gyro_data_groupControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gyro_calib_groupControl)).EndInit();
+            this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kit_ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kit_com_port_edit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kit_com_baudrate_edit)).EndInit();
@@ -1226,6 +1242,7 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kit_nav_bar)).EndInit();
             this.kit_nav_bar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.acc_calib_groupControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1319,5 +1336,6 @@
         private DevExpress.XtraEditors.GroupControl gyro_calib_groupControl;
         private DevExpress.XtraEditors.GroupControl gyro_data_groupControl;
         private SharpGL.OpenGLControl openGLControl1;
+        private DevExpress.XtraEditors.GroupControl acc_calib_groupControl;
     }
 }

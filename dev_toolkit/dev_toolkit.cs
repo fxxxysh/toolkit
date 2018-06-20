@@ -160,6 +160,21 @@ namespace dev_toolkit
             set { openGLControl1 = value; }
         }
 
+        // 加计校准页面相关
+        public XtraTabPage _acc_calib_page
+        {
+            get { return xtraTabPage2; }
+            set { xtraTabPage2 = value; }
+        }
+
+        // 加计校准页面相关
+        public GroupControl _acc_calib_groupControl
+        {
+            get { return acc_calib_groupControl; }
+            set { acc_calib_groupControl = value; }
+        }
+
+        
         // 页面切换 
         public Dictionary<string, NavigationPage> _page_list = new Dictionary<string, NavigationPage>();
 
