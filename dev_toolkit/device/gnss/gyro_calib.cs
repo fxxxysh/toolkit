@@ -81,7 +81,7 @@ namespace dev_toolkit.device
                                 break;
 
                             case "INFO":
-                                info_label.Text = str.Split(']')[1];
+                                info_label.Text = str;//.Split(']')[1];
                                 break;
 
                             case "VALUE":
@@ -117,7 +117,7 @@ namespace dev_toolkit.device
                                         gyro_integral.z = float.Parse(str_value[2]);
                                         _rotate_buffer[dev_orientation] = gyro_integral;
 
-                                        _gl.rotate(gyro_integral.y / 100, -gyro_integral.z / 100, -gyro_integral.x / 100);                     
+                                        _gl.rotate(gyro_integral.y / 100, -gyro_integral.z / 100, -gyro_integral.x / 100);
                                     }
                                 }
                                 break;
@@ -129,31 +129,34 @@ namespace dev_toolkit.device
                             case "ORIENTATION":
                                 dev_orientation = int.Parse(str_list[1].Replace(" ", "")); //去除空格
 
-                                switch (dev_orientation)
+                                if (dev_orientation < 6)
                                 {
-                                    case 5:
-                                        _rotate_button[1].Enabled = true;
-                                        _rotate_button[0].Enabled = false;
-                                        _rotate_button[2].Enabled = false;
-                                        break;
+                                    switch (dev_orientation)
+                                    {
+                                        case 5:
+                                            _rotate_button[1].Enabled = true;
+                                            _rotate_button[0].Enabled = false;
+                                            _rotate_button[2].Enabled = false;
+                                            break;
 
-                                    case 2:
-                                        _rotate_button[2].Enabled = true;
-                                        _rotate_button[0].Enabled = false;
-                                        _rotate_button[1].Enabled = false;
-                                        break;
+                                        case 2:
+                                            _rotate_button[2].Enabled = true;
+                                            _rotate_button[0].Enabled = false;
+                                            _rotate_button[1].Enabled = false;
+                                            break;
 
-                                    case 0:
-                                        _rotate_button[0].Enabled = true;
-                                        _rotate_button[1].Enabled = false;
-                                        _rotate_button[2].Enabled = false;
-                                        break;
+                                        case 0:
+                                            _rotate_button[0].Enabled = true;
+                                            _rotate_button[1].Enabled = false;
+                                            _rotate_button[2].Enabled = false;
+                                            break;
 
-                                    default:
-                                        _rotate_button[0].Enabled = false;
-                                        _rotate_button[1].Enabled = false;
-                                        _rotate_button[2].Enabled = false;
-                                        break;
+                                        default:
+                                            _rotate_button[0].Enabled = false;
+                                            _rotate_button[1].Enabled = false;
+                                            _rotate_button[2].Enabled = false;
+                                            break;
+                                    }
                                 }
                                 break;
 
@@ -189,7 +192,7 @@ namespace dev_toolkit.device
 
             //start
             _page.Invoke(new Action(() =>
-            {          
+            {
                 _button[button_index].Enabled = false;
 
                 if (button_index == 1)
@@ -205,7 +208,7 @@ namespace dev_toolkit.device
                 {
                     loop = false;
                     start_sign = false;
-                    
+
                     // end
                     _page.Invoke(new Action(() =>
                     {
@@ -216,12 +219,12 @@ namespace dev_toolkit.device
                                 string text = _rotate_button[i].Text.Remove(0, 4);
                                 _rotate_button[i].Text = "获取旋转" + text;
                                 _rotate_button[i].Enabled = false;
-                            }                    
+                            }
                             _rotate_button[3].Enabled = false;
                             _rotate_button[3].Text = "取消";
                         }
                         _button[button_index].Enabled = true;
-                    }));                
+                    }));
                 }
                 Thread.Sleep(100);
             }
@@ -260,7 +263,7 @@ namespace dev_toolkit.device
             string part = text.Substring(0, 4);
 
             if (part == "获取旋转")
-            {            
+            {
                 if (gyro_calib_ctl_command(0) == true)
                 {
                     text = text.Remove(0, 4);
@@ -298,7 +301,7 @@ namespace dev_toolkit.device
 
                 text = text.Remove(0, 4);
                 _rotate_button[button.TabIndex].Text = "获取旋转" + text;
-            }          
+            }
         }
 
         private void gyro_func_cancel_Click(object sender, EventArgs e)

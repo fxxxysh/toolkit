@@ -64,17 +64,12 @@ namespace dev_toolkit.device
                     {
                         switch (str_list[0])
                         {
-                            //case "START":
-                            //    strt_sign = true;
-                            //    info_label.Text = "";
-                            //    break;
-
                             case "END":
                                 start_timeout = 50; //退出
                                 break;
 
                             case "INFO":
-                                info_label.Text = str.Split(']')[1];
+                                info_label.Text = str;//.Split(']')[1];
                                 break;
 
                             case "VALUE":
@@ -93,25 +88,8 @@ namespace dev_toolkit.device
 
                                 if (str_index != null)
                                 {
-                                    //int index = int.Parse(str_index);
-                                    //gyro_offset_dt.Rows[index][0] = name; // 添加name
-
-                                    //for (int i = 0; i < str_value.Count(); i++)
-                                    //{
-                                    //    gyro_offset_dt.Rows[index][i + 1] = str_value[i];// float.Parse(str_value[i]); //添加值
-                                    //}
-
-                                    //// 三维显示
-                                    //if ((index == 0) && (button_index == 1))
-                                    //{
-                                    //    gyro_integral_s gyro_integral;
-                                    //    gyro_integral.x = float.Parse(str_value[0]);
-                                    //    gyro_integral.y = float.Parse(str_value[1]);
-                                    //    gyro_integral.z = float.Parse(str_value[2]);
-                                    //    _rotate_buffer[dev_orientation] = gyro_integral;
-
-                                    //    _gl.rotate(gyro_integral.y / 100, -gyro_integral.z / 100, -gyro_integral.x / 100);
-                                    //}
+                                    int index = int.Parse(str_index);
+                                    _rotate_button[index].text.Text = str_value[0] + " " + str_value[1] + " " + str_value[2];
                                 }
                                 break;
 
@@ -122,31 +100,13 @@ namespace dev_toolkit.device
                             case "ORIENTATION":
                                 dev_orientation = int.Parse(str_list[1].Replace(" ", "")); //去除空格
 
-                                switch (dev_orientation)
+                                if (dev_orientation < 6)
                                 {
-                                    //case 5:
-                                    //    _rotate_button[1].Enabled = true;
-                                    //    _rotate_button[0].Enabled = false;
-                                    //    _rotate_button[2].Enabled = false;
-                                    //    break;
-
-                                    //case 2:
-                                    //    _rotate_button[2].Enabled = true;
-                                    //    _rotate_button[0].Enabled = false;
-                                    //    _rotate_button[1].Enabled = false;
-                                    //    break;
-
-                                    //case 0:
-                                    //    _rotate_button[0].Enabled = true;
-                                    //    _rotate_button[1].Enabled = false;
-                                    //    _rotate_button[2].Enabled = false;
-                                    //    break;
-
-                                    //default:
-                                    //    _rotate_button[0].Enabled = false;
-                                    //    _rotate_button[1].Enabled = false;
-                                    //    _rotate_button[2].Enabled = false;
-                                    //    break;
+                                    for (int i = 0; i < 6; i++)
+                                    {
+                                        _rotate_button[i].button.Enabled = false;
+                                    }
+                                    _rotate_button[dev_orientation].button.Enabled = true;
                                 }
                                 break;
 
@@ -202,11 +162,10 @@ namespace dev_toolkit.device
             switch (button.Text)
             {
                 case "开始":
-                    start_sign = true;
-                    button.Text = "取消";
-                    start_sign = acc_calib_command((byte)button.TabIndex);
+                    start_sign = acc_calib_command((byte)0);
                     if (start_sign == true)
                     {
+                        button.Text = "取消";
                         Thread th = new Thread(acc_calib_ack);
                         th.Start();
                     }
@@ -215,13 +174,14 @@ namespace dev_toolkit.device
                 case "取消":
                     start_sign = false;
                     button.Text = "开始";
+                    acc_calib_command((byte)1);
                     break;
 
                 case "完成":
                     start_sign = false;
                     button.Text = "开始";
+                    acc_calib_command((byte)1);
                     break;
-
             }
         }
 
