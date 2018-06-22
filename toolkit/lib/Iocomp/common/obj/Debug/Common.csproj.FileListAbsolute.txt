@@ -40,3 +40,14 @@ F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\De
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\Common.csproj.CopyComplete
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\common.dll
 F:\项目管理\2016-08-30\GROUP\github\toolkit\toolkit\lib\Iocomp\common\obj\Debug\common.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Debug\common.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Debug\common.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.Design.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.Drawing.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Debug\System.Windows.Forms.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Debug\Common.csprojAssemblyReference.cache
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Debug\Common.csproj.CopyComplete
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Debug\common.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Debug\common.pdb

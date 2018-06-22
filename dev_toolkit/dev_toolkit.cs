@@ -167,14 +167,27 @@ namespace dev_toolkit
             set { xtraTabPage2 = value; }
         }
 
-        // 加计校准页面相关
+        // 加计校准控制
         public GroupControl _acc_calib_groupControl
         {
             get { return acc_calib_groupControl; }
             set { acc_calib_groupControl = value; }
         }
 
-        
+        // 地磁校准页面相关
+        public XtraTabPage _mag_calib_page
+        {
+            get { return xtraTabPage3; }
+            set { xtraTabPage3 = value; }
+        }
+
+        // 地磁校准控制
+        public GroupControl _mag_calib_groupControl
+        {
+            get { return mag_calib_groupControl; }
+            set { mag_calib_groupControl = value; }
+        }
+
         // 页面切换 
         public Dictionary<string, NavigationPage> _page_list = new Dictionary<string, NavigationPage>();
 

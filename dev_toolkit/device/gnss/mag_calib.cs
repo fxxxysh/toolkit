@@ -17,7 +17,7 @@ using static dev_toolkit.modules.s_comlink;
 
 namespace dev_toolkit.device
 {
-    public class acc_calib
+    public class mag_calib
     {
         private XtraTabPage _page;
         private GroupControl _gyrop_ctl;
@@ -26,17 +26,16 @@ namespace dev_toolkit.device
         LabelControl info_label;
         LabelControl calib_label;
 
-        public struct acc_func_s
+        public struct mag_func_s
         {
             public SimpleButton button;
-            public TextEdit text;
+            public ProgressBarControl progress;
         }
 
         public Dictionary<int, SimpleButton> _button = new Dictionary<int, SimpleButton>();
-        public Dictionary<int, acc_func_s> _rotate_button = new Dictionary<int, acc_func_s>();
+        public Dictionary<int, mag_func_s> _rotate_button = new Dictionary<int, mag_func_s>();
 
         private int start_timeout = 0;
-        private int button_index = 0;
         private bool start_sign = false;
 
         private int orientation = 0;
@@ -102,7 +101,7 @@ namespace dev_toolkit.device
                                         }
                                     }
 
-                                    _rotate_button[orientation].text.Text = str_value[0] + " " + str_value[1] + " " + str_value[2];
+                                   // _rotate_button[dev_orientation].text.Text = str_value[0] + " " + str_value[1] + " " + str_value[2];
                                 }
                                 break;
 
@@ -112,6 +111,10 @@ namespace dev_toolkit.device
 
                             case "PROGRESS":
                                 progress.EditValue = int.Parse(str_list[1].Replace(" ", "")); //去除空格
+                                break;
+
+                            case "PROGRESS1":
+                                _rotate_button[orientation].progress.EditValue = int.Parse(str_list[1].Replace(" ", "")); //去除空格
                                 break;
 
                             case "ORIENTATION":
@@ -139,7 +142,7 @@ namespace dev_toolkit.device
             }
         }
 
-        public void acc_calib_ack()
+        public void mag_calib_ack()
         {
             bool loop = true;
             start_timeout = 0;
@@ -168,7 +171,7 @@ namespace dev_toolkit.device
             Thread.CurrentThread.Abort();
         }
 
-        private bool acc_calib_command(byte command)
+        private bool mag_calib_command(byte command)
         {
             msg_control_s control = new msg_control_s();
             control.calib.flag = 1; // 使能
@@ -186,7 +189,7 @@ namespace dev_toolkit.device
             return trans_command(control);
         }
 
-        private void acc_calib_Click(object sender, EventArgs e)
+        private void mag_calib_Click(object sender, EventArgs e)
         {
             SimpleButton button = (SimpleButton)sender;
 
@@ -197,14 +200,14 @@ namespace dev_toolkit.device
                     progress.EditValue = 0;
                     for (int i = 0; i < 6; i++)
                     {
-                        _rotate_button[i].text.Text = "";
+                        //_rotate_button[i].text.Text = "";
                     }
 
-                    start_sign = acc_calib_command((byte)0); //06面校准
+                    start_sign = mag_calib_command((byte)0); //06面校准
                     if (start_sign == true)
                     {
                         button.Text = "取消";
-                        Thread th = new Thread(acc_calib_ack);
+                        Thread th = new Thread(mag_calib_ack);
                         th.Start();
                     }
                     break;
@@ -223,7 +226,7 @@ namespace dev_toolkit.device
             }
         }
 
-        private void acc_func_Click(object sender, EventArgs e)
+        private void mag_func_Click(object sender, EventArgs e)
         {
             SimpleButton button = (SimpleButton)sender;
             gyro_calib_ctl_command((byte)0);
@@ -248,7 +251,7 @@ namespace dev_toolkit.device
 
                 switch (i)
                 {
-                    case 0: lable.Text = "六面校准: "; break;
+                    case 0: lable.Text = "椭圆校准: "; break;
                 }
             }
 
@@ -260,7 +263,7 @@ namespace dev_toolkit.device
                 button.Size = new Size(80, 25);
                 button.TabIndex = i;
                 button.Text = "开始";
-                button.Click += new System.EventHandler(acc_calib_Click);
+                button.Click += new System.EventHandler(mag_calib_Click);
                 _gyrop_ctl.Controls.Add(button);
                 _button[button.TabIndex] = button;
             }
@@ -268,10 +271,11 @@ namespace dev_toolkit.device
             // 校准操作
             for (int i = 0; i < 6; i++)
             {
-                TextEdit textEdit = new TextEdit();
-                textEdit.Location = new Point(20 + loction_x + ((loction_width + 15) * 3) * (i % 3), 22 + 2 * loction_height + i / 3 * loction_height);
-                textEdit.Size = new Size(130, 20);
-                //textEdit.TabIndex = i;
+                progress = new ProgressBarControl();
+                progress.EditValue = 0;
+                progress.Location = new Point(20 + loction_x + ((loction_width + 15) * 3) * (i % 3), 22 + 2 * loction_height + i / 3 * loction_height);
+                progress.Name = "progressBarControl1";
+                progress.Size = new Size(130, 18);
 
                 SimpleButton button = new SimpleButton();
                 button.AllowFocus = false;
@@ -291,19 +295,19 @@ namespace dev_toolkit.device
                     case 4: rotate_str = "Y-"; index = 3; break;
                     case 5: rotate_str = "Z-"; index = 5; break;
                 }
-                textEdit.TabIndex = index;
+                progress.TabIndex = index;
                 button.TabIndex = index;
 
-                button.Text = "获取" + rotate_str;
-                button.Click += new System.EventHandler(acc_func_Click);
+                button.Text = "旋转" + rotate_str;
+                //button.Click += new System.EventHandler(mag_func_Click);
 
-                _gyrop_ctl.Controls.Add(textEdit);
+                _gyrop_ctl.Controls.Add(progress);
                 _gyrop_ctl.Controls.Add(button);
 
-                acc_func_s acc_func = new acc_func_s();
-                acc_func.button = button;
-                acc_func.text = textEdit;
-                _rotate_button[button.TabIndex] = acc_func;
+                mag_func_s mag_func = new mag_func_s();
+                mag_func.button = button;
+                mag_func.progress = progress;
+                _rotate_button[button.TabIndex] = mag_func;
             }
 
             // 进度条
@@ -334,7 +338,7 @@ namespace dev_toolkit.device
             _gyrop_ctl.Controls.Add(calib_label);
         }
 
-        public acc_calib(object page, object gyrop_ctl)
+        public mag_calib(object page, object gyrop_ctl)
         {
             _page = (XtraTabPage)page;
             _gyrop_ctl = (GroupControl)gyrop_ctl;

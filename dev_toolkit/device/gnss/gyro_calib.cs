@@ -81,7 +81,7 @@ namespace dev_toolkit.device
                                 break;
 
                             case "INFO":
-                                info_label.Text = str;//.Split(']')[1];
+                                info_label.Text = str.Split(']')[1];
                                 break;
 
                             case "VALUE":
