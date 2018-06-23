@@ -172,7 +172,7 @@ namespace dev_toolkit.device
         {
             msg_control_s control = new msg_control_s();
             control.calib.flag = 1; // 使能
-            control.calib.module = 2; // 地磁
+            control.calib.module = 1; // 加计
             control.calib.command = command;
             return trans_command(control);
         }
@@ -181,7 +181,7 @@ namespace dev_toolkit.device
         {
             msg_control_s control = new msg_control_s();
             control.calib_ctl.flag = 1; // 使能
-            control.calib_ctl.module = 2; // 地磁
+            control.calib_ctl.module = 1; // 加计
             control.calib_ctl.command = command;
             return trans_command(control);
         }

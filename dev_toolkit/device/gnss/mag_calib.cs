@@ -96,7 +96,7 @@ namespace dev_toolkit.device
                                         {
                                             if (++side_cnt == 6)
                                             {
-                                                _button[0].Text = "完成";
+                                                //_button[0].Text = "完成";
                                             }
                                         }
                                     }
@@ -163,7 +163,8 @@ namespace dev_toolkit.device
                     // end
                     _page.Invoke(new Action(() =>
                     {
-                        _button[0].Text = "开始";
+                        //_button[0].Text = "开始";
+                        _button[0].Enabled = true;
                     }));
                 }
                 Thread.Sleep(100);
@@ -200,29 +201,30 @@ namespace dev_toolkit.device
                     progress.EditValue = 0;
                     for (int i = 0; i < 6; i++)
                     {
-                        //_rotate_button[i].text.Text = "";
+                        _rotate_button[i].progress.EditValue = 0;
                     }
 
                     start_sign = mag_calib_command((byte)0); //06面校准
                     if (start_sign == true)
                     {
-                        button.Text = "取消";
-                        Thread th = new Thread(mag_calib_ack);
+                        // button.Text = "取消";
+                        button.Enabled = false;
+                         Thread th = new Thread(mag_calib_ack);
                         th.Start();
                     }
                     break;
 
-                case "取消":
-                    //start_sign = false;
-                    button.Text = "开始";
-                    gyro_calib_ctl_command((byte)1);
-                    break;
+                //case "取消":
+                //    //start_sign = false;
+                //    button.Text = "开始";
+                //    gyro_calib_ctl_command((byte)1);
+                //    break;
 
-                case "完成":
-                    //start_sign = false;
-                    button.Text = "开始";
-                    gyro_calib_ctl_command((byte)1);
-                    break;
+                //case "完成":
+                //    //start_sign = false;
+                //    button.Text = "开始";
+                //    gyro_calib_ctl_command((byte)1);
+                //    break;
             }
         }
 
