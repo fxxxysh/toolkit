@@ -86,6 +86,7 @@ namespace dev_toolkit.device
                                 //}
 
                                 //if (str_index != null)
+                                if (orientation < 6)
                                 {
                                     //int index = int.Parse(str_index);
                                     int side_cnt = 0;
