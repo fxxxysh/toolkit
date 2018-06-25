@@ -304,3 +304,7 @@ G:\fx\toolkit\dev_toolkit\obj\Debug\dev_toolkit.csproj.CopyComplete
 G:\fx\toolkit\dev_toolkit\obj\Debug\dev_toolkit.exe
 G:\fx\toolkit\dev_toolkit\obj\Debug\dev_toolkit.pdb
 C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.csprojAssemblyReference.cache
+C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\dev_toolkit.exe.manifest
+C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\dev_toolkit.application
+C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.exe.manifest
+C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.application
