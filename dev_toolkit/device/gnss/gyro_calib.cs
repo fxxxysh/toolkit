@@ -122,6 +122,16 @@ namespace dev_toolkit.device
                                 }
                                 break;
 
+                            case "CALIB":
+                                string calib_name = null;
+                                foreach (Match match in Regex.Matches(str, @"(?<=\]).*?(?=\[)"))//提取][内部字符串
+                                {
+                                    calib_name = match.Groups[0].Value;
+                                }
+                                string[] val = str_list[1].Replace(" ", "").Split(','); //去除空格,逗号分割
+                                gyro_offset_dt.Rows.Add(new object[] { calib_name, val[0], val[1], val[1] });
+                                break;
+
                             case "PROGRESS":
                                 progress.EditValue = int.Parse(str_list[1].Replace(" ", "")); //去除空格
                                 break;
