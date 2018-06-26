@@ -308,3 +308,10 @@ C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\dev_toolkit.exe.manifest
 C:\Users\12082\Documents\toolkit\dev_toolkit\bin\Debug\dev_toolkit.application
 C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.exe.manifest
 C:\Users\12082\Documents\toolkit\dev_toolkit\obj\Debug\dev_toolkit.application
+G:\fx\toolkit\dev_toolkit\bin\Debug\dev_toolkit.exe.manifest
+G:\fx\toolkit\dev_toolkit\bin\Debug\dev_toolkit.application
+G:\fx\toolkit\dev_toolkit\bin\Debug\SharpGL.dll
+G:\fx\toolkit\dev_toolkit\bin\Debug\SharpGL.SceneGraph.dll
+G:\fx\toolkit\dev_toolkit\bin\Debug\SharpGL.WinForms.dll
+G:\fx\toolkit\dev_toolkit\obj\Debug\dev_toolkit.exe.manifest
+G:\fx\toolkit\dev_toolkit\obj\Debug\dev_toolkit.application

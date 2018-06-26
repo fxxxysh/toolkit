@@ -13,6 +13,7 @@ namespace dev_toolkit.modules
     public partial class s_comlink
     {
         //const string dll_path = "../../../Debug/comlink.dll";
+        //const string dll_path = "../../../Release/comlink.dll";
         const string dll_path = "comlink/comlink.dll";
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

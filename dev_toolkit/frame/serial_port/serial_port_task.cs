@@ -391,12 +391,12 @@ namespace dev_toolkit.frame
             plot_axis_x++;
         }
 
-        async void test_add_attitude(int msg_cnt)
-        {
-            await Task.Run(() =>
-            {
+        //async void test_add_attitude(int msg_cnt)
+        //{
+        //    await Task.Run(() =>
+        //    {
 
-            });               
-        }
+        //    });               
+        //}
     }
 }
