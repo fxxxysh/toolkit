@@ -143,6 +143,35 @@ namespace dev_toolkit.device
             }
         }
 
+        // 恢复默认配置
+        private void mag_calib_reset_Click(object sender, EventArgs e)
+        {
+            if (start_sign == false)
+            {
+                start_sign = mag_calib_command((byte)10);
+                if (start_sign == true)
+                {
+                    Thread th = new Thread(mag_calib_ack1);
+                    th.Start();
+                }
+            }
+        }
+
+        public void mag_calib_ack1()
+        {
+            bool loop = true;
+            while (loop)
+            {
+                if (start_timeout++ > 20)
+                {
+                    loop = false;
+                    start_sign = false;
+                }
+                Thread.Sleep(100);
+            }
+            Thread.CurrentThread.Abort();
+        }
+
         public void mag_calib_ack()
         {
             bool loop = true;
@@ -313,6 +342,16 @@ namespace dev_toolkit.device
                 _rotate_button[button.TabIndex] = mag_func;
             }
 
+            // 默认配置
+            SimpleButton bt1 = new SimpleButton();
+            bt1.AllowFocus = false;
+            bt1.Location = new Point(loction_x + _gyrop_ctl.Width - 2 * loction_x - 80, _gyrop_ctl.Height - 30 - 35);
+            bt1.Size = new Size(80, 25);
+            bt1.TabIndex = 0;
+            bt1.Text = "参数初始化";
+            bt1.Click += new System.EventHandler(mag_calib_reset_Click);
+
+            _gyrop_ctl.Controls.Add(bt1);
             // 进度条
             progress = new ProgressBarControl();
             progress.Anchor = (AnchorStyles.Top | AnchorStyles.Left);

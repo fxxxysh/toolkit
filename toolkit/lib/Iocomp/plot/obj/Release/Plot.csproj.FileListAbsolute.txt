@@ -22,3 +22,16 @@ F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\obj\Rel
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\obj\Release\plot.pdb
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\bin\Release\common.dll
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\plot\bin\Release\common.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\plot.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\plot.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\common.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\System.Design.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\System.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\System.Drawing.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\System.Windows.Forms.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\bin\Release\common.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\obj\Release\Plot.csprojAssemblyReference.cache
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\obj\Release\Plot.csproj.CoreCompileInputs.cache
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\obj\Release\Plot.csproj.CopyComplete
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\obj\Release\plot.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\plot\obj\Release\plot.pdb

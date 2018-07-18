@@ -87,6 +87,12 @@ namespace dev_toolkit.device
                                 //}
 
                                 //if (str_index != null)
+                                if (name == "val")
+                                {
+                                    _rotate_button[6].text.Text = str_value[0] + " " + str_value[1] + " " + str_value[2];
+                                    return;
+                                }
+
                                 if (orientation < 6)
                                 {
                                     //int index = int.Parse(str_index);
@@ -185,6 +191,20 @@ namespace dev_toolkit.device
             control.calib_ctl.module = 1; // 加计
             control.calib_ctl.command = command;
             return trans_command(control);
+        }
+
+        // 恢复默认配置
+        private void acc_calib_reset_Click(object sender, EventArgs e)
+        {
+            if (start_sign == false)
+            {
+                start_sign = acc_calib_command((byte)10);
+                if (start_sign == true)
+                {
+                    Thread th = new Thread(acc_calib_ack);
+                    th.Start();
+                }
+            }
         }
 
         private void acc_calib_Click(object sender, EventArgs e)
@@ -306,6 +326,28 @@ namespace dev_toolkit.device
                 acc_func.text = textEdit;
                 _rotate_button[button.TabIndex] = acc_func;
             }
+
+            // 实时
+            int ind = 6;
+            TextEdit now_val = new TextEdit();
+            now_val.Location = new Point(20 + loction_x + ((loction_width + 15) * 3) * (ind % 3), 22 + 2 * loction_height + ind / 3 * loction_height);
+            now_val.Size = new Size(240, 20);
+            now_val.TabIndex = 6;
+            _gyrop_ctl.Controls.Add(now_val);
+            acc_func_s acc_func1 = new acc_func_s();
+            //acc_func1.button = button;
+            acc_func1.text = now_val;
+            _rotate_button[now_val.TabIndex] = acc_func1;
+
+            // 默认配置
+            SimpleButton bt1 = new SimpleButton();
+            bt1.AllowFocus = false;
+            bt1.Location = new Point(loction_x + _gyrop_ctl.Width - 2 * loction_x - 80, _gyrop_ctl.Height - 30 - 35);
+            bt1.Size = new Size(80, 25);
+            bt1.TabIndex = 0;
+            bt1.Text = "参数初始化";
+            bt1.Click += new System.EventHandler(acc_calib_reset_Click);
+            _gyrop_ctl.Controls.Add(bt1);
 
             // 进度条
             progress = new ProgressBarControl();

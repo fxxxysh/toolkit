@@ -213,4 +213,3 @@ G:\fx\toolkit\dev_toolkit\obj\Release\dev_toolkit.application
 G:\fx\toolkit\dev_toolkit\obj\Release\dev_toolkit.csproj.CopyComplete
 G:\fx\toolkit\dev_toolkit\obj\Release\dev_toolkit.exe
 G:\fx\toolkit\dev_toolkit\obj\Release\dev_toolkit.pdb
-G:\fx\toolkit\dev_toolkit\obj\Release\dev_toolkit.csprojAssemblyReference.cache

@@ -17,3 +17,14 @@ F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\common\obj\R
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\common\obj\Release\Common.csproj.CoreCompileInputs.cache
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\common\obj\Release\common.dll
 F:\项目管理\2016-08-30\GROUP\github\fx_tools\toolkit\lib\Iocomp\common\obj\Release\common.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Release\common.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Release\common.pdb
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Release\System.Design.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Release\System.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Release\System.Drawing.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\bin\Release\System.Windows.Forms.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Release\Common.csprojAssemblyReference.cache
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Release\Common.csproj.CoreCompileInputs.cache
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Release\Common.csproj.CopyComplete
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Release\common.dll
+G:\fx\toolkit\toolkit\lib\Iocomp\common\obj\Release\common.pdb

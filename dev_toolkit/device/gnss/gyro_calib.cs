@@ -30,6 +30,7 @@ namespace dev_toolkit.device
         LabelControl info_label;
 
         public Dictionary<int, SimpleButton> _button = new Dictionary<int, SimpleButton>();
+        public Dictionary<int, SimpleButton> _func_button = new Dictionary<int, SimpleButton>();
         public Dictionary<int, SimpleButton> _rotate_button = new Dictionary<int, SimpleButton>();
         public Dictionary<int, gyro_integral_s> _rotate_buffer = new Dictionary<int, gyro_integral_s>();
 
@@ -193,6 +194,76 @@ namespace dev_toolkit.device
             control.calib_ctl.module = 0; // 陀螺
             control.calib_ctl.command = command;
             return trans_command(control);
+        }
+
+        // 功能操作
+        private void gyro_calib_func_Click(object sender, EventArgs e)
+        {
+            SimpleButton button = (SimpleButton)sender;
+
+            if (start_sign == false)
+            {         
+                if (button.TabIndex == 10)
+                {
+                    start_sign = gyro_calib_command((byte)button.TabIndex);
+                    if (start_sign == true)
+                    {
+                        Thread th = new Thread(gyro_calib_ack1);
+                        th.Start();
+                    }
+                }
+            }
+
+            if (button.TabIndex == 9)
+            {
+                if ((button.Text == "正交测试") && (start_sign))
+                {
+                    start_sign = gyro_calib_command((byte)button.TabIndex);
+                }
+                else if (button.Text == "取消测试")
+                {
+                    start_sign = gyro_calib_ctl_command((byte)2); //退出     
+                }
+                Thread th = new Thread(gyro_calib_ack2);
+                th.Start();
+            }
+        }
+
+        public void gyro_calib_ack2()
+        {
+            bool loop = true;
+
+            _page.Invoke(new Action(() =>
+            {
+                _func_button[9].Text = "取消测试";
+            }));
+
+            while (loop)
+            {
+                if (start_timeout++ > 20)
+                {
+                    loop = false;
+                    start_sign = false;
+                    _func_button[9].Text = "正交测试";
+                }
+                Thread.Sleep(100);
+            }
+            Thread.CurrentThread.Abort();
+        }
+
+        public void gyro_calib_ack1()
+        {
+            bool loop = true;
+            while (loop)
+            {
+                if (start_timeout++ > 20)
+                {
+                    loop = false;
+                    start_sign = false;
+                }
+                Thread.Sleep(100);
+            }
+            Thread.CurrentThread.Abort();
         }
 
         public void gyro_calib_ack()
@@ -389,7 +460,7 @@ namespace dev_toolkit.device
         public void Initialize()
         {
             // 功能按钮
-            int button_item = 3;
+            int button_item = 2;
             int loction_x = 10;
             int loction_y = 35;
             int loction_width = 70;
@@ -424,12 +495,12 @@ namespace dev_toolkit.device
                 _button[button.TabIndex] = button;
             }
 
-            // 正交校准操作
+            // 校准操作
             for (int i = 0; i < 4; i++)
             {
                 SimpleButton button = new SimpleButton();
                 button.AllowFocus = false;
-                button.Location = new Point(loction_x + (loction_width + 15) * (i + 2), loction_y + 1 * loction_height);
+                button.Location = new Point(10 + loction_x + (loction_width + 30) * (i), loction_y + 10 + 2 * loction_height);
                 button.Size = new Size(80, 25);
                 button.TabIndex = i;
                 button.Enabled = false;
@@ -455,6 +526,28 @@ namespace dev_toolkit.device
                 _gyrop_ctl.Controls.Add(button);
                 _rotate_button[button.TabIndex] = button;
             }
+
+            // 默认配置
+            SimpleButton bt1 = new SimpleButton();
+            bt1.AllowFocus = false;
+            bt1.Location = new Point(loction_x + _gyrop_ctl.Width - 2 * loction_x - 80, _gyrop_ctl.Height - 30 - 35);
+            bt1.Size = new Size(80, 25);
+            bt1.TabIndex = 10;
+            bt1.Text = "参数初始化";
+            bt1.Click += new System.EventHandler(gyro_calib_func_Click);
+            _gyrop_ctl.Controls.Add(bt1);
+            _func_button[bt1.TabIndex] = bt1;
+
+            // 测试
+            SimpleButton bt2 = new SimpleButton();
+            bt2.AllowFocus = false;
+            bt2.Location = new Point(loction_x + _gyrop_ctl.Width - 2 * loction_x - 160 - loction_x, _gyrop_ctl.Height - 30 - 35);
+            bt2.Size = new Size(80, 25);
+            bt2.TabIndex = 9;
+            bt2.Text = "正交测试";
+            bt2.Click += new System.EventHandler(gyro_calib_func_Click);
+            _gyrop_ctl.Controls.Add(bt2);
+            _func_button[bt2.TabIndex] = bt2;
 
             // 进度条
             progress = new ProgressBarControl();
