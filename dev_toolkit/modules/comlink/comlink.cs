@@ -309,7 +309,7 @@ namespace dev_toolkit.modules
             }
             else if (_init == true)
             {
-                connect_sign = 2;            
+                //connect_sign = 2;            
             }
         }
 
