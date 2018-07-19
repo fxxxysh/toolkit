@@ -273,7 +273,6 @@ namespace dev_toolkit.modules
                     break;
 
                 case 3:
-
                     int count = link_msg_count[2].Count;
                     for (int i = 0; i < count; i++)
                     {
